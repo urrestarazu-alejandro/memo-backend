@@ -20,9 +20,11 @@ author: Alejandro Urrestarazu
 ###############################################
 
 navbar-links:
-  Acerca de mí : "aboutme"
-  Diseño :
+  Acerca de mí: "aboutme"
+  Diseño:
     - Principios SOLID: "pages/solid"
+  Recursos:
+    - Bibliografía: "pages/bibliografia"
 
 ################
 # --- Logo --- #
