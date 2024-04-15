@@ -2,6 +2,7 @@
 layout: page
 title: Principios SOLID
 subtitle: Principios del diseño orientado a objetos y bases para el código limpio.
+comments: true
 ---
 
 ### ¿Qué es SOLID?
