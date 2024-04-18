@@ -2,6 +2,7 @@
 layout: post
 title: Principio de responsabilidad única
 subtitle: Un módulo debe tener una sola razón para cambiar.
+#thumbnail-img: /assets/img/posts/SOLID.png
 tags: [solid]
 comments: true
 author: Alejandro Urrestarazu

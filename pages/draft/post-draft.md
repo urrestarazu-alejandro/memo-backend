@@ -1,43 +1,38 @@
 ---
 layout: post
-title: Principio de responsabilidad única
+title: Principio de Abierto-Cerrado
 subtitle: Un módulo debe tener una sola razón para cambiar.
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
+thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
 tags: [solid]
 #comments: true
 #mathjax: true
 author: Alejandro Urrestarazu
 ---
 
-## SRP
+## OCP: Open/Closed principle
 
-Aunque la idea de mis blogs es crear contenido en Español, como el acrónimo SOLID está en idioma inglés es necesario nombrarlo en su idiama de origen **Single Responsibility Principle** para que la **S** tenga sentido.
-
-Una frase que resume de que se trata este principio y que van a ver hasta el cansancio es:
-
-{: .box-success} 
-Un módulo debe tener una sola razón para cambiar.
-
-Si un módulo tiene más de una razon para cambiar nos indica que tiene más de una responsabilidad. Todos los módulos con más de una responsabilidad deben dividirse en bloques más pequeños donde cada uno tiene una sola responsabilidad y motivo para cambiar.
-
-Aunque uno puede pensar que esta definición es equivalente a decir que un módulo hace solamente una cosa, esto es erróneo y en relidad ese concepto corresponde con la definición de función y no al principio de responsabilidad única.
-
-### ¿Que es un módulo?
-
-Una forma simple de pensarlo es que un módulo es un archivo fuente, pero solo aplica a los lenguajes compilados. Por lo que una definición más acertada es:
+Es la **O** en SOLID y viene del ingles "open/closed principle".
+Este término fue creado por por Bertrand Meyer en 1988, y definio la regla como:
 
 {: .box-success} 
-un módulo es solo un conjunto cohesivo de funciones y estructuras de datos.
+Un artefacto de software debe estar abierto a la extensión pero cerrado a la modificación.
 
-Larry Constantine definió cohesion a finales de la decada de 1960 y podemos entenderla cohesion como funcionalidades que tienen tanto en común que tiene sentido que esten en unidas en un mismo lugar.
+Esta definición parece ser contradictoria por incluir en la definicion dos cosas opuestas pero en realidad hacen referencia a distintas cosas. 
 
-### ¿Razón para cambiar?
+### ¿Cómo puede ser algo abierto y cerrado a la vez?
 
-La razón de ser de los sistemas informáticos es satisfacer a los usuarios y como probablemente haya un grupo de usuarios, es más correcto hablar de un "Actor". Entonces un módulo es responsable de satisfacer las necesidades de un único actor.
+Una segunda defición más clara es la que nos da Robert C. Martin (Desarrollo ágil de software: principios, patrones y prácticas - Prentice Hall, 2003):
 
-### Indicios de que estamos violando el principio
+{: .box-note}
+**“Abierto para extensión”:** Esto significa que el comportamiento del módulo se puede ampliar. A medida que cambian los requisitos de la aplicación, podemos ampliar el módulo con nuevos comportamientos que satisfagan esos cambios. En otras palabras, podemos cambiar lo que hace el módulo.
 
-* Duplicación accidental: Por ejemplo cuando una clase tiene varios métodos, donde cada uno es responsable ante un actor diferente.
+{: .box-note}
+**“Cerrado a modificaciones”:** Ampliar el comportamiento de un módulo no da como resultado cambios en el código fuente o binario del módulo. La versión binaria ejecutable del módulo, ya sea en una biblioteca enlazable, una DLL o un .jar de Java, permanece intacta.
 
-* Fusiones: Cuando varios desarrolladores tienen cambios que afecten al código fuente de una clase y son solicitados por diferentes actores pueden generar un choque el la lógica de la clase.
+Es decir el código debe tener una naturaleza dual como la luz que se comporta como onda y particula a la vez.
+En este caso nuestro código debe cumplir con requisitos y funcionalidades nuevas, y por otro lado aceptar estas funciones minimizando la edición del dódigo existente (Lo ideal es no tener que tocar para nada el código).
+Parece imposible, ¿no?.
+
+Una manera de lidiar con esto es a traves de una grafo de dependencias 

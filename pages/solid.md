@@ -5,6 +5,8 @@ subtitle: Principios del diseño orientado a objetos y bases para el código lim
 comments: true
 ---
 
+![SOLID en una consola](https://urrestarazu-alejandro.github.io/memo-backend/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
+
 ### ¿Qué es SOLID?
 
 **SOLID** es un acrónimo (**S**ingle responsibility, **O**pen-closed, **L**iskov substitution, **I**nterface segregation and **D**ependency inversion) que hace referencia a conceptos y conjunto de prácticas del diseño orientado a objetos y fue introducido por Robert C. Martin (Más conocido como el tío Bob) si aún no saben quien es les recomiendo mucho googlearlo ya que la mayoría de los conceptos fueron muy bien analizados y desarrollados por él.
