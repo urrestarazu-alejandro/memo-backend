@@ -25,7 +25,7 @@ Aunque uno puede pensar que esta definición es equivalente a decir que un módu
 Una forma simple de pensarlo es que un módulo es un archivo fuente, pero solo aplica a los lenguajes compilados. Por lo que una definición más acertada es:
 
 {: .box-success} 
-un módulo es solo un conjunto cohesivo de funciones y estructuras de datos.
+un módulo es un conjunto cohesivo de funciones y estructuras de datos.
 
 Larry Constantine definió cohesion a finales de la decada de 1960 y podemos entender la cohesion como funcionalidades que tienen tanto en común que tiene sentido que esten en agrupadas en un mismo lugar.
 

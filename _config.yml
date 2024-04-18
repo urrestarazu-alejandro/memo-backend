@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Memorias de un backend
+title: Memo Backend
 
 # Your name to show in the footer
 author: Alejandro Urrestarazu
@@ -168,7 +168,7 @@ footer-hover-col: "#0085A1"
 #################################
 
 # Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
-#gtag: "G-XXXXXXXXXX"
+gtag: "G-G4VYTYZNY0"
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
 #cloudflare_analytics: ""
