@@ -38,3 +38,8 @@ La razón de ser de los sistemas informáticos es satisfacer a los usuarios y co
 * Duplicación accidental: Por ejemplo cuando una clase tiene varios métodos, donde cada uno es responsable ante un actor diferente.
 
 * Fusiones: Cuando varios desarrolladores tienen cambios que afecten al código fuente de una clase y son solicitados por diferentes actores pueden generar un choque el la lógica de la clase.
+
+<!-- Ver como solucionarlo, revisar libro adaptive-code-agile -->
+<!-- SRP and the Decorator pattern -->
+<!-- The Composite pattern -->
+<!-- Predicate decorators -->
