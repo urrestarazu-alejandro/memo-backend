@@ -24,6 +24,7 @@ navbar-links:
   Diseño:
     - Principios SOLID: "pages/solid"
   Recursos:
+    - Mapa mental: "pages/mapamental"
     - Bibliografía: "pages/bibliografia"
 
 ################
