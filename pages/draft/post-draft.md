@@ -36,3 +36,11 @@ En este caso nuestro código debe cumplir con requisitos y funcionalidades nueva
 Parece imposible, ¿no?.
 
 Una manera de lidiar con esto es a traves de una grafo de dependencias 
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```  
