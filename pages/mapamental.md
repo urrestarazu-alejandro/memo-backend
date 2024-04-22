@@ -9,7 +9,7 @@ El siguiente grafico conecta las ideas y los contenidos que puedes encontrar en 
 
 ```mermaid
 mindmap
-  root{{Memo-Backend}}
+  root{{Memo Backend}}
     SOLID
     ::icon(fas fa-yin-yang)
         SRP
