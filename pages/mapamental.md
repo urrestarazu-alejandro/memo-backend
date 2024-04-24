@@ -4,7 +4,7 @@ title: Mapa mental del sitio
 subtitle: 
 ---
 
-El siguiente gráfico conecta las ideas y los contenidos que puedes encontrar en el sitio:
+El siguiente gráfico conecta las ideas y los contenidos que podras encontrar próximamente en el sitio:
 
 ```mermaid
 mindmap
