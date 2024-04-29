@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Principio de Abierto-Cerrado
-subtitle: Un módulo debe tener una sola razón para cambiar.
+subtitle: Un módulo debe estar abierto a la extensión pero cerrado a la modificación.
 thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
 tags: [solid]
 comments: true
@@ -14,7 +14,7 @@ Es la **O** en SOLID y viene del ingles "open/closed principle".
 Este término fue creado por por Bertrand Meyer en 1988, y definió la regla como:
 
 {: .box-success} 
-Un artefacto de software debe estar abierto a la extensión pero cerrado a la modificación.
+Un módulo debe estar abierto a la extensión pero cerrado a la modificación.
 
 Esta definición parece ser contradictoria por incluir en la definición dos cosas opuestas pero que en realidad hacen referencia a distintas cosas. 
 
