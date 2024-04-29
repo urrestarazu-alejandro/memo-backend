@@ -39,11 +39,15 @@ Ahora veamos diferentes diseños y analicemos el principio de Abierto/Cerrado en
 
 #### Código sin puntos de extensión
 
-Supongamos que tenemos el siguiente sistema de modela una cocina (*cocinaController*) que depende directamente de la clase encargada de cocinar y prepara los menus (*menuPostreService*), el cúal podemos ver en la siguiente figura:
+Supongamos que tenemos el siguiente sistema de modela una cocina (*cocinaController*) que depende directamente de la clase encargada de hacer los pedidos y preparar los menus (*menuPostreService*), el cúal podemos ver en la siguiente figura:
 
 ```mermaid
 classDiagram
     cocinaController ..> menuService 
+
+    class cocinaController{
+        +hacerPedido()
+    }
 
     class menuService{
       +cocinar()
@@ -55,6 +59,10 @@ Ahora supongamos que nuestro líder nos solicita una nueva funcionalidad, en est
 ```mermaid
 classDiagram
     cocinaController ..> menuPostreService 
+
+    class cocinaController{
+        +hacerPedido()
+    }
 
     class menuPostreService{
       +cocinar()
@@ -73,6 +81,10 @@ Una implementación con un punto de extensión es haciendo el método cocinar un
 classDiagram
     cocinaController ..> menuService 
     menuService <|-- menuPostreService
+
+    class cocinaController{
+        +hacerPedido()
+    }
 
     class menuService{
       +cocinar(): virtual
