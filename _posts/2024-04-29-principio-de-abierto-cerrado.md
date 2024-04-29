@@ -3,7 +3,7 @@ layout: post
 title: Principio de Abierto-Cerrado
 subtitle: Un módulo debe estar abierto a la extensión pero cerrado a la modificación.
 thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
-tags: [solid]
+tags: [solid,OCP]
 comments: true
 author: Alejandro Urrestarazu
 ---
