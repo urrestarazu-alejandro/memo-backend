@@ -267,5 +267,5 @@ Ya que si se realiza un cambio para agregar un miembro en la parte superior del 
 {: .box-note}
 Preferir la composición (herencia de interfaz) a la herencia (herencia de implementación).
 
-En otras palabras, cuanto tenemos código que va a cambiar frecuentemente preferir relaciones "Tiene-un" en lugar de "Es-un".
-En el ejemplo la "cocina" tiene una manera de cocinar el "menú".
+En otras palabras, cuanto tenemos código que va a cambiar frecuentemente preferir relaciones **"Tiene-un"** en lugar de **"Es-un"**.
+En el ejemplo la "cocina" **tiene una** manera de cocinar el "menú".
