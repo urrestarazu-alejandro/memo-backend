@@ -5,7 +5,7 @@ subtitle: Principios del diseño orientado a objetos y bases para el código lim
 comments: true
 ---
 
-![SOLID en una consola](https://urrestarazu-alejandro.github.io/memo-backend/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
+![SOLID ciudad inca perdida](/assets/img/posts/dalle-solid-machu-pichu.png){: .mx-auto.d-block :}
 
 ### ¿Qué es SOLID?
 
@@ -28,6 +28,8 @@ Ser tolerante al cambio hace referencia a la posibilidad de implementar mejoras/
 Luego el código a pesar de que va a ser ejecutado por computadoras quienes van a leerlo y mantenerlo son seres humanos por lo que es bueno mantenerlo lo más simple posible o "bien documentado". Luego de pasado un tiempo miraras tu código y pensara ¿Que quise hacer en esta línea?.
 
 Y por último no hay nada mejor que tener un módulo de código independiente que pueda ser usado en diferentes aplicaciones.
+
+![SOLID en una consola](https://urrestarazu-alejandro.github.io/memo-backend/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
 
 ---
 
