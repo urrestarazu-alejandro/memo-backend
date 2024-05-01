@@ -37,12 +37,13 @@
   {% endfor %}
 {% endif %}
 
+<!-- Uso mermaid para los gráficos: https://mermaid.js.org/ -->
 <script src="https://unpkg.com/mermaid@10.9.0/dist/mermaid.min.js"></script>
 <script>
   $(document).ready(function () {
     mermaid.initialize({
       startOnLoad:true,
-      theme: "neutral",
+      theme: "forest",
     });
     window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
   });
