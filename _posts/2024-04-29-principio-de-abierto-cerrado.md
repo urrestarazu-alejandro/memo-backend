@@ -10,6 +10,8 @@ author: Alejandro Urrestarazu
 
 ## OCP: Open/Closed principle
 
+![OCP efecto prisma de la luz al pasar por una puerta](/assets/img/posts/dalle-puerta-prisma-luz.png)
+
 Es la **O** en SOLID y viene del ingles "open/closed principle".
 Este término fue creado por Bertrand Meyer en 1988, y definió la regla como:
 
