@@ -35,6 +35,8 @@ La razón de ser de los sistemas informáticos es satisfacer a los usuarios y co
 
 ### Indicios de que estamos violando el principio
 
+El principal objetivo de este principio es la de reducir la complejidad para mejorar la calidad y el mantenimiento del código. Los iguientes dos casos nos brindan indicios de que estamos violando el *SRP*:
+
 * Duplicación accidental: Por ejemplo cuando una clase tiene varios métodos, donde cada uno es responsable ante un actor diferente.
 
 * Fusiones: Cuando varios desarrolladores tienen cambios que afecten al código fuente de una clase y son solicitados por diferentes actores pueden generar un choque el la lógica de la clase.
