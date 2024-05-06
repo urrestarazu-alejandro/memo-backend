@@ -1,7 +1,7 @@
 /* particle.js configuration json */
 
 particlesJS('particles-js',
-
+  
   {
     "particles": {
       "number": {
