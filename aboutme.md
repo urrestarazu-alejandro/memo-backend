@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page_particle
 title: ¿Quién soy?
 subtitle: Una pregunta muy filosófica para un programador.
 ---
