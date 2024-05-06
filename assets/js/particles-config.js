@@ -1,7 +1,7 @@
 /* particle.js configuration json */
 
 particlesJS('particles-js',
-  
+
   {
     "particles": {
       "number": {
@@ -12,13 +12,13 @@ particlesJS('particles-js',
         }
       },
       "color": {
-        "value": "#000000"
+        "value": "#ffffff"
       },
       "shape": {
         "type": "circle",
         "stroke": {
           "width": 0,
-          "color": "#000000"
+          "color": "#ffffff"
         },
         "polygon": {
           "nb_sides": 5
@@ -30,12 +30,12 @@ particlesJS('particles-js',
         }
       },
       "opacity": {
-        "value": 0.05,
+        "value": 1,
         "random": false,
         "anim": {
           "enable": false,
           "speed": 1,
-          "opacity_min": 0.05,
+          "opacity_min": 0.1,
           "sync": false
         }
       },
@@ -52,8 +52,8 @@ particlesJS('particles-js',
       "line_linked": {
         "enable": true,
         "distance": 150,
-        "color": "#000000",
-        "opacity": 0.2,
+        "color": "#ffffff",
+        "opacity": 0.4,
         "width": 1
       },
       "move": {
