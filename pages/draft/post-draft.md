@@ -13,6 +13,8 @@ author: Alejandro Urrestarazu
 
 ## LSP: Principio de sustitución de Liskov
 
+Este principio nos ayuda a evitar errores inesperados cuando usa herencia y polimorfismo en el código.
+
 Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle".
 
 En 1988, Barbara Liskov formuló la siguiente propiedad de sustitución:
@@ -27,14 +29,105 @@ Además al invocar el programa no van a saber, y no deberían saberlo, que subti
 
 ### Reglas del contrato de Liskov
 
-¿Cómo hacer para no violar el principio LSP?
+Hay varias "reglas" que se deben seguir para cumplir con el LSP. 
+Estas reglas se pueden dividir en dos categorías: **reglas de contrato** (relacionadas con las expectativas de las clases) y **reglas de variación** (relacionadas con los tipos que se pueden sustituir en el código).
 
-* Las condiciones previas no se pueden reforzar en un subtipo:
-Siempre que una subclase anula un método existente que contiene condiciones previas, nunca debe fortalecer las condiciones previas existentes. Hacerlo potencialmente rompería cualquier código de cliente que ya asuma que la subclase define los contratos de condiciones previas más fuertes posibles para cualquier método.
+#### Reglas del contrato
 
-* Las poscondiciones no se pueden debilitar en un subtipo:
-Al aplicar condiciones posteriores a subclases, se aplica la regla opuesta. En lugar de no poder fortalecer las poscondiciones, no puedes debilitarlas. En cuanto a todas las reglas de sustitución de Liskov relacionadas con los contratos, la razón por la que no se pueden debilitar las poscondiciones es porque los clientes existentes podrían romper cuando se les presente la nueva subclase. En teoría, si cumple con el LSP, cualquier subclase que cree debería ser utilizable por todos los clientes existentes sin provocar fallos inesperados.
+Estas reglas se relacionan con el contrato del supertipo y las restricciones impuestas a los contratos que se pueden agregar al subtipo.
 
+* Las condiciones previas no se pueden reforzar en un subtipo.
+* Las poscondiciones no se pueden debilitar en un subtipo.
 * Las invariantes del supertipo deben conservarse en un subtipo.
-Siempre que se crea una nueva subclase, debe seguir respetando todos los invariantes de datos que formaban parte de la clase base. La violación de este principio es fácil de introducir porque las subclases tienen mucha libertad para introducir nuevas formas de cambiar datos que antes eran privados.
 
+#### Reglas de variación
+
+Estas reglas se relacionan con la variación de argumentos y tipos de retorno.
+
+* Debe haber contravarianza de los argumentos del método en el subtipo.
+* Debe haber covarianza de los tipos de devolución en el subtipo.
+* El subtipo no puede generar nuevas excepciones a menos que formen parte de la jerarquía de excepciones existente.
+
+En este blog no voy a entrar en detalle en estás reglas (Seguramente dedicare uno o varios exclusivos a ellas) pero básicamente nos indican que el comportamiento y la compatibilidad se debe mantener luego de la sustitución de la clase.
+
+### Ejemplo de violación del principio LSP
+
+
+Veamos el siguiente diagrama de clases:
+
+```mermaid
+classDiagram
+    Guardaparques --> Ave
+    Ave <|-- Pinguino
+    class Guardaparques {
+        + aves
+        + liberar()
+    }
+    class Ave {
+        + volar()
+    }
+    class Pinguino {
+        %%Excepción ya que los pinguinos no pueden volar
+        + volar() Excepción
+    }
+```  
+
+Veamos la clase Pinguino que es un subtipo de Ave:
+
+~~~
+public class Ave {
+    public void volar() {
+        System.out.println("Volando");
+    }
+}
+
+public class Pinguino extends Ave {
+    public void volar() {
+        throw new UnsupportedOperationException("Pum! Los pinguinos no pueden volar");
+    }
+}
+~~~
+
+Los pinguinos son de la familia de las aves pero lamentablemente no vuelan, es por eso que lanza una excepción al intentar volar.
+
+Ahora imaginemos que tenemos un cliente que depende de Ave en este caso una clase Guardaparques
+
+~~~
+import java.util.List;
+
+public class Guardaparques {
+    public List<Ave> aves;
+
+    public Guardaparques(List<Ave> aves) {
+        this.aves = aves;
+    }
+
+    public void liberarAves() {
+        for (Ave ave : aves) {
+            ave.volar();
+        }
+    }
+}
+
+~~~
+
+Ahora creemos una instancia y veamos que pasa
+~~~
+import java.util.List;
+
+public class App {
+    public static void main(String[] args) {
+        Guardaparques guarda = new Guardaparques(List.of(new Ave(), new Pinguino()));
+        guarda.liberarAves();
+    }
+}
+
+~~~
+
+Esta incializacion de la clase Guardaparques es correcta con una coleccion de aves. Pero al ejecutarla nos arroja la siguiente excepción
+~~~
+Exception in thread "main" java.lang.UnsupportedOperationException: Pum! Los pinguinos no pueden volar
+~~~
+
+Esto se debe a que la clase pingüino rompe con una regla de variación ya que introduce una excepción que no es propia en Ave. Y la clase Guardaparques no tiene por que estar al tanto de ese cambio.
+ 
