@@ -2,12 +2,16 @@
 layout: post
 title: Principio de responsabilidad única
 subtitle: Un módulo debe tener una sola razón para cambiar.
+thumbnail-img: /assets/img/posts/dalle-SRP-obrero-confundido512.png
 tags: [solid,SRP]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## SRP: Single Responsibility Principle
+
+
+![SRP obrero de la construcción confundido](/assets/img/posts/dalle-SRP-obrero-confundido.png)
 
 Aunque la idea de mis blogs es crear contenido en Español, como el acrónimo SOLID está en idioma inglés es necesario nombrarlo en su idioma de origen **Single Responsibility Principle** para que la **S** tenga sentido.
 
