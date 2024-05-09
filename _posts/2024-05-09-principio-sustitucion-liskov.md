@@ -1,21 +1,22 @@
 ---
 layout: post
-title: Principio de Abierto-Cerrado
-subtitle: Un módulo debe tener una sola razón para cambiar.
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
-thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+title: Principio de sustitución de Liskov
+subtitle: Las subclases deben ser sustituibles por sus clases base.
+thumbnail-img: /assets/img/posts/LSP-cambiando-velas-electricidad512.png
 tags: [solid,LSP]
-#comments: true
-#mathjax: true
+comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## LSP: Principio de sustitución de Liskov
 
-Este principio nos ayuda a evitar errores inesperados cuando usa herencia y polimorfismo en el código.
+Imaginemos que nos encontramos en el siglo XIX en los albores de la electricidad, la gente dejaba de usar velas y las reemplazaba por bombillos eléctricos, seguramente la gente esperaba que iluminará mejor o al menos de la misma manera que las velas. 
+Este principio está relacionado con cambiar cosas y que se espera con los cambios. Además nos ayuda a evitar errores inesperados cuando usa herencia y polimorfismo en el código.
 
-Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle".
+
+![OCP efecto prisma de la luz al pasar por una puerta](/assets/img/posts/LSP-cambiando-velas-electricidad.png)
+
+Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle" o LCP.
 
 En 1988, Barbara Liskov formuló la siguiente propiedad de sustitución:
 
@@ -23,8 +24,10 @@ En 1988, Barbara Liskov formuló la siguiente propiedad de sustitución:
 si para cada objeto o1 de tipo **S** hay un objeto o2 de tipo **T** tal que para todos los programas P definidos en términos de **T**, el comportamiento de P no cambia cuando se sustituye o1 para o2 entonces **S** es un *subtipo* de **T**.
 
 En esta definición tenemos el tipo T también llamado **tipo base** el cual tiene métodos que pueden ser anulados por el subtipo.
-Tenemos el subtipo S que es una clase que hereda del tipo T, 
-Además al invocar el programa no van a saber, y no deberían saberlo, que subtipo están invocando. Esto se debe a que el comportamiento del programa no debe cambiar tanto haciendo uso de T o de S.
+
+Tenemos el **subtipo** S que es una clase que hereda del tipo T, 
+Además al invocar el programa no van a saber, y no deberían saberlo, que subtipo están invocando. 
+Esto se debe a que el comportamiento del programa no debe cambiar tanto haciendo uso de T o de S.
 
 
 ### Reglas del contrato de Liskov

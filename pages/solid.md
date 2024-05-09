@@ -33,4 +33,4 @@ Y por último no hay nada mejor que tener un módulo de código independiente qu
 
 ---
 
-[Ver todo el contenido acerca de SOLID](/memo-backend/tags/#solid)
+[Ver todo el contenido acerca de SOLID](https://memobackend.com.ar/tags/#solid)
