@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Principio de Abierto-Cerrado
-subtitle: Un módulo debe tener una sola razón para cambiar.
+title: Principio 
+subtitle: Un 
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
 thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
