@@ -2,6 +2,7 @@
 layout: page
 title: Mapa mental del sitio
 subtitle: 
+footer-extra: cafecito.html
 ---
 
 El siguiente gráfico conecta las ideas y los contenidos que podras encontrar próximamente en el sitio:

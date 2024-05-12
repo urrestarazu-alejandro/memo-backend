@@ -2,6 +2,7 @@
 layout: page
 title: Bibliografía
 subtitle: 
+footer-extra: cafecito.html
 ---
 
 ## Referencias

@@ -3,6 +3,7 @@ layout: page
 title: Principios SOLID
 subtitle: Principios del diseño orientado a objetos y bases para el código limpio.
 comments: true
+footer-extra: cafecito.html
 ---
 
 ![SOLID ciudad inca perdida](/assets/img/posts/dalle-solid-machu-pichu.png){: .mx-auto.d-block :}

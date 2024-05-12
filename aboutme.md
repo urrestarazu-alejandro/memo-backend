@@ -2,7 +2,7 @@
 layout: page
 title: ¿Quién soy?
 subtitle: Una pregunta muy filosófica para un programador.
-footer-extra: footer-extra.html
+footer-extra: cafecito.html
 ---
 
 Mi nombre es Alejandro Urrestarazu. Nací en la ciudad de Córdoba en Argentina.
