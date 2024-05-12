@@ -6,6 +6,7 @@ thumbnail-img: /assets/img/posts/LSP-cambiando-velas-electricidad512.png
 tags: [solid,LSP]
 comments: true
 author: Alejandro Urrestarazu
+footer-extra: cafecito.html
 ---
 
 ## LSP: Principio de sustitución de Liskov

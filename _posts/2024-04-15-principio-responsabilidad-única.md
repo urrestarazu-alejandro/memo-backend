@@ -6,6 +6,7 @@ thumbnail-img: /assets/img/posts/dalle-SRP-obrero-confundido512.png
 tags: [solid,SRP]
 comments: true
 author: Alejandro Urrestarazu
+footer-extra: cafecito.html
 ---
 
 ## SRP: Single Responsibility Principle

@@ -6,6 +6,7 @@ thumbnail-img: assets/img/posts/Dualite.jpg
 tags: [solid,OCP]
 comments: true
 author: Alejandro Urrestarazu
+footer-extra: cafecito.html
 ---
 
 ## OCP: Open/Closed principle
