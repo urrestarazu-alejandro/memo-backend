@@ -6,7 +6,6 @@ thumbnail-img: /assets/img/posts/LSP-cambiando-velas-electricidad512.png
 tags: [solid,LSP]
 comments: true
 author: Alejandro Urrestarazu
-footer-extra: cafecito.html
 ---
 
 ## LSP: Principio de sustitución de Liskov
@@ -17,7 +16,7 @@ Este principio está relacionado con cambiar cosas y que se espera con los cambi
 
 ![OCP efecto prisma de la luz al pasar por una puerta](/assets/img/posts/LSP-cambiando-velas-electricidad.png)
 
-Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle" o LCP.
+Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle" o LSP.
 
 En 1988, Barbara Liskov formuló la siguiente propiedad de sustitución:
 
