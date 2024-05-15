@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Principio de Segregación de Interfaces
-subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa
+title: Principio de segregación de interfaces
+subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa.
 thumbnail-img: /assets/img/posts/colador-arco-iris512.png
 tags: [solid,ISP]
 comments: true
