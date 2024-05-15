@@ -2,7 +2,7 @@
 layout: post
 title: Principio de Abierto-Cerrado
 subtitle: Un módulo debe estar abierto a la extensión pero cerrado a la modificación.
-thumbnail-img: assets/img/posts/Dualite.jpg
+thumbnail-img: assets/img/posts/dalle-puerta-prisma-luz512.png
 tags: [solid,OCP]
 comments: true
 author: Alejandro Urrestarazu
