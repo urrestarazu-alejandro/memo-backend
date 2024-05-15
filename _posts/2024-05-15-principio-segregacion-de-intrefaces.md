@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Principio de segregación de interfaces
-subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa.
+subtitle: Muchas interfaces específicas son mejores que una interfaz de propósito general.
 thumbnail-img: /assets/img/posts/colador-arco-iris512.png
 tags: [solid,ISP]
 comments: true
