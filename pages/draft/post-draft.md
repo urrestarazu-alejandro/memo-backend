@@ -11,9 +11,9 @@ tags: [solid,DIP]
 author: Alejandro Urrestarazu
 ---
 
-## DIP: Principio de Inversión de Dependencia
+## DIP: Principio de Inversión de la Dependencia
 
-El Principio de Inversión de Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:
+El Principio de Inversión de la Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:
 
 
 {: .box-success}
@@ -167,17 +167,17 @@ Se observa que `ServicioReportes` recibe una instancia a través de su construct
 
 ### Beneficios de DIP
 
-La implementación del Principio de Inversión de Dependencia (DIP) mejora la flexibilidad y mantenibilidad del software al reducir las dependencias en implementaciones concretas y fomentar el uso de abstracciones. Aunque no todas las dependencias pueden ser abstractas, el objetivo es minimizar las dependencias concretas, salvo en casos donde se garantice la estabilidad. Se busca evitar depender de elementos concretos volátiles en nuestro sistema, lo que nos permite desarrollar un código con bajo acoplamiento.
+La implementación del _Principio de Inversión de la Dependencia_ (DIP) mejora la flexibilidad y mantenibilidad del software al reducir las dependencias en implementaciones concretas y fomentar el uso de abstracciones. Aunque no todas las dependencias pueden ser abstractas, el objetivo es minimizar las dependencias concretas, salvo en casos donde se garantice la estabilidad. Se busca evitar depender de elementos concretos volátiles en nuestro sistema, lo que nos permite desarrollar un código con bajo acoplamiento.
 
 ### Fábricas
 
-Para cumplir con estas directrices, la creación de objetos concretos volátiles requiere un tratamiento especial. Esta precaución se justifica porque, en la mayoría de los lenguajes de programación, la creación de un objeto implica una dependencia del código fuente de la definición concreta de ese objeto.
+Para cumplir con este principio la creación de objetos concretos volátiles requiere un tratamiento especial. Esta precaución se justifica porque, en la mayoría de los lenguajes de programación, la creación de un objeto implica una dependencia del código fuente de la definición concreta de ese objeto.
 
-En la mayoría de los lenguajes orientados a objetos, como Java, se utiliza comúnmente una fábrica abstracta para gestionar esta dependencia indeseable.
+En la mayoría de los lenguajes orientados a objetos, como Java, se utiliza comúnmente una fábrica abstracta para gestionar esta dependencia indeseable (Tema que dejaré para otro Post específico).
 
 ### Patrón de Inyección de Dependencias
 
-El Principio de Inversión de Dependencia se implementa habitualmente mediante el uso de patrones de diseño como la Inversión de Control (IoC) y la Inyección de Dependencias (DI). Estos patrones ofrecen mecanismos para que las dependencias sean inyectadas en los objetos, en lugar de permitir que los objetos creen sus propias dependencias.
+El _Principio de Inversión de la Dependencia_ se implementa habitualmente mediante el uso de patrones de diseño como la **Inversión de Control** (IoC) y la **Inyección de Dependencias** (DI). Estos patrones ofrecen mecanismos para que las dependencias sean inyectadas en los objetos, en lugar de permitir que los objetos creen sus propias dependencias.
 
-Mucha gente se refiere a la la Inyección de Dependencias (DI) como Inversión de Control (IoC) (también conocido como el Principio de Hollywood - "No nos llames, te llamaremos"). 
-Estos dos términos a veces se usan indistintamente, pero DI es un subconjunto de IoC. 
+Mucha gente se refiere a la la _Inyección de Dependencias_ (DI) como _Inversión de Control_ (IoC) (también conocido como el _Principio de Hollywood_ - "No nos llames, te llamaremos"). 
+Estos dos términos a veces se usan indistintamente, pero **DI es un subconjunto de IoC**. 
