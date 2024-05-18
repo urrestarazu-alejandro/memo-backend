@@ -1,14 +1,18 @@
 ---
 layout: post
-title: Principio de inversión de la dependencia 
+title: Principio de inversión de la dependencia
 subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+thumbnail-img: /assets/img/posts/camion-llenado-dique512.png
 tags: [solid,DIP,Inversión de Control,Inyección de Dependencias,Inyección de constructores]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## DIP: Principio de Inversión de la Dependencia
+
+
+![DIP Principio de inversión de la dependencia](/assets/img/posts/camion-llenado-dique.png)
+
 
 El Principio de Inversión de la Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:
 
