@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Principio 
+title: Principio de inversión de la dependencia 
 subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
@@ -11,91 +11,59 @@ tags: [solid,ISP]
 author: Alejandro Urrestarazu
 ---
 
-## ISP: Principio de Segregación de Interfaces
-El Interface Segregation Principle (ISP), o en español, Principio de Segregación de Interfaces, se centra en cómo deben diseñarse las interfaces en la programación orientada a objetos.
+## DIP: Principio de Inversión de Dependencia
 
-La frase que resume este principio es:
+El Principio de Inversión de Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:
 
 {: .box-success}
-Ningún cliente debería estar forzado a depender de métodos que no usa.
+1. Los módulos de alto nivel no deben depender directamente de los módulos de bajo nivel. Ambos deben depender de abstracciones.
+2. Las abstracciones no deben depender de detalles concretos. Los detalles deben depender de las abstracciones.
 
-En otras palabras, las interfaces deben ser específicas y pequeñas, evitando tener interfaces monolíticas que obliguen a las clases que las implementan a depender de métodos innecesarios.
-
-### Ejemplo de ISP
-
-Supongamos que queremos modelar un sistema de trabajo que involucra tanto a humanos como a robots. Para ello, usamos una interfaz que actúa como contrato con dos acciones o métodos: trabajar y comer.
-
-```mermaid
-classDiagram
-    direction RL
-    ITrabajador <|.. Humano
-    ITrabajador <|.. Robot
-
-    <<Interface>> ITrabajador
-    class ITrabajador{
-        +trabajar()
-        +comer()
-    }
-
-    class Humano{
-        +trabajar()
-        +comer()
-    }
-
-    class Robot{
-        +trabajar()
-        +comer(): Exception
-    }
-```
-
-#### Problema del Diseño Actual
-
-En este caso, un robot al intentar ejecutar el método `comer` debería arrojar un error, ya que esta acción no es relevante para él. Este diseño presenta varios problemas:
-- **Dependencias Innecesarias**: La clase `Robot` tiene que implementar un método que no necesita, lo cual es una dependencia innecesaria.
-- **Falta de Flexibilidad**: Esto restringe la flexibilidad del diseño, ya que obliga a las clases a implementar métodos irrelevantes.
-- **Mantenimiento Complicado**: Puede generar problemas de mantenimiento en el futuro, ya que las clases están obligadas a manejar métodos innecesarios.
+En pocas palabras, este principio nos indica que los sistemas más flexibles son aquellos en los que las dependencias se establecen en base a abstracciones, en lugar de depender directamente de implementaciones concretas.
 
 
-#### Solución mediante Segregación de Interfaces
+Sin embargo, aplicar esta idea de forma rígida como una regla inflexible no es realista, ya que en los sistemas de software es inevitable depender de algunas implementaciones concretas. Por ejemplo, la clase `String` en Java es una implementación concreta y no sería práctico ni necesario convertirla en una abstracción. 
 
-Este problema se puede resolver segregando las operaciones en interfaces específicas, como se muestra en el siguiente diagrama de clases:
+La razón por la cual la dependencia de esta clase concreta, `String`, no representa un problema radica en su estabilidad. Los cambios en esta clase son extremadamente raros y están estrictamente controlados. Esto evita que los programadores y arquitectos se vean preocupados por cambios imprevistos o frecuentes en dicha clase. 
+Esta estabilidad es lo que hace que las dependencias en ciertas clases concretas sean aceptables en un contexto bien controlado.
 
+Otro concepto crucial y relacionado es el que los GOF nos presentaron en su libro "Design Patterns: Elements of Reusable Object-Oriented Software":
 
- ```mermaid
-classDiagram
-    direction RL
-    ITrabajador <|.. Humano
-    INutricion <|.. Humano
-    ITrabajador <|.. Robot
+{: .box-success}
+Programa para una interfaz, no para una implementación.
 
-    <<Interface>> ITrabajador
-    class ITrabajador{
-        +trabajar()
-    }
+Existen dos beneficios principales al manejar objetos únicamente a través de la interfaz definida por las clases abstractas:
 
-    <<Interface>> INutricion
-    class INutricion{
-        +comer()
-    }
+1. Los clientes no necesitan saber los tipos específicos de objetos que utilizan, siempre y cuando los objetos sigan la interfaz que los clientes esperan.
+2. Los clientes no necesitan conocer las clases que implementan esos objetos. Los clientes solo requieren conocimiento de la clase abstracta que define la interfaz.
 
-    class Humano{
-        +trabajar()
-        +comer()
-    }
-
-    class Robot{
-        +trabajar()
-    }
-```
-
-Esta segregación asegura que la clase `Robot` solo dependa de la interfaz correspondiente a su operación necesaria, que en este caso es `trabajar`. De este modo, cualquier cambio en el método `comer` no afectará a la clase `Robot`, mejorando así la flexibilidad y el mantenimiento del código.
+Cada cambio en una interfaz abstracta conlleva un cambio en sus implementaciones concretas. Por otro lado, los cambios en las implementaciones concretas no siempre, ni siquiera comúnmente, requieren modificaciones en las interfaces que implementan. Por lo tanto, las interfaces son menos propensas a cambios que las implementaciones.
 
 
-### ISP y los lenguajes
+La implicación principal es que las arquitecturas de software estables son aquellas que evitan depender de concreciones volátiles y que favorecen el uso de interfaces abstractas estables. Esta implicación se traduce en un conjunto específico de prácticas de codificación:
 
-El Principio de Segregación de Interfaces (ISP) tiene una relación significativa con los lenguajes de programación tipados, particularmente aquellos que son fuertemente y estáticamente tipados como Java, C# y otros similares. 
-En estos lenguajes, se obliga a los programadores a realizar declaraciones explícitas de interfaces, lo que puede crear dependencias en el código y permitir la verificación en tiempo de compilación. Este enfoque asegura que las clases implementen solo los métodos que necesitan, alineándose con el ISP y mejorando la mantenibilidad y escalabilidad del código.
+* **Evitar hacer referencia a clases concretas volátiles.** En su lugar, utilizar interfaces abstractas. Esta regla aplica en todos los lenguajes de programación, ya sea de tipado estático o dinámico. Además, establece restricciones significativas en la creación de objetos y promueve el uso de Abstract Factories.
+
+* **Evitar heredar de clases concretas volátiles.** Esto es una extensión de la regla anterior, pero es importante mencionarlo por separado. En los lenguajes de tipado estático, la herencia es la relación más fuerte y rígida del código fuente; por lo tanto, debe usarse con precaución. En los lenguajes de tipado dinámico, la herencia es menos problemática, pero sigue siendo una forma de dependencia y debe manejarse con cuidado.
+
+* **Evitar anular funciones concretas.** Las funciones concretas a menudo generan dependencias en el código fuente. Al anular esas funciones, no se eliminan esas dependencias; de hecho, se heredan. Para manejar esas dependencias, es necesario convertir la función en abstracta y crear múltiples implementaciones.
 
 
-Por otro lado, en lenguajes dinámicamente tipados como Python, los tipos y las interfaces no se verifican hasta el tiempo de ejecución. Esto significa que la violación de principios como el ISP solo se detectará cuando el código se ejecute, haciendo que los errores sean menos predecibles y más difíciles de rastrear. 
-Sin embargo, aplicar el ISP sigue siendo crucial para mejorar la claridad del código, reducir dependencias innecesarias y facilitar su mantenimiento, incluso en un entorno dinámico.
+
+
+### Beneficios de DIP
+
+La implementación del Principio de Inversión de Dependencia (DIP) mejora la flexibilidad y mantenibilidad del software al reducir las dependencias en implementaciones concretas y fomentar el uso de abstracciones. Aunque no todas las dependencias pueden ser abstractas, el objetivo es minimizar las dependencias concretas, salvo en casos donde se garantice la estabilidad. Se busca evitar depender de elementos concretos volátiles en nuestro sistema, lo que nos permite desarrollar un código con bajo acoplamiento.
+
+### Fábricas
+
+Para cumplir con estas directrices, la creación de objetos concretos volátiles requiere un tratamiento especial. Esta precaución se justifica porque, en la mayoría de los lenguajes de programación, la creación de un objeto implica una dependencia del código fuente de la definición concreta de ese objeto.
+
+En la mayoría de los lenguajes orientados a objetos, como Java, se utiliza comúnmente una fábrica abstracta para gestionar esta dependencia indeseable.
+
+### Patrón de Inyección de Dependencias
+
+El Principio de Inversión de Dependencia se implementa habitualmente mediante el uso de patrones de diseño como la Inversión de Control (IoC) y la Inyección de Dependencias (DI). Estos patrones ofrecen mecanismos para que las dependencias sean inyectadas en los objetos, en lugar de permitir que los objetos creen sus propias dependencias.
+
+Mucha gente se refiere a la la Inyección de Dependencias (DI) como Inversión de Control (IoC) (también conocido como el Principio de Hollywood - "No nos llames, te llamaremos"). 
+Estos dos términos a veces se usan indistintamente, pero DI es un subconjunto de IoC. 
