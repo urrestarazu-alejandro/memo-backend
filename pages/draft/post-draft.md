@@ -15,13 +15,14 @@ author: Alejandro Urrestarazu
 
 El Principio de Inversión de Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:
 
-1.
-{: .box-success}
-Los módulos de alto nivel no deben depender directamente de los módulos de bajo nivel. Ambos deben depender de abstracciones.
 
-2.
 {: .box-success}
-Las abstracciones no deben depender de detalles concretos. Los detalles deben depender de las abstracciones.
+1) Los módulos de alto nivel no deben depender directamente de los módulos de bajo nivel. Ambos deben depender de abstracciones.
+
+
+{: .box-success}
+2) Las abstracciones no deben depender de detalles concretos. Los detalles deben depender de las abstracciones.
+
 
 En pocas palabras, este principio nos indica que los sistemas más flexibles son aquellos en los que las dependencias se establecen en base a abstracciones, en lugar de depender directamente de implementaciones concretas.
 
