@@ -3,7 +3,7 @@ layout: post
 title: Principio de inversión de la dependencia 
 subtitle: Ningún cliente debería estar forzado a depender de métodos que no usa
 #thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
-tags: [solid,DIP]
+tags: [solid,DIP,Inversión de Control,Inyección de Dependencias,Inyección de constructores]
 comments: true
 author: Alejandro Urrestarazu
 ---
