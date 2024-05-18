@@ -5,7 +5,7 @@ subtitle: Ningún cliente debería estar forzado a depender de métodos que no u
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
 thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
-tags: [solid,ISP]
+tags: [solid,DIP]
 #comments: true
 #mathjax: true
 author: Alejandro Urrestarazu
@@ -53,7 +53,116 @@ La implicación principal es que las arquitecturas de software estables son aque
 
 * **Evitar anular funciones concretas.** Las funciones concretas a menudo generan dependencias en el código fuente. Al anular esas funciones, no se eliminan esas dependencias; de hecho, se heredan. Para manejar esas dependencias, es necesario convertir la función en abstracta y crear múltiples implementaciones.
 
+### Ejemplo
 
+Supongamos que debemos diseñar un sistema que genere informes en diversos formatos, como PDF o HTML. 
+Para abordar esta necesidad, podemos contemplar la creación de un servicio denominado `ServicioReportes`, el cual se encargaría de generar los informes al recibir como parámetro el tipo de reporte deseado. Este servicio invocaría el método correspondiente en la clase `GeneradorReporteConcreto`. 
+
+Genial! con esta solución, logramos satisfacer los requisitos planteados. A continuación, se presenta el diagrama de clases correspondiente:
+
+```mermaid
+classDiagram
+    direction RL
+    ServicioReportes --> GeneradorReporteConcreto
+
+    class GeneradorReporteConcreto {
+        +generarHTML()
+        +generarPDF()
+    }
+
+    class ServicioReportes {
+        +generarReporte(String tipoReporte)
+    }
+```
+
+Ahora, consideremos el escenario en el que necesitamos incorporar un nuevo tipo de informe al sistema. Esta tarea implicaría la necesidad de modificar el código dentro de `ServicioReportes` transpasando su frontera, lo cual revelaría una dependencia hacia un código que puede cambiar frecuentemente. Para evitar este tipo de situación, una solución sería implementar una interfaz (consultar el ISP) y establecer que `ServicioReportes` dependa de la interfaz `GeneradorReporte`.
+El nuevo diagrama de clases se presentaría de la siguiente manera:
+
+```mermaid
+classDiagram
+    direction RL
+    GeneradorReporte <|.. GeneradorReporteHTML
+    GeneradorReporte <|.. GeneradorReportePDF
+    ServicioReportes --> GeneradorReporte
+
+
+    <<Interface>> GeneradorReporte
+    class GeneradorReporte{
+        +generar()
+    }
+
+    class GeneradorReporteHTML {
+        +generar()
+    }
+
+    class GeneradorReportePDF {
+        +generar()
+    }
+
+    class ServicioReportes {
+        +generarReporte()
+    }
+```  
+
+Veamos como quedaría la solución en código Java:
+
+~~~~
+public class App {
+    public static void main(String[] args) {
+        GeneradorReporte generadorReportePDF = new GeneradorReportePDF();
+        ServicioReportes pdfServicioReportes = new ServicioReportes(generadorReportePDF);
+        pdfServicioReportes.generarReporte();
+
+        GeneradorReporte generadorReporteHTML = new GeneradorReporteHTML();
+        ServicioReportes csvServicioReportes = new ServicioReportes(generadorReporteHTML);
+        csvServicioReportes.generarReporte();
+    }
+}
+
+// Clase de negocio que depende de la generación de reportes
+class ServicioReportes {
+    private final GeneradorReporte generadorReporte;
+
+    public ServicioReportes(GeneradorReporte generadorReporte) {
+        this.generadorReporte = generadorReporte;
+    }
+
+    public void generarReporte() {
+        generadorReporte.generar();
+    }
+}
+
+interface GeneradorReporte {
+    void generar();
+}
+
+// Clase concreta que implementa la interfaz GeneradorReporte para generar reportes en formato HTML
+class GeneradorReporteHTML implements GeneradorReporte {
+    @Override
+    public void generar() {
+        System.out.println("Generando un reporte en formato HTML...");
+    }
+}
+
+// Clase concreta que implementa la interfaz GeneradorReporte para generar reportes en formato PDF
+class GeneradorReportePDF implements GeneradorReporte {
+    @Override
+    public void generar() {
+        System.out.println("Generando un reporte en formato PDF...");
+    }
+}
+~~~~
+
+Si tuvieramos que agregar otro tipo de reporte, simplemente agregariamos una nueva clase concreta que implemente `GeneradorReporte` y pasariamos esta instancia al constructor de `ServicioReportes`.
+
+
+Como nota en relación a este fragmento de código:
+~~~JAVA
+    GeneradorReporte generadorReportePDF = new GeneradorReportePDF();
+    ServicioReportes pdfServicioReportes = new ServicioReportes(generadorReportePDF);
+~~~
+
+Se observa que `ServicioReportes` recibe una instancia a través de su constructor. Esta técnica se conoce como **Inyección de constructores**.
 
 
 ### Beneficios de DIP
