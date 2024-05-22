@@ -39,10 +39,32 @@ mindmap
     ::icon(fas fa-puzzle-piece)
         Creacionales
         ::icon(fas fa-industry)
+            Factory Method: Método fábrica, Constructor virtual
+            Abstract Factory: Fábrica abstracta
+            Builder: Constructor
+            Prototype: Prototipo, Clon, Clone
+            Singleton: Instancia única
         Estructurales
         ::icon(fas fa-cubes)
+            Adapter: Adaptador, Envoltorio, Wrapper
+            Bridge: Puente
+            Composite: Objeto compuesto, Object Tree
+            Decorator: Decorador, Envoltorio, Wrapper
+            Facade: Fachada
+            Flyweight: Peso mosca, Peso ligero, Cache
+            Proxy
         Comportamiento
         ::icon(fas fa-key)
+            Chain of Responsibility: Cadena de responsabilidad, CoR, Chain of Command
+            Command: Comando, Orden, Action, Transaction
+            Iterator: Iterador
+            Mediator: Mediador, Intermediary, Controller
+            Memento: Recuerdo, Instantánea, Snapshot
+            Observer: Observador, Publicación-Suscripción
+            State: Estado
+            Strategy: Estrategia
+            Template Method: Método plantilla
+            Visitor: Visitante
 ```  
 
 ### Patrones Arquitectónicos 
