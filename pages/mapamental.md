@@ -33,6 +33,8 @@ mindmap
         ::icon(fas fa-cubes)
         Comportamiento
         ::icon(fas fa-key)
+    id(Anti-Patrones de diseño)
+    ::icon(fas fa-compass)
 ```  
 
 ### Patrones de diseño
