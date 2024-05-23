@@ -84,7 +84,9 @@ mindmap
         MVP: Modelo-Vista-Presentador
         MVC: Modelo-Vista-Controlador
         MVVM: Modelo-Vista-Viewmodel
-        DDD: Diseño impulsado por dominios
+        MVVM-C: MVVM with Coordinator
+        MVI: Model-View-Intent
+        VIPER: View Interactor Presenter Entity Router
 ```  
 
 ### Estilos Arquitectónicos
@@ -96,10 +98,29 @@ mindmap
     id(Estilos arquitectónicos)
     ::icon(fas fa-university)
         Monolito
-        En capas
-        Impulsado por eventos
-        Sistemas autónomos
-        Microservicios
-        Basado en el espacio
-    
+            Onion
+            Layered: En capas
+        SOA: Service oriented 
+            Microservices
+            Broker
+            Serverless
+        Component-Based
+            Microkernel
+            Object-Oriented
+            Plug-in
+        Distributed Systems
+            Peer-to-Peer
+            Space-based - Basado en el espacio
+        Event-Driven - Impulsado por eventos
+            Publish-Subscribe
+            Event-Driven
+        Interpreter
+            Python Interpreter
+            JavaScript Engine 
+            JVM
+        Data-centric
+            CQRS
+            Event-Sourcing
+            Kappa
+            Lambda
 ```  
