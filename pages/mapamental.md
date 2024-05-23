@@ -27,6 +27,12 @@ mindmap
     ::icon(fas fa-igloo)
     id(Patrones de diseño)
     ::icon(fas fa-puzzle-piece)
+        Creacionales
+        ::icon(fas fa-industry)
+        Estructurales
+        ::icon(fas fa-cubes)
+        Comportamiento
+        ::icon(fas fa-key)
 ```  
 
 ### Patrones de diseño
