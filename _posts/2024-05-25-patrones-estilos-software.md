@@ -2,7 +2,7 @@
 layout: post
 title: Patrones y estilos de software
 subtitle: soluciones reutilizables
-thumbnail-img: /assets/img/posts/plano-laberinto-dedalo.png
+thumbnail-img: /assets/img/posts/plano-laberinto-dedalo512.png
 tags: [Patrones de diseño,Patrones arquitectónicos,Estilos Arquitectónicos,C4]
 comments: true
 author: Alejandro Urrestarazu
