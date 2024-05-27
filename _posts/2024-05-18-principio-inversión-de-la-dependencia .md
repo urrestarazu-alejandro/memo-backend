@@ -11,7 +11,7 @@ author: Alejandro Urrestarazu
 ## DIP: Principio de Inversión de la Dependencia
 
 
-![DIP Principio de inversión de la dependencia](/assets/img/posts/camion-llenado-dique.png)
+![DIP Principio de inversión de la dependencia, camión llenando un dique](/assets/img/posts/camion-llenado-dique.png)
 
 
 El Principio de Inversión de la Dependencia (Dependency Inversion Principle, DIP) se sustenta en dos pilares esenciales:

@@ -21,7 +21,7 @@ Existen tres conceptos relacionados con la estructura y organización de un sist
 * Patrones arquitectónicos de software.
 * Estilos arquitectónicos de software.
 
-![SOLID ciudad inca perdida](/assets/img/Patrones-y-estilos-software.png){: .mx-auto.d-block :}
+![Alt text](/assets/img/Patrones-y-estilos-software.png){: .mx-auto.d-block :}
 
 
 ### Patrones de diseño de software

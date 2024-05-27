@@ -10,7 +10,7 @@ author: Alejandro Urrestarazu
 
 ## ISP: Principio de Segregación de Interfaces
 
-![ISP Principio de Segregación de Interfaces](/assets/img/posts/colador-arco-iris.png)
+![ISP Principio de Segregación de Interfaces, colador arco iris](/assets/img/posts/colador-arco-iris.png)
 
 El Interface Segregation Principle (ISP), o en español, Principio de Segregación de Interfaces, se centra en cómo deben diseñarse las interfaces en la programación orientada a objetos.
 

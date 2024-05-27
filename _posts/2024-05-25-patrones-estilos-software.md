@@ -2,13 +2,15 @@
 layout: post
 title: Patrones y estilos de software
 subtitle: soluciones reutilizables
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+thumbnail-img: /assets/img/posts/plano-laberinto-dedalo.png
 tags: [Patrones de diseño,Patrones arquitectónicos,Estilos Arquitectónicos,C4]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## Patrones y estilos de software
+
+![Plano arquitectura laberinto de dédalo](/assets/img/posts/plano-laberinto-dedalo.png){: .mx-auto.d-block :}
 
 Antes de adentrarnos en el mundo del software, me parece importante clarificar algunos conceptos. Aunque existe un debate sobre estas definiciones, podemos establecer unas bases útiles para quienes están empezando.
 
@@ -18,7 +20,7 @@ Existen tres conceptos relacionados con la estructura y organización de un sist
 * Patrones arquitectónicos de software.
 * Estilos arquitectónicos de software.
 
-![SOLID ciudad inca perdida](/assets/img/Patrones-y-estilos-software.png){: .mx-auto.d-block :}
+![Patrones y estilos de software](/assets/img/Patrones-y-estilos-software.png){: .mx-auto.d-block :}
 
 
 ### Patrones de diseño de software
@@ -46,7 +48,7 @@ Algunos de ejemplos de estilos arquitectónicos son: la **arquitectura en capas*
 
 Para ayudarnos de manera gráfica en que ambito o contexto se usa cada concepto podemos ayudarnos del modelo C4.
 
-![SOLID ciudad inca perdida](/assets/img/Modelo-C4-Patrones.png){: .mx-auto.d-block :}
+![Modelo C4 y arquitecturas](/assets/img/Modelo-C4-Patrones.png){: .mx-auto.d-block :}
 
 El **modelo C4** (Context, Containers, Components, and Code) para visualizar la arquitectura del software fue creado por Simon Brown. Es un marco enfocado en ayudar a los desarrolladores a describir y documentar diferentes niveles de abstracción en su arquitectura de software. Este modelo busca simplificar la comprensión de la arquitectura de un sistema de software para todos los interesados, sin importar su nivel técnico. 
 
