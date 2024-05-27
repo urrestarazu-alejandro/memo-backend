@@ -3,7 +3,7 @@ layout: post
 title: Patrones y estilos de software
 subtitle: soluciones reutilizables
 #thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
-tags: [Patrones de diseño,Patrones arquitectónicos,Estilos Arquitectónicos]
+tags: [Patrones de diseño,Patrones arquitectónicos,Estilos Arquitectónicos,C4]
 comments: true
 author: Alejandro Urrestarazu
 ---
