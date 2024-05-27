@@ -44,11 +44,11 @@ Algunos de ejemplos de estilos arquitectónicos son: la **arquitectura en capas*
 
 ### Modelo C4
 
-Para ayudarnos de manera gráfica en que ambitos o contextos se usa cada conceptos podemos ayudarnos del modelo C4.
+Para ayudarnos de manera gráfica en que ambito o contexto se usa cada concepto podemos ayudarnos del modelo C4.
 
 ![SOLID ciudad inca perdida](/assets/img/Modelo-C4-Patrones.png){: .mx-auto.d-block :}
 
-El modelo C4 (Context, Containers, Components, and Code) para visualizar la arquitectura del software fue creado por Simon Brown. Es un marco enfocado en ayudar a los desarrolladores a describir y documentar diferentes niveles de abstracción en su arquitectura de software. Este modelo busca simplificar la comprensión de la arquitectura de un sistema de software para todos los interesados, sin importar su nivel técnico. 
+El **modelo C4** (Context, Containers, Components, and Code) para visualizar la arquitectura del software fue creado por Simon Brown. Es un marco enfocado en ayudar a los desarrolladores a describir y documentar diferentes niveles de abstracción en su arquitectura de software. Este modelo busca simplificar la comprensión de la arquitectura de un sistema de software para todos los interesados, sin importar su nivel técnico. 
 
 Aquí se describen brevemente cada uno de los niveles:
 
