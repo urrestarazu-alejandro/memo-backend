@@ -41,3 +41,29 @@ Los estilos arquitectónicos son configuraciones de alto nivel que definen la es
 La función de los estilos arquitectónicos es proporcionar una base conceptual con principios fundamentales para el diseño de sistemas y ayudan a definir la organización general de un sistema de software.
 
 Algunos de ejemplos de estilos arquitectónicos son: la **arquitectura en capas** (donde los componentes se organizan en capas horizontales), la arquitectura **cliente-servidor** (separando la funcionalidad en servidores que proveen servicios y clientes que los consumen) y la **arquitectura dirigida por eventos** (centrada en reaccionar a eventos).
+
+### Modelo C4
+
+Para ayudarnos de manera gráfica en que ambitos o contextos se usa cada conceptos podemos ayudarnos del modelo C4.
+
+![SOLID ciudad inca perdida](/assets/img/Modelo-C4-Patrones.png){: .mx-auto.d-block :}
+
+El modelo C4 (Context, Containers, Components, and Code) para visualizar la arquitectura del software fue creado por Simon Brown. Es un marco enfocado en ayudar a los desarrolladores a describir y documentar diferentes niveles de abstracción en su arquitectura de software. Este modelo busca simplificar la comprensión de la arquitectura de un sistema de software para todos los interesados, sin importar su nivel técnico. 
+
+Aquí se describen brevemente cada uno de los niveles:
+
+1. **Contexto**: Este es el nivel más alto y muestra el sistema completo desde una perspectiva global. Aquí, el objetivo es mapear y explicar cómo el sistema de software interactúa con sus usuarios finales, otros sistemas y todos los servicios relacionados. Este diagrama ayuda a entender el entorno, las interacciones y las dependencias externas del sistema. Ejemplos de elementos que se suelen incluir son los usuarios (roles de usuario), los sistemas con los que se comunica, y las interacciones principales.
+
+2. **Contenedores**: En este nivel se descompone el sistema en varios contenedores o módulos de alto nivel. Un contenedor podría ser, por ejemplo, una aplicación móvil, una aplicación web, un servidor de bases de datos, o incluso un sistema de archivos. 
+Este nivel ayuda a los desarrolladores a visualizar la disposición general del sistema y las tecnologías asociadas a cada contenedor. Aquí la atención se centra en la responsabilidad de cada contenedor y cómo se comunican entre sí.
+
+3. **Componentes**: Aquí se desglosa cada contenedor en sus componentes individuales. Los componentes son partes de un contenedor que funcionan juntas para proporcionar funcionalidades específicas. 
+Este diagrama detalla la organización interna del contenedor, incluyendo cómo se organizan los diferentes componentes, cómo interactúan y cómo están estructurados para trabajar juntos. 
+Un componente puede ser, por ejemplo, un módulo dentro de una aplicación web, una base de datos o cualquier parte interna de un contenedor que tenga una función clara.
+
+4. **Código**: Este es el nivel de detalle más bajo del modelo C4, en el que se abordan las clases, funciones o métodos específicos dentro de cada componente. A este nivel se representa el diseño del software a nivel de código, mostrando detalles como relaciones de herencia, interacciones o incluso **patrones de diseño** utilizados.
+
+
+El enfoque C4 es valioso porque permite a los arquitectos y desarrolladores visualizar diferentes aspectos de la arquitectura de software en varios niveles de granularidad y abstractos, haciendo los conceptos accesibles y comprensibles para diferentes públicos, desde técnicos hasta no técnicos. 
+Además, al proporcionar una visión escalonada, facilita identificar dónde pueden surgir problemas y cómo se interconectan las diferentes partes del sistema.
+
