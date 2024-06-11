@@ -14,3 +14,4 @@ footer-extra: cafecito.html
 - Gary McLean Hall (2017) Adaptive Code: Agile coding with design patterns and SOLID principles, 2nd Edition. Microsoft Press.
 - Robert C. Martin (2017) Clean Architecture: A Craftsman's Guide to Software Structure and Design. Pearson.
 - Martin Fowler (2018) Refactoring: Improving the Design of Existing Code. Addison-Wesley.
+- Maximiliano Contieri (2023) Clean Code Cookbook. O'Reilly Media, Inc.
