@@ -2,12 +2,9 @@
 layout: post
 title: Modelos Anémicos vs. Modelos Enriquecidos
 subtitle: Modelos y DTOs
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+#thumbnail-img: /assets/img/posts/plano-laberinto-dedalo512.png
 tags: [Modelado, DTO]
-#comments: true
-#mathjax: true
+comments: true
 author: Alejandro Urrestarazu
 ---
 
