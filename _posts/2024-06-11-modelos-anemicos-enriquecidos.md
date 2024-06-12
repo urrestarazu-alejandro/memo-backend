@@ -2,13 +2,15 @@
 layout: post
 title: Modelos Anémicos vs. Modelos Enriquecidos
 subtitle: Modelos y DTOs
-#thumbnail-img: /assets/img/posts/plano-laberinto-dedalo512.png
+thumbnail-img: /assets/img/posts/el-estadio-arcadico-MitadColorBN512.png
 tags: [Modelado, DTO]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## Modelos Anémicos vs. Modelos Enriquecidos
+
+![Plano arquitectura laberinto de dédalo](/assets/img/posts/el-estadio-arcadico-MitadColorBN512.png){: .mx-auto.d-block :}
 
 Dentro del ámbito del desarrollo de software, se debate constantemente la distinción entre modelos anémicos y modelos enriquecidos (también conocidos como modelos de dominio ricos), especialmente en el contexto de la programación orientada a objetos y el diseño de arquitecturas de software. Cada uno de estos enfoques tiene un impacto significativo en la estructura y gestión de la lógica de negocio en las aplicaciones.
 
