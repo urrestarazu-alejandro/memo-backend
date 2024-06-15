@@ -67,6 +67,99 @@ No necesariamente. La consideración de los DTOs como antipatrones depende en gr
 
 3. **Rendimiento**: Aunque los DTOs pueden mejorar el rendimiento reduciendo las llamadas de red, el coste de mapear datos entre entidades del dominio y DTOs puede ser significativo, especialmente si el mapeo es complejo o si se manejan grandes volúmenes de datos.
 
-### Conclusión
 
-Los DTOs no son inherentemente antipatrones. Son herramientas que, si se utilizan correctamente, pueden mejorar la estructura y el rendimiento de una aplicación. Sin embargo, como con cualquier herramienta en ingeniería de software, su uso inapropiado puede llevar a problemas de diseño y mantenimiento. Es crucial evaluar su necesidad en el contexto específico del proyecto y aplicarlos de manera que maximicen su utilidad sin introducir complejidad innecesaria.
+### Veamos con un ejemplo
+
+Imaginemos que tenemos que modelar una cuenta bancaria simple que tiene dos operaciones una para retirar dinero y otra para depositar.
+
+#### Modelo enriquecido de una Cuenta Bancaria
+
+~~~~
+public class CuentaBancaria {
+  private double monto;
+  private final int idCuenta;
+
+  public CuentaBancaria(double monto, int idCuenta) {
+    this.monto = monto;
+    this.idCuenta = idCuenta;
+  }
+
+  public double getMonto() {
+    return monto;
+  }
+
+  public int getIdCuenta() {
+    return idCuenta;
+  }
+
+  public void depositar(double cantidad) {
+    this.monto += cantidad;
+  }
+
+  public void retirar(double cantidad) {
+    if (cantidad <= this.monto) {
+      this.monto -= cantidad;
+    } else {
+      System.out.println("No tienes suficiente saldo en la cuenta.");
+    }
+  }
+}
+~~~~
+
+* ¿Qué pasaría si necesitáramos cambiar los ID de las cuentas debido a la fusión de dos bancos?
+* ¿Qué ocurriría si se retirara saldo negativo?
+* ¿Debería la lógica para prestar dinero estar incluida en esta clase?
+
+Los invito a reflexionar sobre las distintas variantes de este problema, que son las que nos proporcionarán el famoso "depende" al decidir cuándo usar un modelo u otro.
+
+#### Modelo anémico de una Cuenta Bancaria
+
+~~~~
+public class CuentaBancaria {
+    private double monto;
+    private int idCuenta;
+
+    public CuentaBancaria() {
+    }
+
+    public double getMonto() {
+        return this.monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public int getIdCuenta() {
+        return this.idCuenta;
+    }
+
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+}
+~~~~
+
+Para poder operar es necesario tener un caso de uso para poder replicar el comportamiento como el del modelo enriquecido:
+
+~~~~
+public class OperacionesCuenta {
+    public void depositar(CuentaBancaria cuenta, double cantidad) {
+        double nuevoSaldo = cuenta.getMonto() + cantidad;
+        cuenta.setMonto(nuevoSaldo);
+    }
+
+    public void retirar(CuentaBancaria cuenta, double cantidad) {
+        double nuevoSaldo = cuenta.getMonto() - cantidad;
+        if (nuevoSaldo >= 0) {
+            cuenta.setMonto(nuevoSaldo);
+        } else {
+            System.out.println("Fondos insuficientes.");
+        }
+    }
+}
+~~~~
+
+En este caso, aunque ganamos la flexibilidad de modificar los atributos, el precio a pagar es la ruptura del principio de encapsulamiento. Por otro lado, estas clases por sí solas no garantizan los principios SOLID, y es necesario que el módulo esté bien diseñado para evitar errores o violaciones de límites que expongan entidades o comportamientos no deseados.
+
+Como reflexión final, los DTOs no son necesariamente antipatrones. Son herramientas que, utilizadas correctamente, pueden mejorar la estructura y el rendimiento de una aplicación. Sin embargo, como ocurre con cualquier herramienta en la ciencia del software, el uso inapropiado puede acarrear problemas de diseño y mantenimiento. Es crucial evaluar la necesidad de su uso en el contexto específico del proyecto y aplicarlos de manera que maximicen su utilidad sin introducir complejidad innecesaria.
