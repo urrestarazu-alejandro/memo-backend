@@ -3,7 +3,7 @@ layout: post
 title: Modelos Anémicos vs. Modelos Enriquecidos
 subtitle: Modelos y DTOs
 thumbnail-img: /assets/img/posts/el-estadio-arcadico-MitadColorBN512.png
-tags: [Modelado, DTO]
+tags: [Modelado, DTO,Anémicos,Enriquecidos]
 comments: true
 author: Alejandro Urrestarazu
 ---
@@ -44,7 +44,9 @@ Los **DTOs (Objetos de Transferencia de Datos)** son una técnica utilizada en e
 - Los DTOs suelen utilizarse en conjunto con modelos anémicos para transferir datos entre las capas de servicio donde se implementa la lógica de negocio.
 - En el contexto de modelos de dominio ricos, los DTOs pueden seguir siendo útiles para simplificar y desacoplar la transferencia de datos entre distintas partes de un sistema o entre sistemas diferentes; sin embargo, es fundamental gestionar cuidadosamente el diseño de los DTOs para evitar replicar de forma indebida la lógica o el estado interno del dominio.
 
-En resumen, los modelos anémicos y ricos representan filosofías distintas en el diseño de software y la elección entre uno u otro puede depender de diversos factores, como los requisitos específicos del proyecto, las preferencias del equipo y el contexto técnico y comercial. Los DTOs desempeñan un papel importante en ambos contextos, sirviendo principalmente como facilitadores en la transferencia de datos. Los modelos enriquecidos ofrecen una mayor cohesión y robustez al encapsular tanto datos como lógica de negocio en las entidades, mientras que los DTOs son cruciales para la transferencia eficiente de datos entre diferentes componentes del sistema.
+En resumen, los modelos anémicos y ricos representan filosofías distintas en el diseño de software y la elección entre uno u otro puede depender de diversos factores, como los requisitos específicos del proyecto, las preferencias del equipo y el contexto técnico y comercial. 
+
+Los DTOs desempeñan un papel importante en ambos contextos, sirviendo principalmente como facilitadores en la transferencia de datos. Los modelos enriquecidos ofrecen una mayor cohesión y robustez al encapsular tanto datos como lógica de negocio en las entidades, mientras que los DTOs son cruciales para la transferencia eficiente de datos entre diferentes componentes del sistema.
 
 ### ¿Son los DTOs antipatrones?
 
@@ -114,6 +116,8 @@ Los invito a reflexionar sobre las distintas variantes de este problema, que son
 
 #### Modelo anémico de una Cuenta Bancaria
 
+A continuación tenemos la clase cuenta Bancaria como un modelo anémico que se puede usar como contenedor de los datos (DTOs) o se puede pensar como el estado en un momento determinado de la ejecución.
+
 ~~~~
 public class CuentaBancaria {
     private double monto;
@@ -140,7 +144,7 @@ public class CuentaBancaria {
 }
 ~~~~
 
-Para poder operar es necesario tener un caso de uso para poder replicar el comportamiento como el del modelo enriquecido:
+Para poder operar o cambiar su estado es necesario tener un caso de uso para poder replicar el comportamiento como el del modelo enriquecido:
 
 ~~~~
 public class OperacionesCuenta {
