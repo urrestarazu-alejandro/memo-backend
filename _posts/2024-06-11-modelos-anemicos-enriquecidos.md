@@ -76,6 +76,9 @@ Imaginemos que tenemos que modelar una cuenta bancaria simple que tiene dos oper
 
 #### Modelo enriquecido de una Cuenta Bancaria
 
+
+El siguiente código pertenece a una clase de modelo enriquecido que permite acceder al monto y el identificador de la cuenta bancaria. Además, incluye dos operaciones para depositar y retirar dinero.
+
 ~~~~
 public class CuentaBancaria {
   private double monto;
@@ -109,10 +112,12 @@ public class CuentaBancaria {
 ~~~~
 
 * ¿Qué pasaría si necesitáramos cambiar los ID de las cuentas debido a la fusión de dos bancos?
-* ¿Qué ocurriría si se retirara saldo negativo?
+* ¿Qué ocurriría si se retirara un saldo negativo?
 * ¿Debería la lógica para prestar dinero estar incluida en esta clase?
+* ¿Qué pasaría si algunos de los atributos fueran de tipo mutable?
 
-Los invito a reflexionar sobre las distintas variantes de este problema, que son las que nos proporcionarán el famoso "depende" al decidir cuándo usar un modelo u otro.
+Los invito a reflexionar sobre las distintas variantes de este problema, que son las que nos proporcionarán el famoso "depende" al decidir cuándo y cómo usar cada modelo.
+
 
 #### Modelo anémico de una Cuenta Bancaria
 
