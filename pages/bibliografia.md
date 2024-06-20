@@ -7,6 +7,8 @@ footer-extra: cafecito.html
 
 ## Referencias
 
+![Biblioteca antigua con ordenador](assets/img/Biblioteca-antigua-ordenador512.png){: .mx-auto.d-block :}
+
 - Liskov Barbara (1988) Data Abstraction and Hierarchy. In Addendum to the Proceedings of OOPSLA ’87 and SIGPLAN Notices.
 - Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (GOF) (1994) Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley.
 - Bertrand Meyer (1997) Object-Oriented Software Construction. Pearson Education, Inc.
