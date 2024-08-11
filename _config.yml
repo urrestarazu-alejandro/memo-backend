@@ -27,7 +27,7 @@ navbar-links:
     - Mapa mental: "pages/mapamental"
     - Bibliografía: "pages/bibliografia"
   Tutoriales:
-    - Mermaid: "pages/tutorial/tuto-mermaid.md"
+    - Mermaid: "pages/tutorial/tuto-mermaid"
 
 ################
 # --- Logo --- #
