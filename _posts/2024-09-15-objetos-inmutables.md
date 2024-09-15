@@ -73,7 +73,6 @@ Esto impide que otras clases puedan heredar de esta clase y potencialmente modif
    
 ~~~
 
-
 2. **Hacer Todos los Campos `final` y Privados:**
 
 En Java, declarar un atributo como `final` implica que la referencia o el valor del campo no puede cambiar después de que se ha inicializado, pero no necesariamente garantiza que el objeto en sí mismo sea inmutable. 
@@ -85,7 +84,6 @@ Garantiza que los campos se puedan inicializar sólo una vez, ya sea en el punto
 
 El uso de `final` es un paso hacia la inmutabilidad al evitar la reasignación, pero no es suficiente por sí solo para garantizar un objeto completamente inmutable. Es importante combinar `final` con otras prácticas de diseño como las que describiremos a continuación.
 
-
 3. **Inicializar los Campos en el Constructor:**
 Asegúrate de que todos los campos se inicializan dentro del constructor y no expongas métodos para cambiar su valor después.
 
@@ -94,7 +92,6 @@ Asegúrate de que todos los campos se inicializan dentro del constructor y no ex
        this.miCampo = valorInicial;
    }
 ~~~
-
 
 4. **Evitar Métodos `setters`:**
 No proporciones métodos que permitan modificar los campos, como setters.
@@ -107,7 +104,6 @@ Si necesitas exponer el valor de los campos, usa getters. Asegúrate de retornar
        return miCampo;
    }
 ~~~
-
 
 6. **Si el Objeto Tiene Referencias a Objetos Mutables:**
 - Devuelve copias defensivas de los objetos (por ejemplo, arreglos, listas).
@@ -124,8 +120,6 @@ Si necesitas exponer el valor de los campos, usa getters. Asegúrate de retornar
        return miArray.clone(); // Retorna una copia para preservarlo inmutable
    }
 ~~~
-
-
 
 
 ### Ejemplo de una clase inmutable
