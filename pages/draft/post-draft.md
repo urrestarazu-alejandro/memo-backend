@@ -1,73 +1,183 @@
 ---
 layout: post
-title: Modelos Anémicos vs. Modelos Enriquecidos
-subtitle: Modelos y DTOs
+title: Objetos inmutables
+subtitle: Un objeto cuyo estado no puede ser modificado una vez creado.
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
 #thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
-tags: [Modelado, DTO]
+tags: [Inmutabilidad]
 #comments: true
 #mathjax: true
 author: Alejandro Urrestarazu
 ---
 
-## Modelos Anémicos vs. Modelos Enriquecidos
+## Objeto inmutables
 
-Dentro del ámbito del desarrollo de software, se debate constantemente la distinción entre modelos anémicos y modelos enriquecidos (también conocidos como modelos de dominio ricos), especialmente en el contexto de la programación orientada a objetos y el diseño de arquitecturas de software. Cada uno de estos enfoques tiene un impacto significativo en la estructura y gestión de la lógica de negocio en las aplicaciones.
-
-### Modelos Anémicos
-
-Un modelo anémico se refiere a una aproximación donde los objetos de dominio son esencialmente contenedores de datos sin comportamientos o lógicas de negocio relevantes. Estos modelos suelen estar constituidos principalmente por campos de datos y sus respectivos métodos getters y setters. La lógica de negocio se gestiona generalmente fuera de los objetos de dominio, a menudo en clases de servicio separadas.
-
-La exposición de datos mediante getter y setter puede quebrantar el principio de encapsulación, al permitir a fuentes externas acceder y modificar los datos dentro de un objeto en lugar de mantenerlos protegidos dentro del objeto mismo. Esta vulnerabilidad puede hacer que el objeto sea susceptible a daños o alteraciones no deseadas. La forma anémica de diseño también puede conducir a un enfoque más procedimental de la programación, donde el principal énfasis radica en la manipulación de datos en lugar de encapsularlos en objetos con un comportamiento significativo.
-
-**Características de los modelos anémicos:**
-- Separación de datos y comportamiento.
-- Facilidad inicial en la separación y organización del código, aunque puede resultar en problemas de mantenimiento.
-- Frecuencia en arquitecturas basadas en transacciones o en aplicaciones donde la lógica de negocio no está estrechamente ligada a los estados de los objetos.
+Tomando la definición de [objeto inmutable en wikipedia](https://es.wikipedia.org/wiki/Objeto_inmutable): 
+{: .box-success}
+tanto en la programación orientada a objetos y programación funcional un «objeto inmutable» es un objeto cuyo estado no puede ser modificado una vez creado.
 
 
-### Modelos Enriquecidos o de Dominio Rico
+Es decir se refiere a la incapacidad de cambiar el estado de un objeto una vez que ha sido creado.
 
-Un **modelo de dominio rico** se caracteriza por objetos de dominio que encapsulan tanto datos como comportamientos. Esto implica que, además de contener campos de datos, también incluyen la lógica necesaria para manipular esos datos y representar adecuadamente las operaciones del dominio.
+## ¿Cual es su uso?
 
-**Características de los modelos enriquecidos:**
-- Integración de datos y comportamientos en las mismas entidades o clases.
-- Mayor adhesión a los principios de la programación orientada a objetos, como encapsulación e herencia.
-- Fomenta un diseño más intuitivo y cohesivo, lo que puede mejorar la mantenibilidad y robustez del código.
-- Puede complicar el diseño inicial y aumentar la curva de aprendizaje para nuevos desarrolladores en el proyecto.
+1. **Simplicidad Conceptual:**
+- Los objetos inmutables son más fáciles de entender y razonar, ya que una vez creados, su estado no cambia. Esto reduce la complejidad al tratar de seguir cómo y cuándo un objeto puede modificarse.
 
-### Relación con los DTOs (Data Transfer Objects)
+2. **Seguridad en Programas Concurrentes:**
+- En entornos de programación concurrente, los objetos inmutables son inherentemente seguros sin necesidad de sincronización. Esto se debe a que múltiples hilos pueden acceder a los mismos objetos inmutables sin riesgo de que el estado del objeto cambie durante la ejecución.
 
-Los **DTOs (Objetos de Transferencia de Datos)** son una técnica utilizada en el desarrollo de software para transferir datos entre sub-sistemas de una aplicación, especialmente en aplicaciones con una arquitectura de capas o en entornos distribuidos. En muchos casos, un DTO se asemeja a una instancia de un modelo anémico, ya que actúa principalmente como un contenedor de datos sin funcionalidades significativas, diseñado específicamente para la transferencia de datos entre capas o servicios.
+3. **Uso Eficiente en Cachés:**
+- Dado que los objetos inmutables no cambian, pueden almacenarse en cachés para ser reutilizados. Esto puede ahorrar recursos al evitar la creación repetida de objetos equivalentes.
 
-**Conexión entre DTOs y modelos de diseño:**
-- Los DTOs suelen utilizarse en conjunto con modelos anémicos para transferir datos entre las capas de servicio donde se implementa la lógica de negocio.
-- En el contexto de modelos de dominio ricos, los DTOs pueden seguir siendo útiles para simplificar y desacoplar la transferencia de datos entre distintas partes de un sistema o entre sistemas diferentes; sin embargo, es fundamental gestionar cuidadosamente el diseño de los DTOs para evitar replicar de forma indebida la lógica o el estado interno del dominio.
+4. **Facilidad en la Reutilización y el Compartido:**
+- Dado que no cambian, los objetos inmutables se pueden compartir entre diferentes puntos de un programa sin el riesgo de que una parte cambie el valor de otra parte.
 
-En resumen, los modelos anémicos y ricos representan filosofías distintas en el diseño de software y la elección entre uno u otro puede depender de diversos factores, como los requisitos específicos del proyecto, las preferencias del equipo y el contexto técnico y comercial. Los DTOs desempeñan un papel importante en ambos contextos, sirviendo principalmente como facilitadores en la transferencia de datos. Los modelos enriquecidos ofrecen una mayor cohesión y robustez al encapsular tanto datos como lógica de negocio en las entidades, mientras que los DTOs son cruciales para la transferencia eficiente de datos entre diferentes componentes del sistema.
+5. **Inmutabilidad Intrínseca de las Claves en Estructuras de Datos:**
+- Muchas estructuras de datos, como los mapas (hashes), utilizan objetos como claves. Si estas claves son inmutables, garantiza que el `hash` y las comparaciones permanezcan constantes e impide errores lógicos en las operaciones con dichas estructuras.
 
-### ¿Son los DTOs antipatrones?
+6. **Reducción de Errores:**
+- Eliminan una categoría de errores relacionados con la modificación de datos no planificada o imprevista, ya que aseguran que una vez establecido, el comportamiento del objeto no puede cambiar.
 
-No necesariamente. La consideración de los DTOs como antipatrones depende en gran medida del contexto específico y de cómo se implementan.
+7. **Facilitación del Diseño Funcional:**
+- En paradigmas de programación funcional, los objetos inmutables son usados extensivamente porque encajan naturalmente con la idea de funciones sin efectos secundarios.
 
-#### **Casos en que los DTOs son útiles y no representan un antipatrón:**
+#### Ejemplos en el Mundo Real
 
-1. **Reducir el tráfico de red**: En aplicaciones distribuidas, especialmente aquellas que operan sobre redes más lentas o sobre Internet, minimizar el número de llamadas remotas es crucial. Los DTOs pueden encapsular múltiples datos necesarios para una sola llamada, reduciendo la necesidad de múltiples interacciones entre las capas cliente y servidor.
+- **Clases de Java como `String`, `Integer`, `Boolean`:** Son inmutables. Por ejemplo, `String` en Java es inmutable, lo cual facilita que objetos `String` sean compartidos y reutilizados.
+
+- **Uso en APIs Públicas:** Cuando una API retorna objetos inmutables, se previene que el cliente los modifique inesperadamente, preservando la integridad del estado interno.
+
+Al diseñar sistemas complejos, especialmente aquellos con múltiples hilos o servicios, el uso de objetos inmutables puede reducir significativamente la aparición de errores difíciles de detectar relacionados con el estado compartido y la mutabilidad. Si necesitas ejemplos adicionales o aclaraciones, no dudes en consultarme.
+
+
+Para crear una clase inmutable en Java, debes seguir estas características básicas:
+
+1. **Declarar la clase como `final`:** Esto evita que otras clases puedan derivar de ella y potencialmente modificar su comportamiento, garantizando así que los objetos creados a partir de ella permanezcan inmutables.
+
+2. **Hacer que todos los campos sean `final` y privados:** Esto asegura que estos campos se inicializan una sola vez, ya sea en su declaración o dentro de un constructor, y que no se puedan modificar después.
+
+3. **Evitar métodos setters:** No proporciones métodos para modificar los campos del objeto. En su lugar, todos los valores deben establecerse en el momento de la creación de la instancia.
+
+4. **Inicializar completamente los campos a través del constructor:** Proporciona un constructor que inicialice todos los campos y valide los datos si es necesario.
+
+5. **Proporcionar métodos de acceso (`getters`) que no devuelvan referencias a objetos mutables internos:** Si el objeto contiene campos con tipos de datos mutables (como arreglos o listas), considera devolver copias de esos objetos en lugar de la referencia directa.
+
+
+### Pasos para Crear un Objeto Inmutable en Java
+
+1. **Declarar la Clase como `final`:**
+Esto impide que otras clases puedan heredar de esta clase y potencialmente modificar su comportamiento.
+
+~~~
+   public final class MiClaseInmutable {
+       // campos y métodos aquí
+   }
    
-2. **Desacoplamiento**: Los DTOs ayudan a desacoplar la capa de presentación de la capa de negocio al servir como un intermediario que solo transfiere datos necesarios para la presentación, sin exponer la lógica de negocio interna o las entidades de persistencia.
-
-3. **Integración entre sistemas**: En los escenarios de integración de sistemas, donde diferentes aplicaciones necesitan intercambiar datos, los DTOs proporcionan una forma estandarizada y simplificada de compartir datos sin necesidad de exponer las estructuras internas de los sistemas involucrados.
+~~~
 
 
-#### **Situaciones en que los DTOs podrían considerarse un antipatrón:**
+2. **Hacer Todos los Campos `final` y Privados:**
 
-1. **Sobreutilización/Abuso**: Si los DTOs se utilizan en exceso donde no son necesarios, pueden llevar a un diseño sobrecomplicado y a una gran cantidad de mapeo redundante y tedioso entre las entidades del dominio y los DTOs, lo cual podría introducir errores y complicaciones de mantenimiento.
+En Java, declarar un atributo como `final` implica que la referencia o el valor del campo no puede cambiar después de que se ha inicializado, pero no necesariamente garantiza que el objeto en sí mismo sea inmutable. 
+Garantiza que los campos se puedan inicializar sólo una vez, ya sea en el punto de declaración o dentro del constructor, y no puedan cambiar una vez establecidos.
 
-2. **Desincronización**: Si no se gestionan adecuadamente, los DTOs pueden llevar a una desincronización entre las múltiples representaciones de los objetos (por ejemplo, entidades de dominio versus DTOs), haciendo que el sistema sea más difícil de entender y mantener.
+~~~
+   private final int miCampo;
+~~~
 
-3. **Rendimiento**: Aunque los DTOs pueden mejorar el rendimiento reduciendo las llamadas de red, el coste de mapear datos entre entidades del dominio y DTOs puede ser significativo, especialmente si el mapeo es complejo o si se manejan grandes volúmenes de datos.
+El uso de `final` es un paso hacia la inmutabilidad al evitar la reasignación, pero no es suficiente por sí solo para garantizar un objeto completamente inmutable. Es importante combinar `final` con otras prácticas de diseño como las que describiremos a continuación.
 
-### Conclusión
 
-Los DTOs no son inherentemente antipatrones. Son herramientas que, si se utilizan correctamente, pueden mejorar la estructura y el rendimiento de una aplicación. Sin embargo, como con cualquier herramienta en ingeniería de software, su uso inapropiado puede llevar a problemas de diseño y mantenimiento. Es crucial evaluar su necesidad en el contexto específico del proyecto y aplicarlos de manera que maximicen su utilidad sin introducir complejidad innecesaria.
+3. **Inicializar los Campos en el Constructor:**
+Asegúrate de que todos los campos se inicializan dentro del constructor y no expongas métodos para cambiar su valor después.
+
+~~~
+   public MiClaseInmutable(int valorInicial) {
+       this.miCampo = valorInicial;
+   }
+~~~
+
+
+4. **Evitar Métodos `setters`:**
+No proporciones métodos que permitan modificar los campos, como setters.
+
+5. **Proporcionar Métodos de Acceso (`getters`) Seguros:**
+Si necesitas exponer el valor de los campos, usa getters. Asegúrate de retornar copias de cualquier objeto mutable interno.
+
+~~~
+   public int getMiCampo() {
+       return miCampo;
+   }
+~~~
+
+
+6. **Si el Objeto Tiene Referencias a Objetos Mutables:**
+- Devuelve copias defensivas de los objetos (por ejemplo, arreglos, listas).
+
+~~~
+   private final int[] miArray;
+
+   public MiClaseInmutable(int[] array) {
+       // Crear una copia para asegurar que miArray sea inmutable
+       this.miArray = array.clone();
+   }
+
+   public int[] getMiArray() {
+       return miArray.clone(); // Retorna una copia para preservarlo inmutable
+   }
+~~~
+
+
+
+
+### Ejemplo de una clase inmutable
+
+A continuación, te muestro un ejemplo simple de una clase inmutable en Java:
+
+~~~
+public final class Punto {
+
+    private final int x;
+    private final int y;
+
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    // No hay setters para modificar x e y
+
+    @Override
+    public String toString() {
+        return "Punto{" + "x=" + x + ", y=" + y + '}';
+    }
+}
+~~~
+
+
+En este ejemplo, la clase `Punto` es inmutable porque:
+
+- Está definida como `final`.
+- Sus campos `x` e `y` son privados y finales.
+- No hay métodos para cambiar el valor de `x` o `y` después de que el objeto ha sido creado.
+
+
+### Consejos Adicionales
+
+- **Validaciones en el Constructor:** Si ciertas restricciones deben aplicarse a los valores de los campos, realiza estas validaciones dentro del constructor.
+
+- **Usar Clases de Ayuda:** Considera el uso de objetos inmutables proporcionados por Java, como `String`, `Integer`, y muchos tipos de la biblioteca estándar que ya son inmutables. Esto puede simplificar el diseño de tus estructuras de datos.
+
+- **Mantén el Número Mínimo de Campos:** Reduce el número de campos tanto como sea posible, ya que mantener la inmutabilidad es más fácil cuando hay menos datos para gestionar.
+
+Implementar inmutabilidad puede requerir algo más de trabajo de diseño inicial, pero las ventajas de seguridad y simplicidad que proporciona a menudo lo compensan, especialmente en sistemas complejos.
