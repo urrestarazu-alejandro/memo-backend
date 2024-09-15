@@ -64,62 +64,65 @@ Al diseñar sistemas complejos, especialmente aquellos con múltiples hilos o se
 ### Pasos para Crear un Objeto Inmutable en Java
 
 1. **Declarar la Clase como `final`:**
-Esto impide que otras clases puedan heredar de esta clase y potencialmente modificar su comportamiento.
+    Esto impide que otras clases puedan heredar de esta clase y potencialmente modificar su comportamiento.
 
-~~~
-   public final class MiClaseInmutable {
-       // campos y métodos aquí
-   }
-   
-~~~
+    ~~~
+    public final class MiClaseInmutable {
+        // campos y métodos aquí
+    }
+    
+    ~~~
 
 2. **Hacer Todos los Campos `final` y Privados:**
 
-En Java, declarar un atributo como `final` implica que la referencia o el valor del campo no puede cambiar después de que se ha inicializado, pero no necesariamente garantiza que el objeto en sí mismo sea inmutable. 
-Garantiza que los campos se puedan inicializar sólo una vez, ya sea en el punto de declaración o dentro del constructor, y no puedan cambiar una vez establecidos.
+    En Java, declarar un atributo como `final` implica que la referencia o el valor del campo no puede cambiar después de que se ha inicializado, pero no necesariamente garantiza que el objeto en sí mismo sea inmutable. 
+    Garantiza que los campos se puedan inicializar sólo una vez, ya sea en el punto de declaración o dentro del constructor, y no puedan cambiar una vez establecidos.
 
-~~~
-   private final int miCampo;
-~~~
+    ~~~
+    private final int miCampo;
+    ~~~
 
-El uso de `final` es un paso hacia la inmutabilidad al evitar la reasignación, pero no es suficiente por sí solo para garantizar un objeto completamente inmutable. Es importante combinar `final` con otras prácticas de diseño como las que describiremos a continuación.
+    {: .box-warning}
+    El uso de `final` es un paso hacia la inmutabilidad al evitar la reasignación, pero no es suficiente por sí solo para garantizar un objeto completamente inmutable. 
+
+    Es importante combinar `final` con otras prácticas de diseño como las que describiremos a continuación.
 
 3. **Inicializar los Campos en el Constructor:**
-Asegúrate de que todos los campos se inicializan dentro del constructor y no expongas métodos para cambiar su valor después.
+    Asegúrate de que todos los campos se inicializan dentro del constructor y no expongas métodos para cambiar su valor después.
 
-~~~
-   public MiClaseInmutable(int valorInicial) {
-       this.miCampo = valorInicial;
-   }
-~~~
+    ~~~
+    public MiClaseInmutable(int valorInicial) {
+        this.miCampo = valorInicial;
+    }
+    ~~~
 
 4. **Evitar Métodos `setters`:**
-No proporciones métodos que permitan modificar los campos, como setters.
+    No proporciones métodos que permitan modificar los campos, como setters.
 
 5. **Proporcionar Métodos de Acceso (`getters`) Seguros:**
-Si necesitas exponer el valor de los campos, usa getters. Asegúrate de retornar copias de cualquier objeto mutable interno.
+    Si necesitas exponer el valor de los campos, usa getters. Asegúrate de retornar copias de cualquier objeto mutable interno.
 
-~~~
-   public int getMiCampo() {
-       return miCampo;
-   }
-~~~
+    ~~~
+    public int getMiCampo() {
+        return miCampo;
+    }
+    ~~~
 
 6. **Si el Objeto Tiene Referencias a Objetos Mutables:**
-- Devuelve copias defensivas de los objetos (por ejemplo, arreglos, listas).
+    Devuelve copias defensivas de los objetos (por ejemplo, arreglos, listas).
 
-~~~
-   private final int[] miArray;
+    ~~~
+    private final int[] miArray;
 
-   public MiClaseInmutable(int[] array) {
-       // Crear una copia para asegurar que miArray sea inmutable
-       this.miArray = array.clone();
-   }
+    public MiClaseInmutable(int[] array) {
+        // Crear una copia para asegurar que miArray sea inmutable
+        this.miArray = array.clone();
+    }
 
-   public int[] getMiArray() {
-       return miArray.clone(); // Retorna una copia para preservarlo inmutable
-   }
-~~~
+    public int[] getMiArray() {
+        return miArray.clone(); // Retorna una copia para preservarlo inmutable
+    }
+    ~~~
 
 
 ### Ejemplo de una clase inmutable
