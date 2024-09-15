@@ -2,12 +2,9 @@
 layout: post
 title: Objetos inmutables
 subtitle: Un objeto cuyo estado no puede ser modificado una vez creado.
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
 #thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
 tags: [Inmutabilidad,Cache,Concurrencia]
-#comments: true
-#mathjax: true
+comments: true
 author: Alejandro Urrestarazu
 ---
 
