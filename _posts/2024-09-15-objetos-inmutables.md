@@ -2,13 +2,16 @@
 layout: post
 title: Objetos inmutables
 subtitle: Un objeto cuyo estado no puede ser modificado una vez creado.
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+thumbnail-img: /assets/img/posts/atlas_peatonal.png
 tags: [Inmutabilidad,Cache,Concurrencia]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## Objeto inmutables
+
+![Plano arquitectura laberinto de dédalo](/assets/img/posts/atlas_peatonal.png){: .mx-auto.d-block :}
+
 
 Tomando la definición de [objeto inmutable en wikipedia](https://es.wikipedia.org/wiki/Objeto_inmutable): 
 
