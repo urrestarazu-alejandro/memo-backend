@@ -126,3 +126,18 @@ mindmap
             Kappa
             Lambda
 ```  
+
+
+### Objetos
+
+
+```mermaid
+mindmap
+  root("`**Memo Backend**`")
+  ::icon(fas fa-memory)
+    id(Objetos)
+    ::icon(fa-solid fa-car-on)
+        Modelos Anémicos
+        Modelos Enriquecidos
+        Inmutabilidad
+```  
