@@ -3,7 +3,7 @@ layout: post
 title: Objetos inmutables
 subtitle: Un objeto cuyo estado no puede ser modificado una vez creado.
 thumbnail-img: /assets/img/posts/atlas_peatonal.png
-tags: [Inmutabilidad,Cache,Concurrencia]
+tags: [Inmutabilidad,Cache,Concurrencia,Patrón Constructor]
 comments: true
 author: Alejandro Urrestarazu
 ---
@@ -89,6 +89,7 @@ Al diseñar sistemas complejos, especialmente aquellos con múltiples hilos o se
 
 3. **Inicializar los Campos en el Constructor:**
     Asegúrate de que todos los campos se inicializan dentro del constructor y no expongas métodos para cambiar su valor después.
+    En este punto también podemos ayudarnos del `patrón Constructor` para que encapsule el proceso de construir una estructura compleja de datos inmutable.
 
     ~~~
     public MiClaseInmutable(int valorInicial) {
