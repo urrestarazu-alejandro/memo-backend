@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Combo: Chain of Responsibility + Strategy
+title: Combo Chain of Responsibility + Strategy
 subtitle: Combinación de Patrones: cadena de responsabilidad y estrategia
 thumbnail-img: /assets/img/posts/papa_noel_taller_regalos.png
 tags: [Chain of Responsibility,Strategy, Patrones de diseño]
