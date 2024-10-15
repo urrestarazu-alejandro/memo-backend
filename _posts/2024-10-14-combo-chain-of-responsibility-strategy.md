@@ -1,13 +1,10 @@
 ---
 layout: post
 title: Combo: Chain of Responsibility + Strategy
-subtitle: 
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+subtitle: Combinación de Patrones: cadena de responsabilidad y estrategia
+thumbnail-img: /assets/img/posts/atlas_peatonal.png
 tags: [Chain of Responsibility,Strategy, Patrones de diseño]
-#comments: true
-#mathjax: true
+comments: true
 author: Alejandro Urrestarazu
 ---
 
@@ -262,6 +259,8 @@ El regalo: Oso teddy se empaquetó en una caja.
 
 En este ejemplo, hemos visto cómo el patrón de diseño **Chain of Responsibility** se utiliza para manejar diferentes tipos de solicitudes (representadas por los regalos), a través de una cadena de "handlers" especializados (los duendes). Cada duende es responsable de procesar un tipo específico de regalo. Si un duende no puede procesar un regalo, este se delega al siguiente duende en la cadena.
 
+
 Simultáneamente, el patrón **Strategy** se utiliza para separar la lógica de envoltura de los regalos en dos estrategias distintas, logrando una separación clara entre el concepto de regalo y el de su envoltura. Esto proporciona un gran beneficio en términos de flexibilidad y mantenibilidad: si se deciden cambiar las estrategias de envoltura, solo será necesario modificar las estrategias de `Envoltura`, sin afectar la lógica de los duendes o el procesamiento del sistema en su conjunto.
+
 
 Esta integración de patrones resalta cómo los paradigmas de diseño pueden conjugarse para abordar problemas complejos de manera eficiente, organizando y flexibilizando el flujo de trabajo dentro del sistema.
