@@ -2,13 +2,15 @@
 layout: post
 title: Combo: Chain of Responsibility + Strategy
 subtitle: Combinación de Patrones: cadena de responsabilidad y estrategia
-thumbnail-img: /assets/img/posts/atlas_peatonal.png
+thumbnail-img: /assets/img/posts/papa_noel_taller_regalos.png
 tags: [Chain of Responsibility,Strategy, Patrones de diseño]
 comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## Combinación de Patrones: Chain of Responsibility + Strategy
+
+![Taller de los duendes de Papa Noel](/assets/img/posts/papa_noel_taller_regalos.png){: .mx-auto.d-block :}
 
 Imaginemos un sistema diseñado para facilitar el envoltorio de regalos para Papá Noel (también conocido como Santa Claus, Viejito Pascuero o San Nicolás). En este sistema, cada duende está especializado en manejar un tipo específico de regalo, como bombones, pelotas o peluches. Además, hay dos estilos de envoltura disponibles: bolsas y cajas.
 
