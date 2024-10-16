@@ -12,13 +12,23 @@ author: Alejandro Urrestarazu
 
 ![Taller de los duendes de Papa Noel](/assets/img/posts/papa_noel_taller_regalos.png){: .mx-auto.d-block :}
 
-Imaginemos un sistema diseñado para facilitar el envoltorio de regalos para Papá Noel (también conocido como Santa Claus, Viejito Pascuero o San Nicolás). En este sistema, cada duende está especializado en manejar un tipo específico de regalo, como bombones, pelotas o peluches. Además, hay dos estilos de envoltura disponibles: bolsas y cajas.
+La idea de este post no es explicar de qué se trata cada patrón ya que hay muchos sitios al respecto. Pero me parece que no hay muchos ejemplos de cómo los patrones pueden interactuar entre sí formando combinaciones muy útiles. Y la mejor manera de verlos en acción es con ejemplos. Así que vamos nomas!.
+
+
+Imaginemos un sistema diseñado para facilitar el envoltorio de regalos para Papá Noel (depende de dónde estés leyendo es también conocido como Santa Claus, Viejito Pascuero o San Nicolás). 
+
+
+En este sistema, cada duende está especializado en manejar un tipo específico de regalo, como bombones, pelotas o peluches. Además, hay dos estilos de envoltura disponibles: bolsas y cajas.
+
 
 Para abordar este problema de diseño de manera eficiente, podemos emplear una combinación de los patrones **Chain of Responsibility** y **Strategy**.
 
+
 El patrón **Chain of Responsibility** nos permitirá establecer una cadena de duendes donde cada uno es responsable de envolver un tipo particular de regalo. Al pasar un regalo a través de esta cadena, se garantiza que será atendido por el duende adecuado.
 
+
 Por otro lado, utilizaremos el patrón **Strategy** para proporcionar múltiples enfoques para el envoltorio de los regalos. Cada tipo de regalo puede tener diferentes estrategias de envoltura, como optar por bolsas o cajas, lo que permite personalizar la presentación según las características del regalo.
+
 
 ### Código de Ejemplo
 
