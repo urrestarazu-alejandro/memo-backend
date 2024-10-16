@@ -68,6 +68,31 @@ El patrón de diseño **Strategy** permite definir una familia de algoritmos, en
 
 En este caso, el patrón Strategy se utiliza para modelar diferentes formas de envolver los regalos, separando claramente el concepto del regalo en sí (su tipo y contenido) de la manera en que se envuelven (envoltura). Esto facilita la incorporación de nuevas estrategias de envoltura sin modificar las clases de regalo existentes.
 
+
+El siguiente diagrama muestra la estructura que nos servira de guia para implementar el patrón de estrategia:
+
+```mermaid
+classDiagram
+direction BT
+class Bolsa {
+  + envolver(Regalo) void
+}
+class Caja {
+  + envolver(Regalo) void
+}
+class Envoltura {
+<<Interface>>
+  + envolver(Regalo) void
+}
+class Regalo {
+  + getTipo() TipoRegalo
+  + getContenido() String
+}
+
+Bolsa  ..>  Envoltura 
+Caja  ..>  Envoltura 
+```
+
 La interfaz `Envoltura` define el contrato que todas las estrategias de envoltura deben seguir.
 
 ~~~
@@ -109,6 +134,33 @@ public class Caja implements Envoltura {
 El patrón **Chain of Responsibility** permite procesar una solicitud por parte de varios objetos, sin especificar el receptor exacto. Cada objeto en la cadena decide si maneja la solicitud o la pasa al siguiente en la cadena. En este ejemplo, utilizamos el patrón para gestionar un proceso de envoltura de regalos mediante una serie de "duendes" especializados, donde cada duende maneja un tipo específico de regalo.
 Es decir la lógica de procesamiento se distribuye entre los duendes, simplificando la gestión del flujo de trabajo y la modificación del mismo.
 
+El diagrama de clases para implementar la cadena de responsabilidad en nuestro ejemplo es el siguiente:
+
+```mermaid
+classDiagram
+direction BT
+class Duende {
+  + Duende() 
+  + procesar(Regalo) void
+   Duende siguiente
+}
+class DuendeBombones {
+  + DuendeBombones(Envoltura) 
+  + procesar(Regalo) void
+}
+class DuendePelotas {
+  + DuendePelotas(Envoltura) 
+  + procesar(Regalo) void
+}
+class DuendePeluches {
+  + DuendePeluches(Envoltura) 
+  + procesar(Regalo) void
+}
+
+DuendeBombones  -->  Duende 
+DuendePelotas  -->  Duende 
+DuendePeluches  -->  Duende 
+```
 
 #### La clase abstracta `Duende` 
 
