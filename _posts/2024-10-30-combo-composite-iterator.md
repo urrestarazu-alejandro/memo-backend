@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Combo: Composite e Iterator
+title: Combo Composite e Iterator
 subtitle: Patrón Composición junto al iterador
 thumbnail-img: /assets/img/posts/18-dic-2022-Argentina-vs-Francia.png
 tags: [Composite,Iterator, Patrones de diseño]
