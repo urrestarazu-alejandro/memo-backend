@@ -2,20 +2,21 @@
 layout: post
 title: Combo: Composite + Iterator
 subtitle: Patrón Composición junto al iterador
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+thumbnail-img: /assets/img/posts/18-dic-2022-Argentina-vs-Francia.png
 tags: [Composite,Iterator, Patrones de diseño]
-#comments: true
-#mathjax: true
+comments: true
 author: Alejandro Urrestarazu
 ---
 
 ## Combinación de Patrones: Composite + Iterator
 
+![Argentina Campeon Copa Mundial de la FIFA Catar 2022](/assets/img/posts/18-dic-2022-Argentina-vs-Francia.png){: .mx-auto.d-block :}
+
+
 Imaginemos que la FIFA nos solicita desarrollar un sistema para registrar partidos de fútbol. La estructura es sencilla: cada partido involucra un equipo local y un equipo visitante. Cada uno de estos equipos está compuesto por varios jugadores. Los jugadores son responsables de marcar goles.
 
 El sistema proporcionará información sobre la fecha del partido, junto con la cantidad de goles anotados por cada equipo. Además, ofrecerá un resumen detallado de los goles marcados por cada jugador.
+
 
 Podemos verlo graficamente de la siguiente manera:
 
@@ -73,6 +74,7 @@ public class Jugador implements Estadisticas {
   }
 }
 ~~~
+
 
 La clase `Equipo` representa un equipo de fútbol. Tiene un nombre y una lista de jugadores (`jugadores`). 
 
