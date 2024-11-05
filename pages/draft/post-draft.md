@@ -13,6 +13,8 @@ author: Alejandro Urrestarazu
 
 ## Combinación de Patrones: Observer + Decorator
 
+![Capataz dando ordenes a obreros](/assets/img/posts/capacapataz-ordenando-obreros.png){: .mx-auto.d-block :}
+
 
 ## Descripción General
 
