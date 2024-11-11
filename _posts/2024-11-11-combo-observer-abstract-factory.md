@@ -2,12 +2,8 @@
 layout: post
 title: Combo Observer y Abstract Factory
 subtitle: Patrón Observador junto a la fábrica abstracta
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
-#thumbnail-img: https://es.wikipedia.org/wiki/Dualidad_onda_corp%C3%BAsculo#/media/Archivo:Dualite.jpg
+thumbnail-img: /assets/img/posts/capataz-ordenando-obreros.png
 tags: [Observer,Abstract Factory, Patrones de diseño]
-#comments: true
-#mathjax: true
 author: Alejandro Urrestarazu
 ---
 
@@ -15,15 +11,20 @@ author: Alejandro Urrestarazu
 
 ![Capataz dando ordenes a obreros](/assets/img/posts/capataz-ordenando-obreros.png){: .mx-auto.d-block :}
 
+Imaginemos que queremos modelar un sistema diseñado para asignar obreros a un capataz, quien es responsable de dar órdenes.
 
-## Descripción General
+En este sistema, los obreros tienen la libertad de cambiar de profesión sin restricciones, gracias a sus amplias habilidades y conocimientos.
 
-Este ejemplo demuestra el uso combinado de los patrones de diseño Observer y Abstract Factory.
+Además, es importante considerar que en el futuro se podrán agregar nuevas profesiones, por lo que el diseño del código debe ser completamente independiente de estas.
+
+El capataz puede dar órdenes en cualquier momento, y los obreros notificados deben adaptarse a su nuevo trabajo de inmediato.
+
 
 ### Patrones Utilizados
 
-- **Observer**: el patrón de observador se utiliza para notificar a los trabajadores (observadores) sobre las tareas asignadas por un capataz (sujeto).
-- **Abstract Factory**: El patrón de fábrica se utiliza para crear diferentes tipos de profesiones.
+- **Observer**: es un patrón de comportamiento que define una relación uno-a-muchos entre objetos, de tal manera que cuando un objeto cambia su estado, todos sus dependientes (observadores) son notificados y actualizados automáticamente. Lo usaremos para notificar a los trabajadores sobre las tareas asignadas por un capataz (notificador).
+
+- **Abstract Factory**: es un patrón de creación que proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar sus clases concretas. Lo usaremos para crear diferentes tipos de profesiones.
 
 ## Profesiones
 
@@ -137,7 +138,9 @@ public class Capataz {
 ~~~
 
 La clase `Obrero` implementa la interfaz `Suscriptor`, que define un método `recibir()` para recibir tareas. 
+
 Cuando se recibe una tarea, la profesión del trabajador se actualiza en función de la tarea utilizando una fábrica. 
+
 Por ejemplo, si la tarea es `CONSTRUIR_PAREDES`, se utiliza una `ProfesionAlbanilFactory` para crear una `ProfesionAlbanil`.
 
 ~~~
@@ -246,3 +249,5 @@ Veamos la salida por pantalla de este ejemplo:
 > Hola! Soy Pedro: Realizo trabajos de pinturería.
 > Hola! Soy Juan: Realizo trabajos de plomería.
 ~~~
+
+Con este ejemplo, podemos observar cómo se ha desacoplado la acción de dar órdenes de aquellos que las esperan. Además, las profesiones desempeñadas por los obreros son completamente independientes, ya que lo único que nos interesa en esta dinámica es la acción de trabajar.
