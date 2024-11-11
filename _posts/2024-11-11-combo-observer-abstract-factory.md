@@ -13,7 +13,7 @@ author: Alejandro Urrestarazu
 
 Imaginemos que queremos modelar un sistema diseñado para asignar obreros a un capataz, quien es responsable de dar órdenes.
 
-En este sistema, los obreros tienen la libertad de cambiar de profesión sin restricciones, gracias a sus amplias habilidades y conocimientos.
+En este sistema, los obreros tienen la libertad de cambiar de profesión sin restricciones, gracias a sus amplias habilidades y conocimientos. Las profesiones actualemente disponibles son: Albañil, Pintor y Plomero.
 
 Además, es importante considerar que en el futuro se podrán agregar nuevas profesiones, por lo que el diseño del código debe ser completamente independiente de estas.
 
@@ -117,6 +117,7 @@ public class ProfesionPlomeroFactory implements ProfesionFactory {
 #### Capataz y obreros
 
 La clase `Capataz` representa a un capataz que gestiona una lista de trabajadores (`obreros`) y les asigna tareas. 
+
 El método `darOrden()` asigna una tarea a los trabajadores y llama a `notificarObreros()` para notificarles sobre la tarea.
 
 ~~~
@@ -249,5 +250,7 @@ Veamos la salida por pantalla de este ejemplo:
 > Hola! Soy Pedro: Realizo trabajos de pinturería.
 > Hola! Soy Juan: Realizo trabajos de plomería.
 ~~~
+
+### Conclusión
 
 Con este ejemplo, podemos observar cómo se ha desacoplado la acción de dar órdenes de aquellos que las esperan. Además, las profesiones desempeñadas por los obreros son completamente independientes, ya que lo único que nos interesa en esta dinámica es la acción de trabajar.
