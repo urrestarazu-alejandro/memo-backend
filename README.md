@@ -19,4 +19,3 @@ Si estas en Argentina y quieres apoyar mi trabajo para seguir generando contenid
 # Template
 
 Esta pagina esta basada en el template [Beautiful Jekyll de Dean Attali](https://github.com/daattali/beautiful-jekyll).
-
