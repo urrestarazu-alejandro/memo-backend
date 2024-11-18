@@ -30,7 +30,7 @@ Luego el código a pesar de que va a ser ejecutado por computadoras quienes van 
 
 Y por último no hay nada mejor que tener un módulo de código independiente que pueda ser usado en diferentes aplicaciones.
 
-![SOLID en una consola](https://urrestarazu-alejandro.github.io/memo-backend/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
+![SOLID en una consola](/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
 
 ---
 
