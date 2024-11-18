@@ -30,8 +30,11 @@ Luego el código a pesar de que va a ser ejecutado por computadoras quienes van 
 
 Y por último no hay nada mejor que tener un módulo de código independiente que pueda ser usado en diferentes aplicaciones.
 
+
+No te olvides de revisar mis [publicaciones acerca de SOLID](https://memobackend.com.ar/tags/#solid)
+
+
 ![SOLID en una consola](/assets/img/posts/SOLID.png){: .mx-auto.d-block :}
 
+[![Solid](https://img.shields.io/badge/Ver%20todo%20el%20contenido%20sobre-Solid-blue?style=for-the-badge)](https://memobackend.com.ar/tags/#solid)
 ---
-
-[Ver todo el contenido acerca de SOLID](https://memobackend.com.ar/tags/#solid)
