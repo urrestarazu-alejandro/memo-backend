@@ -37,6 +37,8 @@ mindmap
     ::icon(fas fa-compass)
 ```  
 
+[![Solid](https://img.shields.io/badge/Ver%20todo%20el%20contenido%20sobre-Solid-blue?style=for-the-badge)](https://memobackend.com.ar/tags/#solid)
+
 ### Patrones de diseño
 
 ```mermaid
@@ -73,7 +75,9 @@ mindmap
             Strategy: Estrategia
             Template Method: Método plantilla
             Visitor: Visitante
-```  
+```
+
+[![Patrones de diseño](https://img.shields.io/badge/Ver%20todo%20el%20contenido%20sobre-Patrones%20de%20dise%C3%B1o-blue?style=for-the-badge)](https://memobackend.com.ar/tags/#Patrones%20de%20dise%C3%B1o)
 
 ### Patrones Arquitectónicos 
 
