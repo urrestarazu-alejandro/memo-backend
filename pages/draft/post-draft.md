@@ -16,101 +16,136 @@ author: Alejandro Urrestarazu
 ![Capataz dando ordenes a obreros](/assets/img/posts/capataz-ordenando-obreros.png){: .mx-auto.d-block :}
 
 
-## ¿Que son los casos de usos según DDD?
+**Casos de Uso: Un enfoque clave para el desarrollo de software eficiente y efectivo**
 
-En el contexto de Domain-Driven Design (DDD), los casos de uso son descripciones de cómo los usuarios interactúan con un sistema para lograr un objetivo específico. Se centran en las tareas que los actores (usuarios o sistemas externos) llevan a cabo y cómo estas tareas se relacionan con el modelo del dominio.
+En el mundo del diseño de software, los Casos de Uso son una herramienta fundamental para garantizar que las aplicaciones se desarrollen de manera eficiente y efectiva. En
+este artículo, exploraremos la importancia de los Casos de Uso, cómo se definen y cuáles son sus beneficios en el desarrollo de software.
 
-### Características de los Casos de Uso en DDD:
-Enfoque en el Usuario: Los casos de uso se centran en las necesidades del usuario y describen el comportamiento del sistema desde su perspectiva.
+**¿Qué son los Casos de Uso?**
 
-Interacción: Definen cómo los actores interactúan con el sistema y qué resultados esperan obtener.
-
-Modelado del Dominio: Ayudan a identificar las entidades, agregados y servicios involucrados en una funcionalidad específica, alineando la lógica empresarial con las necesidades del usuario.
-
-Escenarios: Incluyen escenarios principales (flujos normales) y alternativos (flujos de error o excepciones), lo que ayuda a comprender cómo manejar diversas situaciones.
-
-Reutilización: Pueden ser reutilizados en diferentes contextos y aplicaciones, promoviendo la consistencia en la implementación de la lógica empresarial.
-
-## Arquitectura limpia
-
-En la qrquitectura planteado por el tio Bob los Casos de uso son también conocidos como interactores o lógica de aplicación, esta capa contiene las reglas de negocio específicas de la aplicación y representa los casos de uso u operaciones que admite el sistema. Los casos de uso organizan el flujo de datos entre las entidades y los sistemas externos.
-
-En la arquitectura limpia, los casos de uso son esenciales porque representan la intención del sistema y deben ser claramente visibles en su estructura. La arquitectura debe elevar los casos de uso a entidades de primer nivel, lo que facilita a los desarrolladores entender el funcionamiento del sistema. Esto significa que los comportamientos deseados deben estar claramente expuestos y ser fácilmente identificables dentro de la estructura arquitectónica.
-
-Los casos de uso, al ser específicos de una aplicación, están más cerca de los inputs y outputs del sistema en comparación con las entidades, que son generalizaciones aplicables a múltiples aplicaciones. Los casos de uso dependen de las entidades, pero no al revés.
-
-Además, una buena arquitectura asegura que los objetos de caso de uso estén desacoplados de detalles de implementación como HTML o SQL, manteniendo así su independencia y flexibilidad. Esto permite que las decisiones sobre frameworks y herramientas se pospongan, evitando que el sistema quede atado a elecciones tecnológicas prematuras. En resumen, los casos de uso son el núcleo de la arquitectura limpia, guiando su diseño para cumplir con los objetivos funcionales del sistema.
-
-#### CASOS DE USO
-
-El primer punto (casos de uso) significa que la arquitectura del sistema debe respaldar la intención del sistema. Si el sistema es una aplicación de carrito de compras, entonces la arquitectura debe respaldar los casos de uso del carrito de compras. De hecho, esta es la primera preocupación del arquitecto y la primera prioridad de la arquitectura. La arquitectura debe respaldar los casos de uso.
-
-Sin embargo, como hemos comentado anteriormente, la arquitectura no ejerce mucha influencia sobre el comportamiento del sistema. Hay muy pocas opciones de comportamiento que la arquitectura pueda dejar abiertas. Pero la influencia no lo es todo. Lo más importante que puede hacer una buena arquitectura para apoyar el comportamiento es aclarar y exponer ese comportamiento de modo que la intención del sistema sea visible a nivel arquitectónico.
-
-Una aplicación de carrito de compras con una buena arquitectura se verá como una aplicación de carrito de compras. Los casos de uso de ese sistema serán claramente visibles dentro de la estructura de ese sistema. Los desarrolladores no tendrán que buscar comportamientos, porque esos comportamientos serán elementos de primera clase visibles en el nivel superior del sistema. Esos elementos serán clases, funciones o módulos que tendrán posiciones destacadas dentro de la arquitectura y tendrán nombres que describan claramente su función.
-
-### Que significa el concepto de Interactor según Robert C. Martin
-
-El concepto de Interactor, según Robert C. Martin (también conocido como "Uncle Bob"), se refiere a una parte fundamental del diseño de sistemas en el contexto de la Clean Architecture. 
-Estos interactuadores debían ser el punto de entrada al código de lógica de negocio. 
-Un Interactor es responsable de manejar la lógica de negocio para un caso de uso específico dentro de la aplicación.
+Un Caso de Uso es una definición clara del comportamiento o acción que un usuario puede realizar dentro de un sistema. Se enfoca en la perspectiva del usuario final,
+identificando las acciones más importantes que pueden tomar dentro del sistema. Los Casos de Uso son la base para el desarrollo de software, ya que nos permiten entender
+mejor las necesidades y expectativas del usuario.
 
 
-Los casos de uso no son sólo una construcción UML. Su uso en código crea una abstracción que permite la migración de lógica empresarial de alto nivel de un mecanismo de entrega a otro con relativa facilidad.
+### Razones para determinar correctamente los casos de uso
 
-### Características del Interactor:
 
-1. Responsabilidad: El Interactor encapsula toda la lógica necesaria para llevar a cabo un caso de uso. Se encarga de recibir los datos de entrada, procesarlos según las reglas del negocio y devolver los resultados apropiados.
+La definición de Casos de Uso ofrece varios beneficios en el desarrollo de software:
 
-1. Independencia: Los Interactors no deben depender de detalles específicos de la tecnología o la interfaz del usuario (por ejemplo, no deben saber nada sobre bases de datos, interfaces gráficas, etc.). Esto permite que sean reutilizables y fácilmente testables.
+*   **Mejora la comprensión del usuario**: Los Casos de Uso nos ayudan a comprender mejor las necesidades y expectativas del usuario final, lo que resulta en un diseño más
+intuitivo y fácil de usar.
+*   **Garantiza un desarrollo eficiente**: Al enfocarnos en las acciones más importantes que el usuario puede realizar, podemos priorizar las funcionalidades más
+importantes y asegurarnos de que estén bien diseñadas.
+*   **Aumenta la calidad del código**: Los Casos de Uso nos ayudan a garantizar que el código sea simple, legible y fácil de mantener.
 
-1. Orquestación: Actúan como orquestadores que coordinan diferentes partes del sistema (como repositorios y servicios) para cumplir con los objetivos del caso de uso.
 
-1. Separación de Preocupaciones: Al mantener la lógica empresarial separada de las capas de presentación y persistencia, se facilita el mantenimiento y evolución del software.
+### Casos de uso segun Clean Architecture y DDD
 
-### Ejemplo:
-Si tu aplicación tiene un caso de uso para "Registrar un nuevo cliente", el Interactor correspondiente manejaría todo lo relacionado con ese registro: validaría los datos, verificaría si el cliente ya existe y guardaría la información en el repositorio adecuado.
 
-En resumen, los Interactors son componentes clave en la Clean Architecture que garantizan que la lógica empresarial se mantenga limpia, organizada y desacoplada de otros aspectos del sistema.
+La arquitectura limpia (Clean Architecture) es un patrón que puede ser aplicado en cualquier diseño de software, mientras que el Diseño dirigido por el dominio (Domain-Driven Design, DDD) es una filosofía más amplia sobre cómo modelar los conceptos empresariales para garantizar que el código refleja realmente los requisitos de la empresa. El DDD puede ser aplicado dentro de una arquitectura limpia o en cualquier otra arquitectura de software.
 
-#### Capas desacopladas
+Ambas comparten una visión común sobre la importancia de separar las capas del software en función de su nivel de abstracción. Sin embargo, existen diferencias en la forma en que se aplican estas principios.
 
-Considere los casos de uso. El arquitecto quiere que la estructura del sistema admita todos los casos de uso necesarios, pero no sabe cuáles son todos esos casos de uso. Sin embargo, el arquitecto sí conoce la intención básica del sistema. Es un sistema de carrito de compras, o es un sistema de lista de materiales, o es un sistema de procesamiento de pedidos. Por lo tanto, el arquitecto puede emplear el principio de responsabilidad única y el principio de cierre común para separar aquellas cosas que cambian por diferentes razones y para recopilar aquellas cosas que cambian por las mismas razones, dado el contexto de la intención del sistema.
+En la **arquitectura limpia**, el diseño se centra principalmente en la separación de preocupaciones y la separación lógica de los diferentes niveles de abstracción del software (Entidades, casos de uso, controladores y frameworks), para minimizar las dependencias y mantener el código limpio, simple y fácil de mantener.
+En esta arquitectura las reglas del negocio están dentro de la capa de dominio, mientras que las reglas de aplicacion estan dentro de la capa de "Casos de uso". Esto nos da una pista clave de que los casos de uso no son sinonimo de regla de negocio.
 
-¿Qué cambia por diferentes motivos? Hay algunas cosas obvias. Las interfaces de usuario cambian por razones que no tienen nada que ver con las reglas de negocio. Los casos de uso tienen elementos de ambos. Claramente, entonces, un buen arquitecto querrá separar las partes de la interfaz de usuario de un caso de uso de las partes de las reglas de negocio de tal manera que se puedan cambiar independientemente una de otra, mientras se mantienen esos casos de uso visibles y claros.
-
-Las reglas de negocio pueden estar estrechamente vinculadas a la aplicación o pueden ser más generales. Por ejemplo, la validación de campos de entrada es una regla de negocio que está estrechamente vinculada a la aplicación en sí. Por el contrario, el cálculo de intereses en una cuenta y el recuento de inventario son reglas de negocio que están más estrechamente asociadas con el dominio. Estos dos tipos diferentes de reglas cambiarán a diferentes ritmos y por diferentes motivos, por lo que deben estar separadas para que puedan cambiarse de forma independiente.
-
-La base de datos, el lenguaje de consulta e incluso el esquema son detalles técnicos que no tienen nada que ver con las reglas de negocio ni con la interfaz de usuario. Cambiarán a un ritmo y por motivos que son independientes de otros aspectos del sistema. En consecuencia, la arquitectura debería separarlos del resto del sistema para que puedan modificarse de forma independiente.
-
-De esta manera, encontramos el sistema dividido en capas horizontales disociadas: la interfaz de usuario, las reglas de negocio específicas de la aplicación, las reglas de negocio independientes de la aplicación y la base de datos, por mencionar solo algunas.
+En el **DDD**, el diseño se centra en modelar los conceptos empresariales de forma precisa y comprensible, lo que resulta en un modelo de dominio fuerte, independiente del código y capaz de evolucionar independientemente del software. El DDD enfatiza la importancia de colaborar con los stakeholders (expertos en el dominio, arquitectos y desarrolladores) para garantizar que el código refleje realmente los requisitos de la empresa.
+En DDD los casos de uso corresponden a los "Application services" o servicios de aplicaciones, son la fachada exterior del dominio de nuestro sistema, por lo que son el punto de entrada-salida para interactuar con la funcionalidad interna. Estos servicios son responsables de controlar el flujo principal de la aplicacion. 
+Aqui tenemos la segunda pista clave, los casos de uso deben encargarse del flujo de la aplicacion. 
 
 
 
-## Que son los casos de usos segun UML?
+### Veamos un ejemplo
 
-En UML (Unified Modeling Language), los casos de uso son descripciones de los requisitos funcionales de un sistema desde la perspectiva del usuario. Representan interacciones entre los actores (usuarios o sistemas externos) y el sistema que se está desarrollando.
+Un clasico flujo es el de registrar un uaurio de una aplicacion. Aunque es muy clasico sigue existiendo el debate de como modelarlo con casos de usos (O que no se debe modelar). Haciendonos a un lado de este debate es interesante para ver aprender.
 
-### Características de los Casos de Uso en UML:
+El siguiente diagrama muestra que pasos se deben realizar para registrar:
 
-Actores: Son las entidades externas (personas, otros sistemas) que interactúan con el sistema. Cada actor tiene un rol específico y puede ser un usuario humano o un sistema.
+```mermaid
+---
+title: Flujo para registrar un usuario.
+---
+graph LR
+    A(Usuario) --> B[Registrar]
+    B --> C[Verificar]
+    C --> D[Crear]
+    D --> E[Notificar]
+```
 
-- Escenarios: Un caso de uso describe un conjunto de acciones o eventos que llevan a un resultado particular, a menudo representados como flujos de trabajo.
 
-- Diagramas de Casos de Uso: Se utilizan para visualizar los casos de uso del sistema. Estos diagramas muestran los actores y cómo interactúan con los diferentes casos de uso, proporcionando una representación gráfica fácil de entender.
+```mermaid
+---
+title: Diagrama de clase para los casos de uso
+---
+classDiagram
+direction LR
+namespace entidades {
+    class Registro {
+        +String nombre
+        +Email email
+        +Contraseña contraseña
+    }
 
-- Detalles del Caso de Uso: Cada caso de uso puede tener una descripción detallada que incluya:
+    class Email {
+        +String usuario
+        +String dominio
+        +String plusTag
+    }
 
-    * Nombre del caso de uso.
-    * Actores involucrados.
-    * Precondiciones (lo que debe ser cierto antes de que comience el caso).
-    * Flujo principal (la secuencia normal de interacciones).
-    * Flujos alternativos (desviaciones del flujo principal, como errores o excepciones).
-    * Postcondiciones (el estado del sistema después de que se complete el caso).
-    * Requisitos Funcionales: Los casos de uso ayudan a identificar y documentar los requisitos funcionales del sistema, permitiendo una mejor comprensión tanto para desarrolladores como para partes interesadas.
+    class Contraseña {
+        +String contraseñaCifrada
+    }
+}
 
-### Ejemplo:
+    RegistroUseCase <.. ValidacionesUseCase
+    RegistroUseCase <.. CreacionUsuarioUseCase
+    RegistroUseCase <.. NotificionUsuarioUseCase 
 
-Un caso de uso típico podría ser "Iniciar sesión", donde se describirían los pasos necesarios para que un usuario ingrese sus credenciales y acceda al sistema, así como las respuestas esperadas ante entradas correctas o incorrectas.
+namespace casosDeUso {
+    class RegistroUseCase {
+        -ValidacionesUseCase validaciones
+        -CreacionUsuarioUseCase creacionUsuario
+        -NotificarUsuarioUseCase notificarUsuario
+        +bool registrarUsuario(Registro registro)
+    }
 
-En resumen, los casos de uso en UML son herramientas clave para capturar y comunicar la funcionalidad deseada en un sistema, facilitando el entendimiento entre todas las partes involucradas en el desarrollo del software.
+    class ValidacionesUseCase {
+        +bool nombreEsValido(String nombre)
+        +bool correoElectronicoEsValido(Email correo)
+        +bool contraseñaEsValida(Constraseña constraseña)
+    }
+
+    class CreacionUsuarioUseCase {
+        +bool crear(Registro registro)
+    }
+
+    class NotificionUsuarioUseCase {
+        +bool notificar(Registro registro)
+    }
+}
+
+```
+
+
+### Los errores más comunes al desarrollar casos de uso pueden incluir:
+
+1. No tener claridad sobre el propósito del caso de uso y no alinearlo con las necesidades del negocio. Esto puede hacer que los resultados finales no sean lo esperado o no satisfagan a los usuarios.
+
+2. Ignorar el contexto empresarial en el cual opera el sistema y los cambios que pueden ocurrir en el futuro, lo que puede hacer que el caso de uso sea rígido y no adaptable.
+
+3. No tener suficiente abstracción en las interfaces y clases involucradas en la implementación del caso de uso, lo que puede hacer que el código sea dependiente de una tecnología específica o plataforma. Esto hace que el caso de uso no pueda ser reutilizado o transferido a otros entornos sin problemas.
+
+4. No hacer un análisis suficiente y exhaustivo de los casos de uso posibles y sus respectivas implementaciones, lo que puede llevar a fallas de diseño o funcionalidades no deseadas en el sistema.
+
+5. No tener un proceso de pruebas eficaz para garantizar la calidad del código y el comportamiento esperado en todo entorno.
+
+6. No tener suficiente documentación de los casos de uso, lo que puede provocar confusión en los desarrolladores y dificultades para entender el comportamiento del sistema.
+
+
+
+Conclusión
+----------
+
+Los Casos de Uso son una herramienta clave para el desarrollo de software eficiente y efectivo, ya que nos permiten enfocarnos en las acciones más importantes que el usuario puede tomar dentro del sistema, es decir el flujo de control de la aplicacion. 
+Esto nos ayuda a comprender mejor la perspectiva del usuario final y garantizar sistemas más intuitivos, fáciles de usar y eficientes en el proceso de desarrollamiento.
