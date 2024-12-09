@@ -18,13 +18,11 @@ author: Alejandro Urrestarazu
 
 **Casos de Uso: Un enfoque clave para el desarrollo de software eficiente y efectivo**
 
-En el mundo del diseño de software, los Casos de Uso son una herramienta fundamental para garantizar que las aplicaciones se desarrollen de manera eficiente y efectiva. En
-este artículo, exploraremos la importancia de los Casos de Uso, cómo se definen y cuáles son sus beneficios en el desarrollo de software.
+En el mundo del diseño de software, los Casos de Uso son una herramienta fundamental para garantizar que las aplicaciones se desarrollen de manera eficiente y efectiva.
 
 **¿Qué son los Casos de Uso?**
 
-Un Caso de Uso es una definición clara del comportamiento o acción que un usuario puede realizar dentro de un sistema. Se enfoca en la perspectiva del usuario final,
-identificando las acciones más importantes que pueden tomar dentro del sistema. Los Casos de Uso son la base para el desarrollo de software, ya que nos permiten entender
+Un Caso de Uso es una definición clara del comportamiento o acción que un usuario puede realizar dentro de un sistema. Se enfoca en la perspectiva del usuario final, identificando las acciones más importantes que pueden tomar dentro del sistema. Los Casos de Uso son la base para el desarrollo de software, ya que nos permiten entender
 mejor las necesidades y expectativas del usuario.
 
 
@@ -35,8 +33,10 @@ La definición de Casos de Uso ofrece varios beneficios en el desarrollo de soft
 
 *   **Mejora la comprensión del usuario**: Los Casos de Uso nos ayudan a comprender mejor las necesidades y expectativas del usuario final, lo que resulta en un diseño más
 intuitivo y fácil de usar.
+
 *   **Garantiza un desarrollo eficiente**: Al enfocarnos en las acciones más importantes que el usuario puede realizar, podemos priorizar las funcionalidades más
 importantes y asegurarnos de que estén bien diseñadas.
+
 *   **Aumenta la calidad del código**: Los Casos de Uso nos ayudan a garantizar que el código sea simple, legible y fácil de mantener.
 
 
@@ -58,7 +58,7 @@ Aqui tenemos la segunda pista clave, los casos de uso deben encargarse del flujo
 
 ### Veamos un ejemplo
 
-Un clasico flujo es el de registrar un uaurio de una aplicacion. Aunque es muy clasico sigue existiendo el debate de como modelarlo con casos de usos (O que no se debe modelar). Haciendonos a un lado de este debate es interesante para ver aprender.
+Un clasico flujo es el de registrar un usuario de una aplicacion. Aunque es muy clasico sigue existiendo el debate de como modelarlo con casos de usos (O que no se debe modelar). Haciendonos a un lado de este debate es interesante para ver aprender.
 
 El siguiente diagrama muestra que pasos se deben realizar para registrar:
 
@@ -66,54 +66,45 @@ El siguiente diagrama muestra que pasos se deben realizar para registrar:
 ---
 title: Flujo para registrar un usuario.
 ---
-graph LR
-    A(Usuario) --> B[Registrar]
-    B --> C[Verificar]
-    C --> D[Crear]
-    D --> E[Notificar]
+graph TD
+    A((Usuario)) --> B[Completar registro]
+    B --> C[Verificar datos]
+    C --> D[Crear usario]
+    D --> E[Notificar al usuario]
 ```
 
 
 ```mermaid
 ---
-title: Diagrama de clase para los casos de uso
+title: Diagrama de clase para registrar un usuario
 ---
 classDiagram
-direction LR
-namespace entidades {
-    class Registro {
-        +String nombre
-        +Email email
-        +Contraseña contraseña
-    }
+    direction LR
 
-    class Email {
-        +String usuario
-        +String dominio
-        +String plusTag
-    }
+Usuario <.. ValidacionesUseCase
+Usuario <.. CrearRegistroUseCase
+Usuario <.. CreacionUsuarioUseCase
+Usuario <.. NotificionUsuarioUseCase 
 
-    class Contraseña {
-        +String contraseñaCifrada
-    }
-}
-
-    RegistroUseCase <.. ValidacionesUseCase
-    RegistroUseCase <.. CreacionUsuarioUseCase
-    RegistroUseCase <.. NotificionUsuarioUseCase 
-
-namespace casosDeUso {
-    class RegistroUseCase {
+namespace servicio {
+    class Usuario {
+        -CrearRegistroUseCase CrearRegistroUseCase
         -ValidacionesUseCase validaciones
         -CreacionUsuarioUseCase creacionUsuario
         -NotificarUsuarioUseCase notificarUsuario
-        +bool registrarUsuario(Registro registro)
+        +bool crear(String nombre, String email, String contraseña)
+    }
+}
+
+namespace casosDeUso {
+    class CrearRegistroUseCase {
+        +Registro registrarUsuario(String nombre, Email email, Contraseña contraseña)
     }
 
     class ValidacionesUseCase {
         +bool nombreEsValido(String nombre)
-        +bool correoElectronicoEsValido(Email correo)
-        +bool contraseñaEsValida(Constraseña constraseña)
+        +bool correoElectronicoEsValido(String correo)
+        +bool contraseñaEsValida(String constraseñaSinCifrar)
     }
 
     class CreacionUsuarioUseCase {
@@ -125,6 +116,29 @@ namespace casosDeUso {
     }
 }
 
+namespace entidades {
+    class Registro {
+        +String nombre
+        +Email email
+        +Contraseña contraseña
+
+        +Registro build(String nombre, String email, String contraseña)
+    }
+
+    class Email {
+        +String usuario
+        +String dominio
+        +String plusTag
+
+        +Email build(String email)
+    }
+
+    class Contraseña {
+        +String contraseñaCifrada
+
+        +String Constraseña(String constraseñaSinCifrar)
+    }
+}
 ```
 
 
@@ -144,8 +158,8 @@ namespace casosDeUso {
 
 
 
-Conclusión
-----------
+### Conclusión
+
 
 Los Casos de Uso son una herramienta clave para el desarrollo de software eficiente y efectivo, ya que nos permiten enfocarnos en las acciones más importantes que el usuario puede tomar dentro del sistema, es decir el flujo de control de la aplicacion. 
 Esto nos ayuda a comprender mejor la perspectiva del usuario final y garantizar sistemas más intuitivos, fáciles de usar y eficientes en el proceso de desarrollamiento.
