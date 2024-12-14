@@ -200,6 +200,9 @@ namespace entidades {
         +Contraseña contraseña
 
         +Registro build(String nombre, String email, String contraseña)
+        +bool nombreEsValido(String nombre)
+        +bool correoElectronicoEsValido(String correo)
+        +bool contraseñaEsValida(String constraseñaSinCifrar)
     }
 
     class Email {
@@ -210,11 +213,11 @@ namespace entidades {
         +Email build(String email)
     }
 
-    class Contraseña {
-        -String cifrado: "SHA-2"$
+    class Contraseña {        
+        -Cifrado cifrado
         +String contraseñaCifrada
 
-        +String Constraseña(String constraseñaSinCifrar)
+        +Contraseña build(String constraseñaSinCifrar)
     }
 
     class Usuario {
@@ -225,6 +228,12 @@ namespace entidades {
         +bool emailConfirmado
 
         +Usuario build(String nombre, Email email, Contraseña contraseña)
+    }
+
+    class Cifrado {
+        -String tipo: "SHA-2"$
+        
+        +String cifrar(String texto)
     }
 }
 ```
