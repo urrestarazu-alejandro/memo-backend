@@ -14,7 +14,7 @@ Imaginemos que nos encontramos en el siglo XIX en los albores de la electricidad
 Este principio está relacionado con cambiar cosas y que se espera con los cambios. Además nos ayuda a evitar errores inesperados cuando usa herencia y polimorfismo en el código.
 
 
-![Reemplazando velos por electricidad](/assets/img/posts/LSP-cambiando-velas-electricidad.png)
+![Reemplazando velos por electricidad](/assets/img/posts/LSP-cambiando-velas-electricidad512.png)
 
 Es la **L** en SOLID y viene del ingles "Liskov Substitution Principle" o LSP.
 

@@ -10,7 +10,7 @@ author: Alejandro Urrestarazu
 
 ## Patrones y estilos de software
 
-![Plano arquitectura laberinto de dédalo](/assets/img/posts/plano-laberinto-dedalo.png){: .mx-auto.d-block :}
+![Plano arquitectura laberinto de dédalo](/assets/img/posts/plano-laberinto-dedalo512.png){: .mx-auto.d-block :}
 
 Antes de adentrarnos en el mundo del software, me parece importante clarificar algunos conceptos. Aunque existe un debate sobre estas definiciones, podemos establecer unas bases útiles para quienes están empezando.
 
