@@ -12,7 +12,7 @@ footer-extra: cafecito.html
 ## SRP: Single Responsibility Principle
 
 
-![SRP obrero de la construcción confundido](/assets/img/posts/dalle-SRP-obrero-confundido.png)
+![SRP obrero de la construcción confundido](/assets/img/posts/dalle-SRP-obrero-confundido512.png)
 
 Aunque la idea de mis blogs es crear contenido en Español, como el acrónimo SOLID está en idioma inglés es necesario nombrarlo en su idioma de origen **Single Responsibility Principle** para que la **S** tenga sentido.
 
