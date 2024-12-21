@@ -13,7 +13,8 @@ author: Alejandro Urrestarazu
 
 ## Casos de uso
 
-![Capataz dando ordenes a obreros](/assets/img/posts/capataz-ordenando-obreros.png){: .mx-auto.d-block :}
+
+![Capataz dando ordenes a obreros](/assets/img/posts/openart-image_cañerias_colores-512.png){: .mx-auto.d-block :}
 
 
 **Casos de Uso: Un enfoque clave para el desarrollo de software eficiente y efectivo**
