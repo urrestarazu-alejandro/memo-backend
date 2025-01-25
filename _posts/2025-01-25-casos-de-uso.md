@@ -2,7 +2,7 @@
 layout: post
 title: Casos de uso
 subtitle: Reglas y flujos de aplicación.
-thumbnail-img: /assets/img/posts/posts/openart-image_cañerias_colores-512.png
+thumbnail-img: /assets/img/posts/openart-image_cañerias_colores-512.png
 tags: [Modelado,Casos de uso,Clean Architecture,DDD]
 author: Alejandro Urrestarazu
 ---
