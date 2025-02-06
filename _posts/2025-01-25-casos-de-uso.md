@@ -250,6 +250,13 @@ Para este ejemplo, consideramos las validaciones como casos de uso pero pueden r
 
 La única validación que decidí sacarla fuera del dominio es la de la contraseña ya que una vez que se ingresó en el formulario, se revisa que cumpla las condiciones y luego se propaga cifrada a través de todo el sistema para aumentar la seguridad.
 
+### Código
+
+<p>
+  <a href="https://github.com/urrestarazu-alejandro/memobackend-caso-de-uso-registrar-usuario" title="Ir al repositorio github memobackend-caso-de-uso-registrar-usuario">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Repositorio-Caso_de_uso_registrar_usuario-blue?logo=github">
+  </a>
+</p>
 
 ### Errores al diseñar los CU
 
