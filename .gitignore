@@ -12,3 +12,8 @@ Gemfile.lock
 
 beautiful-jekyll-theme-*.gem
 .idea
+
+# Archivos de configuración
+docker-compose.override.yml
+.env
+*/.env
