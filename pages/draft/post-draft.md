@@ -34,6 +34,11 @@ YAGNI principle reminds developers to not implement functionality until it is ac
 
 DRY principle encourages developers to write reusable code that can be scaled and is easy to maintain.
 
+### Evita la Optimización Antes del Desarrollo (Avoid Premature Optimization)
+Encourages developers to prioritize writing clean and functional code.
+
+
+
 ---
 
 **DRY (No Repita Tu Voz):**
