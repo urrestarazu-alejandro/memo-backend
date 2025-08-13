@@ -13,3 +13,9 @@
   background-color: #0A66C2;
   font-family: "SF Pro Text", Helvetica, sans-serif;
 }
+
+.footer-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -2,17 +2,19 @@
   <div class="container-md beautiful-jekyll-footer">
     <div class="row">
       <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-      {% include social-networks-links.html %}
-      <div class="text-center" style="margin: 15px 0;">
-        <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=urrestarazualejandro" target="_blank">Follow on LinkedIn</a>
-      </div>
-      {% if page.footer-extra %}
-        <div class="footer-custom-content">
-          {% for file in page.footer-extra %}
-            {% include {{ file }} %}
-          {% endfor %}
+      <div class="footer-flex-container">
+        {% include social-networks-links.html %}
+        <div class="text-center" style="margin: 15px 0;">
+          <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=urrestarazualejandro" target="_blank">Follow on LinkedIn</a>
         </div>
-      {% endif %}
+        {% if page.footer-extra %}
+          <div class="footer-custom-content">
+            {% for file in page.footer-extra %}
+              {% include {{ file }} %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
       <p class="copyright text-muted">
       {% if site.author %}
         {{ site.author }}
