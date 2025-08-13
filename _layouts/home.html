@@ -3,16 +3,79 @@ layout: page
 footer-extra: cafecito.html
 ---
 
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 300;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+  .post-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+  }
+  .post-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  .post-card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .post-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .post-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .post-card-text {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+  }
+  .post-card .post-meta {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  .post-card .btn {
+    align-self: flex-start;
+  }
+</style>
+
+<div class="hero">
+  <h1 class="hero-title">{{ site.title }}</h1>
+  <p class="hero-subtitle">{{ site.description }}</p>
+</div>
+
 {{ content }}
 
 {% assign posts = paginator.posts | default: site.posts %}
 
-<!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-<ul class="posts-list list-unstyled" role="list">
+<div class="posts-grid">
   {% for post in posts %}
-  <li class="post-preview">
-    <article>
-
+    <div class="post-card">
       {%- capture thumbnail -%}
         {% if post.thumbnail-img %}
           {{ post.thumbnail-img }}
@@ -27,79 +90,29 @@ footer-extra: cafecito.html
       {% endcapture %}
       {% assign thumbnail=thumbnail | strip %}
 
-      {% if site.feed_show_excerpt == false %}
       {% if thumbnail != "" %}
-      <div class="post-image post-image-normal">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
+        <a href="{{ post.url | absolute_url }}">
+          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail" class="post-card-img-top">
         </a>
+      {% endif %}
+
+      <div class="post-card-body">
+        <h5 class="post-card-title">
+          <a href="{{ post.url | absolute_url }}">{{ post.title | strip_html }}</a>
+        </h5>
+        <p class="post-meta">
+          {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+          {{ post.date | date: date_format }}
+        </p>
+        <div class="post-card-text">
+          {% assign excerpt_length = site.excerpt_length | default: 25 %}
+          {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
+        </div>
+        <a href="{{ post.url | absolute_url }}" class="btn btn-primary">[Leer más]</a>
       </div>
-      {% endif %}
-      {% endif %}
-
-      <a href="{{ post.url | absolute_url }}">
-        <h2 class="post-title">{{ post.title | strip_html }}</h2>
-
-        {% if post.subtitle %}
-          <h3 class="post-subtitle">
-          {{ post.subtitle | strip_html }}
-          </h3>
-        {% endif %}
-      </a>
-
-      {% if post.author %}
-        <span>By <strong>{{ post.author | strip_html }}</strong></span>
-      {% endif %}
-      <p class="post-meta">
-        {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-        Posted on {{ post.date | date: date_format }}
-      </p>
-
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-small">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
-
-      {% unless site.feed_show_excerpt == false %}
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-short">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
-
-      <div class="post-entry">
-        {% assign excerpt_length = site.excerpt_length | default: 50 %}
-        {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
-        {% assign excerpt_word_count = post.excerpt | number_of_words %}
-        {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-          <a href="{{ post.url | absolute_url }}" class="post-read-more">[Leer&nbsp;más]</a>
-        {% endif %}
-      </div>
-      {% endunless %}
-
-      {% if site.feed_show_tags != false and post.tags.size > 0 %}
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          {% for tag in post.tags %}
-          <li class="list-inline-item">
-            <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-    </article>
-  </li>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
 {% if paginator.total_pages > 1 %}
 <ul class="pagination main-pager">
