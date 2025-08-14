@@ -118,7 +118,7 @@ footer-extra: cafecito.html
           {% assign excerpt_length = site.excerpt_length | default: 25 %}
           {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
         </div>
-        <a href="{{ post.url | absolute_url }}" class="btn btn-primary">[Leer más]</a>
+        <a href="{{ post.url | absolute_url }}" class="btn btn-primary">Leer más</a>
       </div>
     </div>
   {% endfor %}

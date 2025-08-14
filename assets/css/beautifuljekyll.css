@@ -47,6 +47,15 @@ body {
 }
 body > main {
   flex: 1;
+  /* Add lateral margins on all pages */
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* Apply same lateral margins to header and footer */
+header.header-section {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 p {
   line-height: 1.5;
@@ -162,6 +171,12 @@ img {
   -webkit-transition: padding .5s ease-in-out;
   -moz-transition: padding .5s ease-in-out;
   transition: padding .5s ease-in-out;
+}
+
+/* Lateral margins for navigation bar */
+.navbar-custom {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .navbar-custom,
@@ -416,6 +431,12 @@ footer {
     background-image: url({{ site.footer-img | relative_url }});
     background-attachment: fixed;
   {% endif %}
+}
+
+/* Lateral margins for footer */
+footer {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 footer p.text-muted {
