@@ -1,9 +1,10 @@
 .libutton {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  padding: 7px;
-  text-align: center;
+  gap: 6px;
+  padding: 7px 12px;
   outline: none;
   text-decoration: none !important;
   color: #ffffff !important;
@@ -12,6 +13,14 @@
   border-radius: 16px;
   background-color: #0A66C2;
   font-family: "SF Pro Text", Helvetica, sans-serif;
+}
+
+.libutton i {
+  font-size: 14px;
+}
+
+.libutton span {
+  line-height: 1;
 }
 
 .footer-flex-container {
