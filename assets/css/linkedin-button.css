@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 7px 12px;
+  padding: 12px 12px;
   outline: none;
   text-decoration: none !important;
   color: #ffffff !important;
   width: 200px;
-  height: 32px;
-  border-radius: 16px;
+  height: 41px;
+  border-radius: 21px;
   background-color: #0A66C2;
   font-family: "SF Pro Text", Helvetica, sans-serif;
 }
@@ -27,4 +27,5 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
