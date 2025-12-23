@@ -145,3 +145,70 @@ mindmap
         Modelos Enriquecidos
         Inmutabilidad
 ```  
+
+### Conceptos del diseño de sistemas
+
+```mermaid
+---
+config:
+  layout: tidy-tree
+---
+mindmap
+  root(System Design Concepts))
+    SCALING & CONSISTENCY
+      Vertical/Horizontal
+      CAP Triangle
+      PACELC Pyramid
+      ACID/BASE
+      Strong/Eventual Consistency
+    PERFORMANCE & ARCHITECTURE
+      Throughput/Latency
+      Amdahl's Law Graph
+      Stateful/Microservices/Serverless Servers
+      Monoliths
+      Monoliths Cloud
+      Sharding
+      Replication
+      Consistent Hashing Ring
+    DATABASE & STORAGE
+      Indexing (B-Trees/LSM)
+      WAL Log
+      WAL Normalization/Denormalization
+      Polyglot Persistence
+      Bloom Filters
+      Vector Databases
+    CACHING & MESSAGING
+      Caching Strategies
+      Cache Eviction (LRU/LFU)
+      Message Queues
+      Pub-Sub
+      Dead Letter Queues
+      Distributed Tracing
+    OBSERVABILITY & SECURITY
+      SLA/SLO/SLI
+      OAuth 2.0 & OIDC
+      TLS/SSL Handshake
+      Zero Trust Security Shield
+    RELIABILITY & PATTERNS
+      Rate Limiting
+      Circuit Breaker
+      Bulkhead
+      Retry/Exponential Backoff
+      Idempotency Checkmark
+      Leader Election
+      SAGA
+      2PC
+    NETWORKING & COMMUNICATION
+      Load Balancer
+      Reverse/Forward Proxy
+      API Gateway
+      CDN
+      DNS
+      HTTP/2
+      TCP/UDP Packets
+      HTTP/2 & HTTP/3
+      gRST/gRPC & REST
+      WebSocket/SSE
+      Long Polling
+      Gossip Protocol
+```  
