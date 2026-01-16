@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Technical Deep Dive | Memorias de un Backend</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "industrial-bg": "#454546",
+                        "industrial-frame": "#666666",
+                        "industrial-secondary": "#E0E0E0", // Updated for WCAG AAA 7:1 contrast against #454546
+                        "industrial-divider": "#8c8c8c", // Non-text elements can stay original gray
+                        "industrial-accent": "#ff9800",
+                        "industrial-highlight": "#ffc340",
+                        "code-bg": "#2d2d2d"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-display antialiased selection:bg-industrial-accent/30 bg-industrial-bg text-white;
+            }
+            p {
+                @apply mb-6 leading-[1.8] text-lg text-white;}
+            h2 {
+                @apply serif-heading text-3xl md:text-4xl font-semibold mt-16 mb-6 tracking-tight text-white;
+            }
+            h3 {
+                @apply serif-heading text-2xl font-semibold mt-10 mb-4 text-industrial-highlight;
+            }
+        }
+        .serif-heading { font-family: 'Lora', serif; }
+        .progress-bar {
+            height: 4px;
+            background: #ff9800;
+            width: 45%;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            border: 2px solid #666666;
+        }
+        .sidebar-link-active {
+            border-left-color: #ff9800;
+            color: #ff9800;
+        }
+        .industrial-divider-line {
+            border-color: #8c8c8c;
+        }
+    </style>
+</head>
+<body class="transition-colors duration-300">
+<div class="fixed top-0 left-0 w-full z-[60]">
+    <div class="progress-bar"></div>
+</div>
+<header class="sticky top-0 z-50 bg-industrial-bg/95 backdrop-blur-md border-b border-industrial-frame">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-industrial-accent rounded-sm flex items-center justify-center text-black">
+                    <span class="material-symbols-outlined text-[14px] font-bold">terminal</span>
+                </div>
+                <span class="font-display font-bold text-sm tracking-tighter uppercase text-white">Memorias de un Backend</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-industrial-secondary hidden sm:block">Volume 04 • Deep Dive</span>
+            <button class="material-symbols-outlined text-xl text-industrial-secondary hover:text-industrial-accent transition-colors">
+                share
+            </button>
+        </div>
+    </div>
+</header>
+<main class="relative max-w-7xl mx-auto px-6 pt-20 pb-32">
+    <aside class="hidden xl:block fixed left-[calc(50%-600px)] top-40 w-56">
+        <nav class="space-y-6">
+            <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] text-industrial-secondary mb-4">Contents</h4>
+            <ul class="text-xs space-y-4 font-medium border-l border-industrial-frame">
+                <li class="pl-4 border-l-2 sidebar-link-active">Introduction</li>
+                <li class="pl-4 border-l-2 border-transparent text-industrial-secondary hover:text-white hover:border-industrial-secondary transition-colors cursor-pointer">
+                    Modelando casos de uso
+                </li>
+                <li class="pl-4 border-l-2 border-transparent text-industrial-secondary hover:text-white hover:border-industrial-secondary transition-colors cursor-pointer">
+                    Clean Architecture &amp; DDD
+                </li>
+                <li class="pl-4 border-l-2 border-transparent text-industrial-secondary hover:text-white hover:border-industrial-secondary transition-colors cursor-pointer">
+                    Diagramas de Flujo
+                </li>
+                <li class="pl-4 border-l-2 border-transparent text-industrial-secondary hover:text-white hover:border-industrial-secondary transition-colors cursor-pointer">
+                    Implementación Técnica
+                </li>
+                <li class="pl-4 border-l-2 border-transparent text-industrial-secondary hover:text-white hover:border-industrial-secondary transition-colors cursor-pointer">
+                    Conclusión
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <article class="max-w-2xl mx-auto">
+        <div class="mb-12">
+            <div class="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.2em] text-industrial-highlight mb-6 font-bold">
+                <span>Distributed Systems</span>
+                <span class="text-industrial-divider">•</span>
+                <span class="text-industrial-secondary">Jan 25, 2024</span>
+                <span class="text-industrial-divider">•</span>
+                <span class="flex items-center gap-1 text-industrial-secondary"><span
+                        class="material-symbols-outlined text-[12px]">schedule</span> 12 min read</span>
+            </div>
+            <h1 class="serif-heading text-5xl md:text-6xl font-medium leading-[1.1] mb-8 tracking-tight text-white">
+                Modelando Casos de Uso: <span class="italic text-industrial-accent">Arquitectura y Flujos</span>
+            </h1>
+            <div class="flex items-center gap-4 py-6 border-y border-industrial-divider-line">
+                <div class="w-10 h-10 rounded-full bg-industrial-frame flex items-center justify-center overflow-hidden border border-industrial-divider">
+                    <img alt="Author" class="w-full h-full object-cover"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn1esD8zv8BlZGVMtJm1vAZaYPs3EDIeauJFKvXhjiQkWMMBXY3CvNRu-_i-rgzFa0KSXU6EuI7VkmnulBwQ-hniTlEGr8xqLvs7jfncvD6P9JUNtv57_KCOfgxnZQwDFJ66ZbQiSTGLrD977ultqBbcoX7QsOhUxaelPGEXmE5jHrZG34q4TiwjMvQlwsRTMQnng-r5zCkKqBk1owcIQOy6-_qCNERnXnxM4PsDD5CKRT95eonWZ8-9lqKv84fPbHyXhT8slQdCjj"/>
+                </div>
+                <div>
+                    <p class="text-sm font-bold mb-0 leading-none text-white">Alejandro Urrestarazu</p>
+                    <p class="text-[11px] text-industrial-secondary mb-0 mt-1 uppercase tracking-wider font-medium">Lead
+                        Backend Engineer</p>
+                </div>
+            </div>
+        </div>
+        <section class="prose prose-invert max-w-none">
+            <p class="text-xl font-light leading-relaxed text-industrial-secondary mb-12 italic border-l-4 border-industrial-accent pl-6">
+                En el mundo del diseño de software, los Casos de Uso no son solo una herramienta técnica; son el puente
+                entre las necesidades del negocio y la lógica de implementación pura.
+            </p>
+            <h2>Modelando los casos de uso</h2>
+            <p>
+                La arquitectura limpia (Clean Architecture) es un patrón que puede ser aplicado en cualquier diseño de
+                software. Mientras que el Diseño Dirigido por el Dominio (DDD) es una filosofía más amplia sobre cómo
+                modelar los conceptos empresariales para garantizar que el código refleja realmente los requisitos de la
+                empresa.
+            </p>
+            <div class="my-12 p-8 bg-industrial-frame/20 border border-industrial-frame rounded-xl shadow-lg">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-industrial-secondary font-semibold">Diagram 01: Clean Architecture Flow</span>
+                    <button class="material-symbols-outlined text-sm text-industrial-secondary hover:text-industrial-accent">
+                        fullscreen
+                    </button>
+                </div>
+                <div class="aspect-[16/9] bg-industrial-bg rounded-lg flex items-center justify-center border border-dashed border-industrial-divider">
+                    <div class="text-center">
+                        <span class="material-symbols-outlined text-4xl text-industrial-accent opacity-90 mb-2">account_tree</span>
+                        <p class="text-xs font-mono text-industrial-secondary">Visualizing Use Case Interactors</p>
+                    </div>
+                </div>
+                <p class="text-xs text-center mt-4 text-industrial-secondary italic font-medium">Interacción entre
+                    Controladores, Casos de Uso y Presentadores.</p>
+            </div>
+            <p>
+                El DDD puede ser aplicado dentro de una arquitectura limpia o en cualquier otra arquitectura de
+                software. Ambas comparten una visión común sobre la importancia de separar las capas del software en
+                función de su nivel de abstracción.
+            </p>
+            <h3>Implementación en Código</h3>
+            <p>
+                Un interactor de caso de uso debe ser agnóstico a la persistencia y al transporte. Aquí vemos una
+                implementación base de un patrón Interactor en Go.
+            </p>
+            <div class="code-block rounded-lg overflow-hidden my-8">
+                <div class="bg-industrial-frame/30 px-4 py-2 border-b border-industrial-frame flex justify-between items-center">
+                    <span class="text-[10px] font-mono text-industrial-highlight uppercase tracking-widest font-bold">use_case_interactor.go</span>
+                    <button class="flex items-center gap-1 text-[10px] font-bold text-industrial-secondary hover:text-industrial-accent transition-colors">
+                        <span class="material-symbols-outlined text-sm">content_copy</span> COPY
+                    </button>
+                </div>
+                <pre class="p-6 font-mono text-sm leading-relaxed overflow-x-auto text-white"><code><span
+                        class="text-industrial-accent italic">type</span> CreateUserInteractor <span
+                        class="text-industrial-accent italic">struct</span> {
+    Repository UserRepository
+    Presenter  UserPresenter
+}
+<span class="text-industrial-accent italic">func</span> (i *CreateUserInteractor) <span
+                            class="text-industrial-highlight">Execute</span>(ctx context.Context, input CreateUserInput) <span
+                            class="text-industrial-accent italic">error</span> {
+    user := <span class="text-industrial-secondary font-semibold">NewUser</span>(input.Name, input.Email)
+    <span class="text-industrial-secondary font-medium">// Business logic validation</span>
+    <span class="text-industrial-accent italic">if</span> err := user.<span
+                            class="text-industrial-highlight">Validate</span>(); err != nil {
+        <span class="text-industrial-accent italic">return</span> i.Presenter.<span class="text-industrial-highlight">PresentError</span>(err)
+    }
+    <span class="text-industrial-accent italic">return</span> i.Repository.<span
+                            class="text-industrial-highlight">Save</span>(user)
+}</code></pre>
+            </div>
+            <p>
+                La principal responsabilidad de un Caso de Uso es orquestar el flujo de datos hacia y desde las
+                entidades, y dirigir esas entidades para que utilicen sus reglas de negocio para alcanzar los objetivos
+                del caso de uso.
+            </p>
+        </section>
+        <div class="mt-20 pt-12 border-t border-industrial-divider">
+            <div class="flex flex-wrap items-center justify-between gap-8">
+                <div class="flex items-center gap-2">
+                    <button class="flex items-center gap-2 px-4 py-2 bg-industrial-frame/30 border border-industrial-frame rounded hover:border-industrial-accent transition-colors">
+                        <span>💡</span> <span class="text-sm font-bold text-white">128</span>
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-industrial-frame/30 border border-industrial-frame rounded hover:border-industrial-accent transition-colors">
+                        <span>🔥</span> <span class="text-sm font-bold text-white">42</span>
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-industrial-frame/30 border border-industrial-frame rounded hover:border-industrial-accent transition-colors">
+                        <span>🙌</span> <span class="text-sm font-bold text-white">15</span>
+                    </button>
+                </div>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1 bg-industrial-frame text-[10px] font-bold rounded uppercase tracking-widest text-black bg-industrial-highlight">Clean Architecture</span>
+                    <span class="px-3 py-1 bg-industrial-frame text-[10px] font-bold rounded uppercase tracking-widest text-black bg-industrial-highlight">DDD</span>
+                    <span class="px-3 py-1 bg-industrial-frame text-[10px] font-bold rounded uppercase tracking-widest text-black bg-industrial-highlight">Software Patterns</span>
+                </div>
+            </div>
+        </div>
+        <section class="mt-24">
+            <h4 class="font-display font-bold uppercase tracking-[0.2em] text-[10px] mb-8 text-industrial-secondary">
+                Comments (4)</h4>
+            <div class="space-y-8">
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded bg-industrial-accent shrink-0 flex items-center justify-center font-bold text-black text-xs">
+                        JD
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-sm font-bold text-white">John Doe</span>
+                            <span class="text-[10px] text-industrial-secondary uppercase font-semibold">2 hours ago</span>
+                        </div>
+                        <p class="text-sm mb-0 text-white">Excelente desglose de la responsabilidad del interactor.
+                            ¿Cómo manejas las transacciones en este nivel?</p>
+                    </div>
+                </div>
+                <div class="pl-12">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded bg-industrial-frame shrink-0 flex items-center justify-center font-bold text-xs border border-industrial-divider text-white">
+                            AU
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-sm font-bold text-white">Alejandro (Author)</span>
+                                <span class="text-[10px] text-industrial-secondary uppercase font-semibold">1 hour ago</span>
+                            </div>
+                            <p class="text-sm mb-0 text-white">Generalmente inyectamos un Unit of Work o usamos un
+                                middleware de base de datos para manejar el contexto transaccional sin ensuciar la
+                                lógica del interactor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12">
+                <textarea
+                        class="w-full bg-industrial-bg border border-industrial-divider rounded-lg p-4 text-sm text-white focus:ring-1 focus:ring-industrial-accent focus:border-industrial-accent outline-none transition-all placeholder:text-industrial-secondary/50"
+                        placeholder="Join the discussion..." rows="3"></textarea>
+                <div class="flex justify-end mt-4">
+                    <button class="bg-industrial-accent text-black text-xs font-bold px-6 py-2 rounded uppercase tracking-widest hover:bg-industrial-highlight transition-colors">
+                        Post Comment
+                    </button>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+<footer class="bg-industrial-bg border-t border-industrial-frame py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-6 h-6 bg-industrial-accent rounded-sm"></div>
+                    <span class="font-display font-bold text-sm tracking-tighter uppercase text-white">Memorias de un Backend</span>
+                </div>
+                <p class="text-industrial-secondary text-xs max-w-sm font-medium">Deep technical insights for the modern
+                    backend engineer. Exploring the frontiers of software architecture and performance.</p>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-industrial-highlight">Journal</h5>
+                <ul class="space-y-3 text-xs text-industrial-secondary font-medium">
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">Archive</a></li>
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">Technical Radar</a></li>
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">White Papers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-industrial-highlight">Connect</h5>
+                <ul class="space-y-3 text-xs text-industrial-secondary font-medium">
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">GitHub</a></li>
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">X / Twitter</a></li>
+                    <li><a class="hover:text-industrial-accent transition-colors" href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-industrial-frame flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-mono text-industrial-secondary font-semibold">
+            <p>© 2024 MEMORIAS DE UN BACKEND. EST. 2020.</p>
+            <p class="text-industrial-accent">ENGINEERING THE FUTURE, ONE LAYER AT A TIME.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

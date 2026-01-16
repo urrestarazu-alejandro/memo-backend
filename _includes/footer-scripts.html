@@ -40,6 +40,17 @@
 <!-- Uso mermaid para los gráficos: https://mermaid.js.org/ -->
 <script src="https://unpkg.com/mermaid@11.12.2/dist/mermaid.min.js"></script>
 <script>
+  {% if page.use-tailwind or layout.use-tailwind %}
+  document.addEventListener('DOMContentLoaded', function() {
+    mermaid.initialize({
+      startOnLoad:true,
+      theme: "dark",
+    });
+    mermaid.run({
+      querySelector: '.language-mermaid'
+    });
+  });
+  {% else %}
   $(document).ready(function () {
     mermaid.initialize({
       startOnLoad:true,
@@ -47,6 +58,11 @@
     });
     window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
   });
+  {% endif %}
 </script>
 
 <script src="/assets/js/particles.min.js"></script>
+
+{% if page.use-tailwind or layout.use-tailwind %}
+<script src="{{ '/assets/js/tailwind-site.js' | relative_url }}"></script>
+{% endif %}

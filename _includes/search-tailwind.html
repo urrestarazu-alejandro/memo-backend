@@ -1,0 +1,160 @@
+{% if site.post_search %}
+
+<!-- Search Modal Overlay (Tailwind) -->
+<div id="beautifuljekyll-search-overlay"
+     class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+
+  <div class="bg-industrial-panel border-2 border-industrial-frame rounded-lg shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-industrial-divider">
+      <h3 class="text-lg font-bold text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">search</span>
+        Buscar en el sitio
+      </h3>
+      <button id="nav-search-exit"
+              class="text-industrial-text hover:text-white transition-colors text-2xl leading-none p-2 hover:bg-industrial-frame rounded"
+              title="Cerrar búsqueda">
+        ✕
+      </button>
+    </div>
+
+    <!-- Search Input -->
+    <div class="p-4">
+      <input type="text"
+             id="nav-search-input"
+             placeholder="Escribe para buscar..."
+             class="w-full bg-industrial-bg border-2 border-industrial-divider rounded-lg px-4 py-3 text-white placeholder-industrial-text focus:border-primary focus:outline-none transition-colors"
+             autofocus>
+    </div>
+
+    <!-- Results Container -->
+    <div class="flex-1 overflow-y-auto px-4 pb-4">
+      <ul id="search-results-container"
+          class="space-y-2"></ul>
+      <div id="search-no-results"
+           class="text-center py-8 text-industrial-text hidden">
+        <span class="material-symbols-outlined text-4xl mb-2 opacity-50">search_off</span>
+        <p>No se encontraron resultados</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search Results Styling -->
+<style>
+  #search-results-container li {
+    background: #666666;
+    border: 1px solid #8c8c8c;
+    border-radius: 4px;
+    padding: 12px;
+    transition: all 0.2s;
+  }
+
+  #search-results-container li:hover {
+    background: #777777;
+    border-color: #ff9800;
+    transform: translateX(4px);
+  }
+
+  #search-results-container a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  #search-results-container .search-result-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #ff9800;
+  }
+
+  #search-results-container .search-result-snippet {
+    font-size: 0.875rem;
+    color: #E6E6E6;
+    line-height: 1.4;
+  }
+</style>
+
+<!-- Search JavaScript -->
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+<script>
+  (function() {
+    const searchOverlay = document.getElementById('beautifuljekyll-search-overlay');
+    const searchInput = document.getElementById('nav-search-input');
+    const searchExit = document.getElementById('nav-search-exit');
+    const searchLink = document.getElementById('nav-search-link');
+    const searchLinkMobile = document.getElementById('nav-search-link-mobile');
+    const searchResults = document.getElementById('search-results-container');
+    const noResults = document.getElementById('search-no-results');
+
+    // Initialize Simple Jekyll Search
+    SimpleJekyllSearch({
+      searchInput: searchInput,
+      resultsContainer: searchResults,
+      json: '{{ site.baseurl }}/assets/data/searchcorpus.json',
+      searchResultTemplate: '<li><a href="{url}"><div class="search-result-title">{title}</div><div class="search-result-snippet">{description}</div></a></li>',
+      noResultsText: '',
+      limit: 10,
+      fuzzy: false
+    });
+
+    // Open search modal
+    function openSearch(e) {
+      e.preventDefault();
+      searchOverlay.classList.remove('hidden');
+      searchOverlay.classList.add('flex');
+      searchInput.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close search modal
+    function closeSearch() {
+      searchOverlay.classList.add('hidden');
+      searchOverlay.classList.remove('flex');
+      searchInput.value = '';
+      searchResults.innerHTML = '';
+      noResults.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    if (searchLink) {
+      searchLink.addEventListener('click', openSearch);
+    }
+    if (searchLinkMobile) {
+      searchLinkMobile.addEventListener('click', openSearch);
+    }
+    if (searchExit) {
+      searchExit.addEventListener('click', closeSearch);
+    }
+
+    // Close on overlay click (outside modal)
+    searchOverlay.addEventListener('click', function(e) {
+      if (e.target === searchOverlay) {
+        closeSearch();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !searchOverlay.classList.contains('hidden')) {
+        closeSearch();
+      }
+    });
+
+    // Show/hide no results message
+    searchInput.addEventListener('input', function() {
+      setTimeout(function() {
+        if (searchInput.value.length > 0 && searchResults.children.length === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }, 100);
+    });
+  })();
+</script>
+
+{% endif %}

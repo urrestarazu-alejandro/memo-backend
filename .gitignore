@@ -16,4 +16,4 @@ beautiful-jekyll-theme-*.gem
 # Archivos de configuración
 docker-compose.override.yml
 .env
-*/.env
+*/.envvendor/bundle

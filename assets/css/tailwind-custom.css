@@ -1,0 +1,201 @@
+/**
+ * Tailwind Custom Styles
+ * Industrial Dark Mode Theme
+ */
+
+@layer base {
+  /* Prose Typography for Blog Posts */
+  .prose h1 {
+    @apply text-5xl md:text-6xl font-serif font-medium leading-[1.1] mb-8 tracking-tight text-white;
+  }
+
+  .prose h2 {
+    @apply text-3xl md:text-4xl font-serif font-semibold mt-16 mb-6 tracking-tight text-white;
+  }
+
+  .prose h3 {
+    @apply text-2xl font-serif font-semibold mt-10 mb-4 text-secondary;
+  }
+
+  .prose h4 {
+    @apply text-xl font-bold mt-8 mb-3 text-white uppercase tracking-[0.2em] text-[10px];
+  }
+
+  .prose p {
+    @apply mb-6 leading-[1.8] text-lg text-white;
+  }
+
+  .prose a {
+    @apply text-primary hover:text-secondary transition-colors underline decoration-primary/50 hover:decoration-secondary;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-6 pl-6 space-y-2;
+  }
+
+  .prose li {
+    @apply text-white leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply text-xl font-light leading-relaxed text-industrial-text italic border-l-4 border-primary pl-6 my-8;
+  }
+
+  .prose code {
+    @apply bg-industrial-panel text-secondary px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-industrial-panel border-2 border-industrial-frame rounded-lg p-6 overflow-x-auto my-8;
+  }
+
+  .prose pre code {
+    @apply bg-transparent text-white px-0 py-0;
+  }
+
+  .prose img {
+    @apply rounded-lg my-8 w-full;
+  }
+
+  .prose table {
+    @apply w-full border-collapse my-8;
+  }
+
+  .prose th {
+    @apply bg-industrial-frame text-white font-bold px-4 py-3 text-left border border-industrial-divider;
+  }
+
+  .prose td {
+    @apply px-4 py-3 border border-industrial-divider text-white;
+  }
+
+  .prose hr {
+    @apply border-industrial-divider my-12;
+  }
+
+  .prose strong {
+    @apply font-bold text-white;
+  }
+
+  .prose em {
+    @apply italic text-secondary;
+  }
+}
+
+@layer components {
+  /* Industrial Divider */
+  .industrial-divider {
+    @apply border-industrial-divider;
+  }
+
+  /* Glass Morphism Effect */
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  /* Industrial Card */
+  .industrial-card {
+    @apply bg-industrial-panel border border-industrial-frame rounded-lg p-6 hover:shadow-xl hover:shadow-black/20 transition-all;
+  }
+
+  /* Industrial Button Primary */
+  .btn-industrial-primary {
+    @apply bg-primary hover:bg-secondary text-black font-bold py-3 px-6 transition-colors uppercase text-sm tracking-wider inline-block;
+  }
+
+  /* Industrial Button Secondary */
+  .btn-industrial-secondary {
+    @apply border-2 border-industrial-text px-8 py-3 font-bold text-white hover:bg-primary hover:text-black hover:border-primary transition-all uppercase tracking-widest text-sm;
+  }
+
+  /* Code Block Container */
+  .code-block {
+    @apply bg-industrial-panel border-2 border-industrial-frame rounded-lg overflow-hidden my-8;
+  }
+
+  /* Code Block Header */
+  .code-block-header {
+    @apply bg-industrial-frame/30 px-4 py-2 border-b border-industrial-frame flex justify-between items-center;
+  }
+
+  /* Serif Heading */
+  .serif-heading {
+    @apply font-serif;
+  }
+
+  /* Meta Text */
+  .meta-text {
+    @apply text-[10px] font-mono uppercase tracking-[0.2em] text-industrial-text;
+  }
+
+  /* Tag Badge */
+  .tag-badge {
+    @apply px-3 py-1 bg-secondary text-black text-[10px] font-bold rounded uppercase tracking-widest hover:bg-primary transition-colors;
+  }
+
+  /* Material Icon */
+  .material-icon {
+    @apply material-symbols-outlined;
+  }
+
+  /* Sidebar Link */
+  .sidebar-link {
+    @apply pl-4 border-l-2 border-transparent text-industrial-text hover:text-white hover:border-industrial-divider transition-colors cursor-pointer;
+  }
+
+  .sidebar-link-active {
+    @apply border-l-2 border-primary text-primary;
+  }
+
+  /* Post Card */
+  .post-card {
+    @apply group border border-industrial-frame bg-industrial-panel hover:shadow-xl hover:shadow-black/20 transition-all duration-300 flex flex-col overflow-hidden;
+  }
+
+  /* Post Card Image */
+  .post-card-image {
+    @apply aspect-video overflow-hidden;
+  }
+
+  .post-card-image img {
+    @apply w-full h-full object-cover group-hover:scale-105 transition-transform duration-300;
+  }
+
+  /* Comment Box */
+  .comment-box {
+    @apply w-full bg-industrial-bg border border-industrial-divider rounded-lg p-4 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-industrial-text/50;
+  }
+}
+
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Tracking Ultra Wide */
+  .tracking-ultra-wide {
+    letter-spacing: 0.2em;
+  }
+
+  /* Leading Extra Relaxed */
+  .leading-extra-relaxed {
+    line-height: 1.8;
+  }
+
+  /* Border Radius Industrial */
+  .rounded-industrial {
+    border-radius: 4px;
+  }
+
+  /* Shadow Industrial */
+  .shadow-industrial {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Hover Shadow Industrial */
+  .hover-shadow-industrial {
+    @apply hover:shadow-xl hover:shadow-black/20 transition-shadow duration-300;
+  }
+}

@@ -1,0 +1,95 @@
+{% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+
+{% if page.cover-img %}
+  <div id="header-big-imgs" data-num-img={% if page.cover-img.first %}{{ page.cover-img.size }}{% else %}1{% endif %}
+    {% for bigimg in page.cover-img %}
+    {% assign imgnum = forloop.index %}
+    {% for imginfo in bigimg %}
+    {% if imginfo[0] %}
+      data-img-src-{{ imgnum }}="{{ imginfo[0] | absolute_url }}"
+      data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
+    {% else %}
+      data-img-src-{{ imgnum }}="{{ imginfo | absolute_url }}"
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  ></div>
+{% endif %}
+
+<header class="relative pt-24 pb-16 px-6 {% if page.cover-img %}has-cover-img{% endif %}">
+  {% if page.cover-img %}
+    <!-- Cover Image Background -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 header-cover-bg"
+         id="header-cover-image"></div>
+  {% endif %}
+
+  {% if page.cover-img or page.title %}
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    {% if include.type == "post" %}
+      <!-- Post Metadata -->
+      <div class="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.2em] text-primary mb-6 font-bold flex-wrap">
+        {% if page.tags.first %}
+          <span>{{ page.tags.first }}</span>
+          <span class="text-industrial-divider">•</span>
+        {% endif %}
+        <span class="text-industrial-text">{{ page.date | date: date_format }}</span>
+        {% if page.last-updated %}
+          <span class="text-industrial-divider">•</span>
+          <span class="text-industrial-text">Updated {{ page.last-updated | date: date_format }}</span>
+        {% endif %}
+        {% if page.readtime %}
+          <span class="text-industrial-divider">•</span>
+          <span class="flex items-center gap-1 text-industrial-text">
+            <span class="material-symbols-outlined text-[12px]">schedule</span>
+            {% include readtime.html %}
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Title -->
+    <h1 class="text-5xl md:text-6xl font-medium leading-[1.1] mb-8 tracking-tight text-white font-serif">
+      {% if page.title %}{{ page.title | strip_html }}{% else %}<br/>{% endif %}
+      {% if page.subtitle %}
+        {% if include.type == "page" %}
+          <span class="block mt-4 text-3xl md:text-4xl text-industrial-text italic font-light">{{ page.subtitle | strip_html }}</span>
+        {% else %}
+          <span class="italic text-primary">{{ page.subtitle | strip_html }}</span>
+        {% endif %}
+      {% endif %}
+    </h1>
+
+    {% if include.type == "post" %}
+      <!-- Author Info -->
+      <div class="flex items-center gap-4 py-6 border-y border-industrial-divider">
+        {% if site.avatar %}
+          <div class="w-10 h-10 rounded-full border border-industrial-divider overflow-hidden flex items-center justify-center">
+            <img src="{{ site.avatar | relative_url }}"
+                 alt="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}"
+                 class="w-full h-full object-cover">
+          </div>
+        {% endif %}
+        <div>
+          <p class="text-sm font-bold mb-0 leading-none text-white">
+            {% if page.author %}{{ page.author | strip_html }}{% else %}{{ site.author }}{% endif %}
+          </p>
+          <p class="text-[11px] text-industrial-text mb-0 mt-1 uppercase tracking-wider font-medium">
+            {% if page.author-title %}{{ page.author-title }}{% else %}Backend Engineer{% endif %}
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if page.cover-img %}
+    <div class="absolute bottom-4 right-4 text-xs text-industrial-text opacity-70 img-desc z-10"></div>
+  {% endif %}
+</header>
+
+{% if page.header-extra %}
+  {% for file in page.header-extra %}
+    {% include {{ file }} %}
+  {% endfor %}
+{% endif %}

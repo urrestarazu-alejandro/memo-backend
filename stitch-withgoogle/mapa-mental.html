@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AAA Accessible Engineering Graph | Memo Backend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Inter:wght@300;400;600;800&amp;display=swap"
+          rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ff9800",
+                        secondary: "#ffc340",
+                        "background-light": "#f4f4f5",
+                        "background-dark": "#1a1a1a",
+                        panel: "#2d2d2d",
+                        canvas: "#454546",
+                        "high-contrast": "#E6E6E6",
+                        node: "#666666",
+                        nodeLight: "#8c8c8c"
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "4px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body { font-family: 'Inter', sans-serif; }
+            .mono { font-family: 'JetBrains Mono', monospace; }
+        }
+        .graph-bg {
+            background-image: radial-gradient(circle, #777 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .node-connection {
+            position: absolute;
+            background: #E6E6E6;
+            height: 3px;
+            z-index: 0;
+            opacity: 0.8;
+        }.interactive-node:focus-visible {
+            outline: 4px solid #ff9800;
+            outline-offset: 4px;
+            z-index: 60;
+        }
+        .node-active:hover {
+            border-color: #ff9800 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.6);
+            transform: scale(1.05);
+            z-index: 50;
+        }
+        .terminal-header {
+            background: rgba(255, 255, 255, 0.15);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-canvas text-high-contrast selection:bg-primary selection:text-canvas">
+<nav aria-label="Side navigation" class="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-5">
+    <div class="group relative">
+        <a aria-label="Go to SOLID Principles"
+           class="w-4 h-4 rounded-full bg-gray-400 hover:bg-primary block transition-all focus-visible:ring-4 focus-visible:ring-primary outline-none"
+           href="#solid"></a>
+        <span class="absolute left-8 top-1/2 -translate-y-1/2 bg-panel px-3 py-1.5 text-sm font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white text-white">SOLID Principles</span>
+    </div>
+    <div class="group relative">
+        <a aria-label="Go to Design Patterns"
+           class="w-4 h-4 rounded-full bg-gray-400 hover:bg-primary block transition-all focus-visible:ring-4 focus-visible:ring-primary outline-none"
+           href="#patterns"></a>
+        <span class="absolute left-8 top-1/2 -translate-y-1/2 bg-panel px-3 py-1.5 text-sm font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white text-white">Design Patterns</span>
+    </div>
+    <div class="group relative">
+        <a aria-label="Go to System Design"
+           class="w-4 h-4 rounded-full bg-gray-400 hover:bg-primary block transition-all focus-visible:ring-4 focus-visible:ring-primary outline-none"
+           href="#systems"></a>
+        <span class="absolute left-8 top-1/2 -translate-y-1/2 bg-panel px-3 py-1.5 text-sm font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white text-white">System Design</span>
+    </div>
+</nav>
+<header class="border-b-2 border-white/20 bg-canvas/95 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div aria-hidden="true"
+                 class="w-10 h-10 bg-primary rounded flex items-center justify-center font-black text-canvas text-lg">MB
+            </div>
+            <h1 class="text-2xl font-black tracking-tight uppercase">Engineering <span class="text-primary">Graph</span>
+            </h1>
+        </div>
+        <nav class="flex items-center gap-8 text-sm font-bold">
+            <a class="hover:text-primary transition-colors uppercase tracking-widest py-2 focus-visible:outline-primary"
+               href="#">About</a>
+            <a class="hover:text-primary transition-colors uppercase tracking-widest py-2 focus-visible:outline-primary"
+               href="#">Articles</a>
+            <a class="hover:text-primary transition-colors uppercase tracking-widest py-2 focus-visible:outline-primary"
+               href="#">Resources</a>
+            <button aria-label="Search"
+                    class="material-symbols-outlined text-high-contrast hover:text-primary p-2 focus-visible:outline-primary">
+                search
+            </button>
+        </nav>
+    </div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-16">
+    <section class="mb-24 text-center">
+        <h2 class="text-6xl font-black mb-6 uppercase tracking-tighter">Site Knowledge Graph</h2>
+        <p class="text-white max-w-2xl mx-auto text-xl font-medium leading-relaxed">
+            An interconnected map of backend engineering concepts, optimized for maximum legibility and architectural
+            clarity.
+        </p>
+    </section>
+    <section class="mb-32" id="solid">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="text-primary font-mono font-black text-xl">01/</span>
+            <h3 class="text-3xl font-black uppercase tracking-widest">SOLID Principles</h3>
+            <div class="flex-grow h-0.5 bg-white/20"></div>
+            <button class="px-6 py-2 border-2 border-primary text-primary text-sm font-black uppercase tracking-widest hover:bg-primary hover:text-canvas transition-all focus-visible:outline-white">
+                View All Content
+            </button>
+        </div>
+        <div class="relative h-[500px] w-full graph-bg rounded-2xl border-2 border-white/20 overflow-hidden p-8 flex items-center justify-center">
+            <svg aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none">
+                <defs>
+                    <marker id="arrowhead" markerHeight="7" markerWidth="10" orient="auto" refX="9" refY="3.5">
+                        <polygon fill="#E6E6E6" points="0 0, 10 3.5, 0 7"></polygon>
+                    </marker>
+                    <marker id="arrowhead-orange" markerHeight="7" markerWidth="10" orient="auto" refX="9" refY="3.5">
+                        <polygon fill="#ff9800" points="0 0, 10 3.5, 0 7"></polygon>
+                    </marker>
+                </defs>
+                <line marker-end="url(#arrowhead)" stroke="#E6E6E6" stroke-width="3" x1="50%" x2="25%" y1="50%"
+                      y2="15%"></line>
+                <line marker-end="url(#arrowhead)" stroke="#E6E6E6" stroke-width="3" x1="50%" x2="10%" y1="50%"
+                      y2="80%"></line>
+                <line marker-end="url(#arrowhead)" stroke="#E6E6E6" stroke-width="3" x1="50%" x2="75%" y1="50%"
+                      y2="15%"></line>
+                <line marker-end="url(#arrowhead)" stroke="#E6E6E6" stroke-width="3" x1="50%" x2="90%" y1="50%"
+                      y2="85%"></line>
+                <line marker-end="url(#arrowhead)" stroke="#E6E6E6" stroke-width="3" x1="50%" x2="85%" y1="50%"
+                      y2="50%"></line>
+            </svg>
+            <div class="absolute z-20 w-52 bg-primary border-4 border-white p-5 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.5)] text-center group transition-all">
+                <div class="text-xs text-canvas font-black mb-1 uppercase tracking-tighter">Root Concept</div>
+                <div class="font-black text-2xl text-canvas">SOLID</div>
+            </div>
+            <button class="absolute top-[10%] left-[18%] z-10 bg-panel border-2 border-white/40 p-4 rounded-lg text-base mono interactive-node node-active transition-all cursor-pointer text-high-contrast focus-visible:ring-4 focus-visible:ring-primary">
+                <span aria-hidden="true" class="text-secondary font-black">#</span> SRP: Single Responsibility
+            </button>
+            <button class="absolute bottom-[15%] left-[5%] z-10 bg-panel border-2 border-white/40 p-4 rounded-lg text-base mono interactive-node node-active transition-all cursor-pointer text-high-contrast focus-visible:ring-4 focus-visible:ring-primary">
+                <span aria-hidden="true" class="text-secondary font-black">#</span> OCP: Open/Closed
+            </button>
+            <button class="absolute top-[10%] right-[18%] z-10 bg-panel border-2 border-white/40 p-4 rounded-lg text-base mono interactive-node node-active transition-all cursor-pointer text-high-contrast focus-visible:ring-4 focus-visible:ring-primary">
+                <span aria-hidden="true" class="text-secondary font-black">#</span> LSP: Liskov Substitution
+            </button>
+            <button class="absolute bottom-[10%] right-[5%] z-10 bg-panel border-2 border-white/40 p-4 rounded-lg text-base mono interactive-node node-active transition-all cursor-pointer text-high-contrast focus-visible:ring-4 focus-visible:ring-primary">
+                <span aria-hidden="true" class="text-secondary font-black">#</span> ISP: Interface Segregation
+            </button>
+            <button class="absolute top-[45%] right-[2%] z-10 bg-panel border-2 border-white/40 p-4 rounded-lg text-base mono interactive-node node-active transition-all cursor-pointer text-high-contrast focus-visible:ring-4 focus-visible:ring-primary">
+                <span aria-hidden="true" class="text-secondary font-black">#</span> DIP: Dependency Inversion
+            </button>
+        </div>
+    </section>
+    <section class="mb-32" id="patterns">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="text-primary font-mono font-black text-xl">02/</span>
+            <h3 class="text-3xl font-black uppercase tracking-widest">Design Patterns</h3>
+            <div class="flex-grow h-0.5 bg-white/20"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-panel border-2 border-white/20 rounded-xl overflow-hidden group shadow-xl">
+                <div class="terminal-header p-4 flex items-center justify-between">
+                    <span class="text-sm font-black mono text-white">~/creational</span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500 border border-black/20"></div>
+                    </div>
+                </div>
+                <div class="p-8 space-y-4">
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Abstract
+                        Factory
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Builder
+                        Pattern
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Singleton
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Prototype
+                    </button>
+                </div>
+            </div>
+            <div class="bg-panel border-2 border-white/20 rounded-xl overflow-hidden group shadow-xl">
+                <div class="terminal-header p-4 flex items-center justify-between">
+                    <span class="text-sm font-black mono text-white">~/structural</span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500 border border-black/20"></div>
+                    </div>
+                </div>
+                <div class="p-8 space-y-4">
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Adapter
+                        &amp; Wrapper
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Composite
+                        Entity
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Facade
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Proxy
+                        Pattern
+                    </button>
+                </div>
+            </div>
+            <div class="bg-panel border-2 border-white/20 rounded-xl overflow-hidden group shadow-xl">
+                <div class="terminal-header p-4 flex items-center justify-between">
+                    <span class="text-sm font-black mono text-white">~/behavioral</span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500 border border-black/20"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500 border border-black/20"></div>
+                    </div>
+                </div>
+                <div class="p-8 space-y-4">
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Strategy
+                        Pattern
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Observer
+                        Pattern
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> Chain of
+                        Responsibility
+                    </button>
+                    <button class="flex items-center gap-3 text-base font-bold text-high-contrast hover:text-primary transition-colors focus-visible:outline-white w-full text-left p-2 rounded hover:bg-white/5">
+                        <span class="material-symbols-outlined text-primary font-black">arrow_forward</span> State
+                        Pattern
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-32" id="systems">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="text-primary font-mono font-black text-xl">03/</span>
+            <h3 class="text-3xl font-black uppercase tracking-widest">System Design Concepts</h3>
+            <div class="flex-grow h-0.5 bg-white/20"></div>
+            <div class="flex gap-4">
+                <div class="flex items-center gap-2 text-xs font-black text-white bg-secondary/20 px-2 py-1 rounded border border-secondary">
+                    <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                    Core
+                </div>
+                <div class="flex items-center gap-2 text-xs font-black text-white bg-white/5 px-2 py-1 rounded border border-white/40">
+                    <div class="w-3 h-3 rounded-full bg-white"></div>
+                    Advanced
+                </div>
+            </div>
+        </div>
+        <div class="w-full bg-[#2d2d2e] rounded-3xl border-4 border-white/10 p-6 md:p-14 relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 graph-bg opacity-10"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+                <div class="space-y-6">
+                    <h4 class="text-sm font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                        <span class="w-2 h-4 bg-primary inline-block"></span> Storage &amp; Cache
+                    </h4>
+                    <div class="space-y-4">
+                        <button class="w-full text-left bg-secondary border-4 border-white text-canvas p-4 rounded-lg text-sm font-black mono hover:shadow-[0_0_20px_rgba(255,195,64,0.4)] transition-all focus-visible:ring-4 focus-visible:ring-white">
+                            REDIS_CACHING
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            DISTRIBUTED_SQL
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            VECTOR_DB
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            SHARDING_STRATS
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-6 lg:mt-12">
+                    <h4 class="text-sm font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                        <span class="w-2 h-4 bg-primary inline-block"></span> Messaging
+                    </h4>
+                    <div class="space-y-4">
+                        <button class="w-full text-left bg-secondary border-4 border-white text-canvas p-4 rounded-lg text-sm font-black mono hover:shadow-[0_0_20px_rgba(255,195,64,0.4)] transition-all focus-visible:ring-4 focus-visible:ring-white">
+                            KAFKA_STREAMS
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            PUB_SUB_FANOUT
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            RABBITMQ_DLQ
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            EVENT_SOURCING
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-sm font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                        <span class="w-2 h-4 bg-primary inline-block"></span> Scalability
+                    </h4>
+                    <div class="space-y-4">
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            LOAD_BALANCING
+                        </button>
+                        <button class="w-full text-left bg-secondary border-4 border-white text-canvas p-4 rounded-lg text-sm font-black mono hover:shadow-[0_0_20px_rgba(255,195,64,0.4)] transition-all focus-visible:ring-4 focus-visible:ring-white">
+                            CDN_EDGE_COMPUTE
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            REPLICATION_LAG
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            CONSISTENT_HASH
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-6 lg:mt-12">
+                    <h4 class="text-sm font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                        <span class="w-2 h-4 bg-primary inline-block"></span> Reliability
+                    </h4>
+                    <div class="space-y-4">
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            CIRCUIT_BREAKER
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            RATE_LIMITING
+                        </button>
+                        <button class="w-full text-left bg-secondary border-4 border-white text-canvas p-4 rounded-lg text-sm font-black mono hover:shadow-[0_0_20px_rgba(255,195,64,0.4)] transition-all focus-visible:ring-4 focus-visible:ring-white">
+                            ZERO_TRUST_SEC
+                        </button>
+                        <button class="w-full text-left bg-panel border-2 border-white/40 p-4 rounded-lg text-sm mono text-high-contrast hover:border-primary focus-visible:ring-4 focus-visible:ring-primary">
+                            OBSERVABILITY
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <svg aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none opacity-40"
+                 viewBox="0 0 1000 1000">
+                <path d="M 200 250 L 500 450 L 800 250" fill="none" marker-end="url(#arrowhead-orange)" stroke="#ff9800"
+                      stroke-dasharray="10,5" stroke-width="4"></path>
+                <path d="M 200 500 L 500 500 L 800 700" fill="none" marker-end="url(#arrowhead-orange)" stroke="#ff9800"
+                      stroke-dasharray="10,5" stroke-width="4"></path>
+                <path d="M 500 450 L 500 850" fill="none" marker-end="url(#arrowhead-orange)" stroke="#ffc340"
+                      stroke-dasharray="10,5" stroke-width="4"></path>
+            </svg>
+        </div>
+    </section>
+</main>
+<footer class="bg-panel border-t-4 border-white/10 py-16 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+        <div class="flex items-center gap-8">
+            <a aria-label="GitHub"
+               class="text-high-contrast hover:text-primary transition-all transform hover:scale-110 focus-visible:outline-white"
+               href="#">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.412-4.041-1.412-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                </svg>
+            </a>
+            <a aria-label="LinkedIn"
+               class="text-high-contrast hover:text-primary transition-all transform hover:scale-110 focus-visible:outline-white"
+               href="#">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                </svg>
+            </a>
+            <a aria-label="RSS Feed"
+               class="text-high-contrast hover:text-primary transition-all transform hover:scale-110 focus-visible:outline-white"
+               href="#">
+                <span class="material-symbols-outlined text-3xl">rss_feed</span>
+            </a>
+        </div>
+        <div class="flex flex-col items-center gap-3">
+            <span class="text-sm text-gray-400 font-black mono tracking-widest">EST. 2025</span>
+            <p class="text-xl font-black tracking-[0.3em] uppercase">Memo Backend</p>
+            <p class="text-xs text-gray-400 font-bold uppercase">Alejandro Urrestarazu</p>
+        </div>
+        <div class="flex gap-4">
+            <button class="bg-[#3a3a3a] hover:bg-primary hover:text-canvas border-2 border-white/20 px-6 py-3 rounded-lg flex items-center gap-3 text-sm font-black transition-all shadow-lg focus-visible:outline-white">
+                <span class="material-symbols-outlined text-lg">coffee</span>
+                SUPPORT THE PROJECT
+            </button>
+        </div>
+    </div>
+</footer>
+<script>
+    window.addEventListener('scroll', () => {
+        const sections = ['solid', 'patterns', 'systems'];
+        let current = '';
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top <= 200) current = section;
+            }
+        });
+        document.querySelectorAll('nav[aria-label="Side navigation"] a').forEach(a => {
+            a.classList.remove('bg-primary', 'w-6', 'scale-125');
+            a.classList.add('bg-gray-400', 'w-4');
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.remove('bg-gray-400', 'w-4');
+                a.classList.add('bg-primary', 'w-6', 'scale-125');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

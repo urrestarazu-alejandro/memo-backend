@@ -1,36 +1,58 @@
 ---
 common-css:
+  {% unless page.use-tailwind or layout.use-tailwind %}
   - "/assets/css/bootstrap-social.css"
   - "/assets/css/beautifuljekyll.css"
+  {% endunless %}
 common-ext-css:
+  {% unless page.use-tailwind or layout.use-tailwind %}
   - href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     sri: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  {% endunless %}
+  {% if page.use-tailwind or layout.use-tailwind %}
+  {% else %}
   - "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
   - "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+  {% endif %}
 common-ext-js:
+  {% unless page.use-tailwind or layout.use-tailwind %}
   - href: "https://code.jquery.com/jquery-3.5.1.slim.min.js"
     sri: "sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   - href: "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     sri: "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
   - href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     sri: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+  {% endunless %}
+  {% if page.use-tailwind or layout.use-tailwind %}
+  - "https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+  {% endif %}
 common-js:
+  {% unless page.use-tailwind or layout.use-tailwind %}
   - "/assets/js/beautifuljekyll.js"
+  {% endunless %}
 ---
 
 <!DOCTYPE html>
-<html lang="{{ page.language | default: site.language | default: 'es' }}" dir="ltr">
+<html lang="{{ page.language | default: site.language | default: 'es' }}" {% if page.use-tailwind or layout.use-tailwind %}class="dark"{% endif %} dir="ltr">
 {% include head.html %}
 
-<body>
+<body {% if page.use-tailwind or layout.use-tailwind %}class="bg-industrial-bg text-white transition-colors duration-300"{% endif %}>
   {% include gtm_body.html %}
 
-  {% include nav.html %}
+  {% if page.use-tailwind or layout.use-tailwind %}
+    {% include nav-tailwind.html %}
+  {% else %}
+    {% include nav.html %}
+  {% endif %}
 
   {{ content }}
 
-  {% include footer.html %}
+  {% if page.use-tailwind or layout.use-tailwind %}
+    {% include footer-tailwind.html %}
+  {% else %}
+    {% include footer.html %}
+  {% endif %}
 
   {% include footer-scripts.html %}
 </body>

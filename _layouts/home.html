@@ -1,8 +1,106 @@
 ---
 layout: page
+use-tailwind: true
 footer-extra: cafecito.html
 ---
 
+{% if page.use-tailwind or layout.use-tailwind %}
+<!-- Hero Section with Tailwind -->
+<div class="text-center pt-24 pb-16">
+  <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 text-white">{{ site.title }}</h1>
+  <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+  <p class="text-xl md:text-2xl font-light text-industrial-text max-w-3xl mx-auto">{{ site.description }}</p>
+</div>
+
+{{ content }}
+
+<div class="mt-16 mb-12">
+  <h2 class="text-4xl font-serif font-semibold text-center mb-4 text-white">Mis publicaciones</h2>
+  <div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+
+{% assign posts = paginator.posts | default: site.posts %}
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+  {% for post in posts %}
+    <article class="group border border-industrial-frame bg-industrial-panel hover:shadow-xl hover:shadow-black/20 transition-all duration-300 flex flex-col overflow-hidden">
+      {%- capture thumbnail -%}
+        {% if post.thumbnail-img %}
+          {{ post.thumbnail-img }}
+        {% elsif post.cover-img %}
+          {% if post.cover-img.first %}
+            {{ post.cover-img[0].first.first }}
+          {% else %}
+            {{ post.cover-img }}
+          {% endif %}
+        {% else %}
+        {% endif %}
+      {% endcapture %}
+      {% assign thumbnail=thumbnail | strip %}
+
+      {% if thumbnail != "" %}
+        <a href="{{ post.url | absolute_url }}" class="block aspect-video overflow-hidden">
+          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </a>
+      {% endif %}
+
+      <div class="p-6 flex flex-col flex-grow">
+        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
+          <a href="{{ post.url | absolute_url }}">{{ post.title | strip_html }}</a>
+        </h3>
+        <p class="text-xs text-industrial-text uppercase tracking-wider mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">schedule</span>
+          {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+          {{ post.date | date: date_format }}
+        </p>
+        <div class="text-industrial-text text-sm leading-relaxed mb-6 flex-grow">
+          {% assign excerpt_length = site.excerpt_length | default: 25 %}
+          {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
+        </div>
+        <a href="{{ post.url | absolute_url }}" class="bg-primary hover:bg-secondary text-black font-bold py-3 px-6 transition-colors uppercase text-sm tracking-wider inline-block text-center">
+          Leer más
+        </a>
+      </div>
+    </article>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<nav class="flex justify-center items-center gap-8 mt-16 mb-8">
+  {% if paginator.previous_page %}
+  <a href="{{ paginator.previous_page_path | absolute_url }}" class="group flex items-center gap-3 text-sm hover:text-primary transition-colors">
+    <span class="material-symbols-outlined text-2xl">arrow_back</span>
+    <div class="hidden sm:block">
+      <div class="font-bold">Publicaciones nuevas</div>
+    </div>
+  </a>
+  {% else %}
+  <div class="opacity-50 cursor-not-allowed flex items-center gap-3">
+    <span class="material-symbols-outlined text-2xl text-industrial-divider">arrow_back</span>
+  </div>
+  {% endif %}
+
+  <div class="text-xs text-industrial-text font-mono uppercase tracking-wider">
+    Página {{ paginator.page }} de {{ paginator.total_pages }}
+  </div>
+
+  {% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path | absolute_url }}" class="group flex items-center gap-3 text-sm hover:text-primary transition-colors">
+    <div class="hidden sm:block">
+      <div class="font-bold">Publicaciones anteriores</div>
+    </div>
+    <span class="material-symbols-outlined text-2xl">arrow_forward</span>
+  </a>
+  {% else %}
+  <div class="opacity-50 cursor-not-allowed flex items-center gap-3">
+    <span class="material-symbols-outlined text-2xl text-industrial-divider">arrow_forward</span>
+  </div>
+  {% endif %}
+</nav>
+{% endif %}
+
+{% else %}
+<!-- Bootstrap version -->
 <style>
   .hero {
     text-align: center;
@@ -80,7 +178,6 @@ footer-extra: cafecito.html
 
 <h2 class="posts-section-title">Mis publicaciones</h2>
 
-
 {% assign posts = paginator.posts | default: site.posts %}
 
 <div class="posts-grid">
@@ -143,4 +240,5 @@ footer-extra: cafecito.html
   </li>
   {% endif %}
 </ul>
+{% endif %}
 {% endif %}

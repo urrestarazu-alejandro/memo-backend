@@ -1,0 +1,125 @@
+<nav class="sticky top-0 z-50 bg-industrial-bg/95 backdrop-blur-md border-b border-industrial-frame shadow-lg transition-transform duration-300"
+     x-data="{ mobileMenuOpen: false }">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo/Title Section -->
+    <div class="flex items-center gap-2">
+      {%- if site.title-img -%}
+        <a href="{{ '/' | absolute_url }}" class="flex items-center gap-2">
+          <img alt="{{ site.title }} Logo" src="{{ site.title-img | relative_url }}" class="h-8">
+        </a>
+      {%- elsif site.title -%}
+        {%- if site.avatar and page.show-avatar != false -%}
+          <a href="{{ '/' | absolute_url }}" class="flex items-center gap-2">
+            <img alt="{{ site.title }} Avatar" src="{{ site.avatar | relative_url }}" class="w-8 h-8 rounded-full border-2 border-primary">
+            <span class="font-bold text-lg tracking-tight uppercase">{{ site.title }}</span>
+          </a>
+        {%- else -%}
+          <a href="{{ '/' | absolute_url }}" class="font-bold text-lg tracking-tight uppercase">{{ site.title }}</a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8">
+      {%- for link in site.navbar-links -%}
+        {%- if link[1].first %}
+          <!-- Dropdown Menu -->
+          <div class="relative group">
+            <button class="text-sm hover:text-primary transition-colors flex items-center gap-1 uppercase tracking-wider font-medium">
+              {{ link[0] }}
+              <span class="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-industrial-frame border border-industrial-divider shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              {%- for childlink in link[1] -%}
+                {%- for linkparts in childlink %}
+                  <a class="block px-4 py-3 text-sm hover:bg-industrial-panel hover:text-primary transition-colors border-b border-industrial-divider last:border-b-0"
+                     href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
+                {%- endfor -%}
+              {%- endfor %}
+            </div>
+          </div>
+        {% else %}
+          <!-- Regular Link -->
+          <a class="text-sm hover:text-primary transition-colors uppercase tracking-wider font-medium underline decoration-transparent hover:decoration-primary underline-offset-4"
+             href="{{ link[1] | relative_url }}">{{ link[0] }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {% if site.post_search %}
+        <a class="material-symbols-outlined text-white hover:text-primary transition-colors cursor-pointer"
+           id="nav-search-link"
+           href="#"
+           title="Search"
+           aria-label="Search">search</a>
+      {%- endif -%}
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button @click="mobileMenuOpen = !mobileMenuOpen"
+            class="md:hidden p-2 rounded hover:bg-industrial-frame transition-colors"
+            aria-label="Toggle menu">
+      <span x-show="!mobileMenuOpen" class="material-symbols-outlined">menu</span>
+      <span x-show="mobileMenuOpen" class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div x-show="mobileMenuOpen"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 -translate-y-1"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-1"
+       class="md:hidden bg-industrial-panel border-t border-industrial-frame"
+       style="display: none;">
+    <div class="px-6 py-4 space-y-2">
+      {%- for link in site.navbar-links -%}
+        {%- if link[1].first %}
+          <!-- Mobile Dropdown -->
+          <div x-data="{ open: false }">
+            <button @click="open = !open"
+                    class="w-full flex items-center justify-between py-2 text-sm hover:text-primary transition-colors uppercase tracking-wider font-medium">
+              {{ link[0] }}
+              <span class="material-symbols-outlined text-sm" :class="{ 'rotate-180': open }">expand_more</span>
+            </button>
+            <div x-show="open"
+                 x-transition
+                 class="pl-4 mt-2 space-y-2"
+                 style="display: none;">
+              {%- for childlink in link[1] -%}
+                {%- for linkparts in childlink %}
+                  <a class="block py-2 text-sm hover:text-primary transition-colors"
+                     href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
+                {%- endfor -%}
+              {%- endfor %}
+            </div>
+          </div>
+        {% else %}
+          <!-- Mobile Regular Link -->
+          <a class="block py-2 text-sm hover:text-primary transition-colors uppercase tracking-wider font-medium"
+             href="{{ link[1] | relative_url }}">{{ link[0] }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {% if site.post_search %}
+        <a class="flex items-center gap-2 py-2 text-sm hover:text-primary transition-colors"
+           id="nav-search-link-mobile"
+           href="#"
+           title="Search">
+          <span class="material-symbols-outlined">search</span>
+          <span>Search</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</nav>
+
+{% if site.navbar-extra %}
+  {% for file in site.navbar-extra %}
+    {% include {{ file }} %}
+  {% endfor %}
+{% endif %}
+
+{% include search-tailwind.html %}

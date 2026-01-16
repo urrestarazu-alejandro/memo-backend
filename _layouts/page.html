@@ -1,10 +1,36 @@
 ---
 layout: base
+use-tailwind: true
 ---
 
-{% include header.html type="page" %}
+{% if page.use-tailwind or layout.use-tailwind %}
+  {% include header-tailwind.html type="page" %}
+{% else %}
+  {% include header.html type="page" %}
+{% endif %}
 
-<main class="container-fluid">
+<main class="{% if page.use-tailwind or layout.use-tailwind %}w-full max-w-4xl mx-auto px-6 py-12{% else %}container-fluid{% endif %}">
+  {% if page.use-tailwind or layout.use-tailwind %}
+    {% if page.before-content %}
+    <div class="before-content">
+      {% for file in page.before-content %}
+      {% include {{ file }} %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {{ content }}
+
+    {% if page.after-content %}
+    <div class="after-content">
+      {% for file in page.after-content %}
+      {% include {{ file }} %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% include comments.html %}
+  {% else %}
   <div class="row">
     <div class="col-12">
       {% if page.before-content %}
@@ -28,4 +54,5 @@ layout: base
       {% include comments.html %}
     </div>
   </div>
+  {% endif %}
 </main>
