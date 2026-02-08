@@ -399,6 +399,19 @@
   position: relative;
 }
 
+/* Aumentar margen superior en pantallas anchas para evitar superposición con avatar */
+@media (min-width: 768px) {
+  .intro-header {
+    margin-top: 7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .intro-header {
+    margin-top: 8rem;
+  }
+}
+
 .intro-header.big-img {
   position: relative;
   overflow: hidden;
@@ -426,6 +439,9 @@
   font-weight: 800;
   letter-spacing: -0.5px;
   animation: titleSlideIn 0.8s ease-out;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .intro-header .post-subheading,
@@ -438,6 +454,43 @@
   color: var(--text-muted);
   font-style: normal;
   animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+/* Asegurar que el contenedor del header no sea demasiado estrecho */
+.intro-header .container {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Sobrescribir los offsets de Bootstrap para headers de página */
+.header-section .intro-header .col-xl-8.offset-xl-2 {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.header-section .intro-header .col-lg-10.offset-lg-1 {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+}
+
+/* Centrar el contenido del heading */
+.header-section .intro-header .page-heading {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.header-section .intro-header .post-heading {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 /* Blog Post Content Area */
@@ -867,6 +920,106 @@ footer {
 }
 
 /* ============================================================
+   PAGE LAYOUT - ANCHO MÁXIMO PARA LEGIBILIDAD
+   ============================================================ */
+
+/* Limitar ancho del contenido en páginas estáticas para mejor legibilidad */
+main.container-fluid > .row > .col-12 {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* En pantallas extra grandes, aumentar el ancho máximo */
+@media (min-width: 1400px) {
+  main.container-fluid > .row > .col-12 {
+    max-width: 1100px;
+  }
+}
+
+/* En pantallas medianas, reducir padding */
+@media (max-width: 991px) {
+  main.container-fluid > .row > .col-12 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* En móvil, padding mínimo */
+@media (max-width: 575px) {
+  main.container-fluid > .row > .col-12 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Estilos mejorados para contenido de páginas estáticas */
+main.container-fluid .col-12 h2 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-light);
+  position: relative;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+main.container-fluid .col-12 h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--primary-gradient);
+}
+
+/* Mejorar imágenes en páginas */
+main.container-fluid .col-12 img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin: 2rem auto;
+  max-width: 400px;
+  display: block;
+}
+
+/* Listas mejoradas en páginas */
+main.container-fluid .col-12 ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 2rem 0;
+}
+
+main.container-fluid .col-12 ul li {
+  padding: 1rem 1.5rem;
+  margin: 0.75rem 0;
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+main.container-fluid .col-12 ul li:hover {
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+/* Párrafos en páginas */
+main.container-fluid .col-12 p {
+  line-height: 1.8;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
    RESPONSIVE DESIGN
    ============================================================ */
 
@@ -893,6 +1046,16 @@ footer {
   .posts-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
+  }
+
+  /* Ajustar títulos en páginas para tablet */
+  main.container-fluid .col-12 h2 {
+    font-size: 2rem;
+  }
+
+  /* Reducir padding en items de lista */
+  main.container-fluid .col-12 ul li {
+    padding: 0.875rem 1.25rem;
   }
 }
 
@@ -940,6 +1103,24 @@ footer {
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
   }
+
+  /* Ajustar títulos en páginas para mobile */
+  main.container-fluid .col-12 h2 {
+    font-size: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  /* Reducir más el padding en items de lista para mobile */
+  main.container-fluid .col-12 ul li {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* Imágenes más pequeñas en mobile */
+  main.container-fluid .col-12 img {
+    max-width: 100%;
+    margin: 1.5rem auto;
+  }
 }
 
 /* Small Mobile */
@@ -968,6 +1149,19 @@ footer {
 
   .post-card-title {
     font-size: 1.25rem;
+  }
+
+  /* Ajustar títulos en páginas para small mobile */
+  main.container-fluid .col-12 h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Items de lista compactos en small mobile */
+  main.container-fluid .col-12 ul li {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
   }
 }
 
