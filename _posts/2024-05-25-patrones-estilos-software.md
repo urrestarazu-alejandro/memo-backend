@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Patrones y estilos de software
+title: "Patrones y estilos de software - Parte 1: Conceptos"
 subtitle: soluciones reutilizables
 thumbnail-img: /assets/img/posts/plano-laberinto-dedalo512.png
 tags: [Patrones de diseño,Patrones arquitectónicos,Estilos Arquitectónicos,C4]
@@ -8,7 +8,7 @@ comments: true
 author: Alejandro Urrestarazu
 ---
 
-## Patrones y estilos de software
+## Patrones y estilos de software - Parte 1: Conceptos
 
 ![Plano arquitectura laberinto de dédalo](/assets/img/posts/plano-laberinto-dedalo512.png){: .mx-auto.d-block :}
 
@@ -29,20 +29,51 @@ Existen tres conceptos relacionados con la estructura y organización de un sist
 Un patrón de diseño es una forma canónica nombrada para una combinación de estructuras de software y procedimientos que han demostrado ser útiles a lo largo de los años.- Uncle bob
 
 Tal como nos dice el tío Bob los patrones de diseño de software son _soluciones_ reutilizables a problemas recurrentes (No es necesario reinventar la rueda) a nivel de diseño pero más específicamente a **nivel de implementación de clases y objetos**.
-Algunos ejemplos de patrones de diseño son **Singleton**, **Factory** y **Observer**.
+
+Los patrones de diseño operan en el código fuente, definiendo cómo las clases y objetos interactúan y colaboran entre sí. Son independientes del lenguaje de programación, aunque su implementación puede variar según el paradigma (orientado a objetos, funcional, etc.).
+
+**Características principales:**
+- **Alcance**: Relaciones entre clases y objetos específicos
+- **Granularidad**: Micro-arquitectura (métodos, clases, interfaces)
+- **Independencia**: Pueden usarse en cualquier capa de la aplicación
+- **Catálogo**: Formalizados principalmente por el Gang of Four (GoF)
+
+Algunos ejemplos de patrones de diseño son **Singleton** (garantiza una única instancia de una clase), **Factory** (encapsula la creación de objetos) y **Observer** (notifica cambios a objetos dependientes).
 
 ### Patrones arquitectónicos de software
 
-Los patrones arquitectónicos son son _soluciones_ ya que describen cómo implementar **estructuras a nivel de componentes**.
+Los patrones arquitectónicos son _soluciones_ que describen cómo implementar **estructuras a nivel de componentes** y sus relaciones. Estos patrones definen la organización de subsistemas o módulos dentro de una aplicación, estableciendo sus responsabilidades y canales de comunicación.
 
-Algunos ejemplos de patrones arquitectónicos son: Modelo-Vista-Controlador (**MVC**), Modelo-Vista-Presentador (**MVP**) o  View-Interactor-Presenter-Entity-Router (**VIPER**).
+A diferencia de los patrones de diseño que se enfocan en clases individuales, los patrones arquitectónicos organizan grupos de componentes que trabajan juntos para resolver problemas específicos de la arquitectura de software.
+
+**Características principales:**
+- **Alcance**: Organización de componentes y subsistemas
+- **Granularidad**: Módulos, capas, servicios
+- **Dependencia**: Suelen depender del contexto de la aplicación (web, móvil, desktop)
+- **Propósito**: Separación de responsabilidades a nivel de componentes
+
+Algunos ejemplos de patrones arquitectónicos son: Modelo-Vista-Controlador (**MVC**) que separa la lógica de negocio de la presentación, Modelo-Vista-Presentador (**MVP**) que desacopla aún más la vista del modelo, o View-Interactor-Presenter-Entity-Router (**VIPER**) común en aplicaciones móviles iOS para maximizar la separación de responsabilidades.
 
 ### Estilos Arquitectónicos de software
 
-Los estilos arquitectónicos son configuraciones de alto nivel que definen la estructura global y las **relaciones e interacciones de componentes** en un sistema de software.
-La función de los estilos arquitectónicos es proporcionar una base conceptual con principios fundamentales para el diseño de sistemas y ayudan a definir la organización general de un sistema de software.
+Los estilos arquitectónicos son configuraciones de alto nivel que definen la estructura global y las **relaciones e interacciones de componentes** en un sistema de software. Son decisiones fundamentales que afectan todo el sistema y son difíciles de cambiar una vez implementadas.
 
-Algunos de ejemplos de estilos arquitectónicos son: la **arquitectura en capas** (donde los componentes se organizan en capas horizontales), la arquitectura **cliente-servidor** (separando la funcionalidad en servidores que proveen servicios y clientes que los consumen) y la **arquitectura dirigida por eventos** (centrada en reaccionar a eventos).
+La función de los estilos arquitectónicos es proporcionar una base conceptual con principios fundamentales para el diseño de sistemas. Definen el "vocabulario" de componentes y conectores que se pueden usar, junto con las restricciones sobre cómo pueden combinarse.
+
+**Características principales:**
+- **Alcance**: Sistema completo o subsistemas mayores
+- **Granularidad**: Contenedores, servicios, sistemas externos
+- **Impacto**: Decisiones estratégicas que afectan atributos de calidad (escalabilidad, mantenibilidad, rendimiento)
+- **Filosofía**: Establecen principios y restricciones arquitectónicas
+
+**Cuándo elegir cada estilo:**
+- **Arquitectura en capas**: Cuando necesitas separación clara de responsabilidades y modificaciones independientes por capa
+- **Cliente-servidor**: Para distribuir carga computacional y centralizar recursos
+- **Dirigida por eventos**: Cuando requieres alta escalabilidad y desacoplamiento temporal entre componentes
+- **Microservicios**: Para equipos independientes y despliegues autónomos
+- **Monolítica**: Proyectos pequeños o cuando la simplicidad operacional es prioritaria
+
+Algunos ejemplos de estilos arquitectónicos son: la **arquitectura en capas** (donde los componentes se organizan en capas horizontales como presentación, lógica de negocio y persistencia), la arquitectura **cliente-servidor** (separando la funcionalidad en servidores que proveen servicios y clientes que los consumen) y la **arquitectura dirigida por eventos** (centrada en la producción, detección y reacción a eventos).
 
 ### Modelo C4
 
@@ -66,6 +97,45 @@ Un componente puede ser, por ejemplo, un módulo dentro de una aplicación web, 
 4. **Código**: Este es el nivel de detalle más bajo del modelo C4, en el que se abordan las clases, funciones o métodos específicos dentro de cada componente. A este nivel se representa el diseño del software a nivel de código, mostrando detalles como relaciones de herencia, interacciones o incluso **patrones de diseño** utilizados.
 
 
-El enfoque C4 es valioso porque permite a los arquitectos y desarrolladores visualizar diferentes aspectos de la arquitectura de software en varios niveles de granularidad y abstractos, haciendo los conceptos accesibles y comprensibles para diferentes públicos, desde técnicos hasta no técnicos. 
+El enfoque C4 es valioso porque permite a los arquitectos y desarrolladores visualizar diferentes aspectos de la arquitectura de software en varios niveles de granularidad y abstractos, haciendo los conceptos accesibles y comprensibles para diferentes públicos, desde técnicos hasta no técnicos.
 Además, al proporcionar una visión escalonada, facilita identificar dónde pueden surgir problemas y cómo se interconectan las diferentes partes del sistema.
+
+### Diferencias clave y cuándo usar cada concepto
+
+Para clarificar aún más las diferencias entre estos tres conceptos, consideremos sus características distintivas:
+
+| Aspecto | Patrones de Diseño | Patrones Arquitectónicos | Estilos Arquitectónicos |
+|---------|-------------------|-------------------------|------------------------|
+| **Nivel de abstracción** | Bajo (código) | Medio (componentes) | Alto (sistema) |
+| **Alcance** | Clases y objetos | Módulos y subsistemas | Sistema completo |
+| **Momento de decisión** | Durante implementación | Durante diseño detallado | Durante diseño inicial |
+| **Facilidad de cambio** | Alta | Media | Baja |
+| **Ejemplo de pregunta** | ¿Cómo creo objetos? | ¿Cómo organizo mi aplicación web? | ¿Qué estructura global tendrá mi sistema? |
+
+{: .box-warning}
+**Importante**: Estos conceptos no son excluyentes sino complementarios. Un sistema de software típicamente utiliza un estilo arquitectónico (como capas), implementa varios patrones arquitectónicos (como MVC en la capa de presentación), y aplica múltiples patrones de diseño (como Factory, Observer, Strategy) en su implementación.
+
+### Relación entre los conceptos
+
+La jerarquía natural de estos conceptos fluye de lo general a lo específico:
+
+1. **Primero** se elige un **estilo arquitectónico** basado en requisitos no funcionales (escalabilidad, disponibilidad, mantenibilidad)
+2. **Luego** se seleccionan **patrones arquitectónicos** apropiados para cada subsistema o módulo
+3. **Finalmente** se implementan **patrones de diseño** específicos para resolver problemas a nivel de código
+
+Esta progresión refleja el proceso natural de diseño: comenzamos con decisiones estratégicas de alto nivel y gradualmente refinamos hacia decisiones tácticas de implementación.
+
+## Conclusión
+
+Comprender la distinción entre patrones de diseño, patrones arquitectónicos y estilos arquitectónicos es fundamental para comunicarnos efectivamente como desarrolladores y arquitectos de software. Cada concepto opera en un nivel diferente de abstracción y responde a diferentes tipos de preguntas.
+
+Los **estilos arquitectónicos** nos dan el marco conceptual general del sistema, los **patrones arquitectónicos** organizan nuestros componentes y módulos, y los **patrones de diseño** nos ayudan a escribir código limpio, mantenible y reutilizable.
+
+El modelo C4 nos proporciona una herramienta visual poderosa para documentar y comunicar estas decisiones en sus niveles apropiados de abstracción, asegurando que todos los stakeholders del proyecto puedan entender la arquitectura según su necesidad de detalle.
+
+{: .box-success}
+En futuras entregas de esta serie exploraremos ejemplos prácticos de cómo estos conceptos se aplican conjuntamente en proyectos reales, con código y diagramas específicos.
+
+---
+*Última modificación: 8 de febrero de 2026*
 
