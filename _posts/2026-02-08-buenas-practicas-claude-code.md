@@ -2,13 +2,15 @@
 layout: post
 title: Buenas Prácticas de Claude Code
 subtitle: 
-thumbnail-img: /assets/img/posts/openart-image_cañerias_colores-512.png
+thumbnail-img: /assets/img/posts/robot_en_una_clase_rural.png
 tags: [agéntica,Claude Code]
 author: Alejandro Urrestarazu
 ---
 
 
 # Buenas Prácticas de Claude Code
+
+![Robot tomando clases en una escuela rural](/assets/img/posts/robot_en_una_clase_rural.png){: .mx-auto.d-block :}
 
 ## Tabla de Contenidos
 
