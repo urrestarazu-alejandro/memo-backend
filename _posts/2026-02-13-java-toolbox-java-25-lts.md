@@ -1197,25 +1197,14 @@ Como versión **LTS con soporte de 8 años**, Java 25 es ideal para proyectos nu
 - ⚠️ Dar feedback a OpenJDK sobre características en preview
 - ❌ Evitar características en **incubación** en cualquier ambiente productivo
 
-## Recursos
-
-- [OpenJDK Java 25 Project](https://openjdk.org/projects/jdk/25/)
-- [JEP Index](https://openjdk.org/jeps/0)
-- [Oracle Java 25 Announcement](https://www.oracle.com/java/technologies/javase/25-relnote-issues.html)
-- [What's New in Java 25 - JRebel](https://www.jrebel.com/blog/java-25)
-- [Java 25 Features - Baeldung](https://www.baeldung.com/java-25-features)
-
----
-
-**¿Ya probaste alguna de estas características? ¿Qué te pareció la evolución de Java 25?** Comparte tu experiencia en los comentarios.
-
----
-
-**Última actualización**: Febrero 2026
-
 **Fuentes**:
+
 - [OpenJDK JDK 25](https://openjdk.org/projects/jdk/25/)
 - [Java 25, the Next LTS Release - InfoQ](https://www.infoq.com/news/2025/09/java25-released/)
 - [New Features in Java 25 - Baeldung](https://www.baeldung.com/java-25-features)
 - [What's New With Java 25 - JRebel](https://www.jrebel.com/blog/java-25)
 - [Java 25 LTS and IntelliJ IDEA](https://blog.jetbrains.com/idea/2025/09/java-25-lts-and-intellij-idea/)
+
+---
+
+**Última actualización**: Febrero 2026
