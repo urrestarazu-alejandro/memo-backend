@@ -22,7 +22,6 @@ author: Alejandro Urrestarazu
 navbar-links:
   Acerca de mí: "aboutme"
   Recursos:
-    - Principios SOLID: "pages/solid"
     - Mapa mental: "pages/mapamental"
     - Bibliografía: "pages/bibliografia"
 
