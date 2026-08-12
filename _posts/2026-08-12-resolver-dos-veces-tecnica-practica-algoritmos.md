@@ -2,11 +2,13 @@
 layout: post
 title: "Resolver dos veces: reconocer vs. poseer un patrón"
 subtitle: "Por qué resolver un ejercicio una sola vez no es suficiente para dominarlo"
-thumbnail-img:  # TODO: agregar imagen en /assets/img/posts/
+thumbnail-img: assets/img/posts/artista_dos_cuadros.png
 tags: [algoritmos, entrevistas-tecnicas, practica-deliberada, aprendizaje, leetcode]
 comments: true
 author: Alejandro Urrestarazu
 ---
+
+![Artista pintando dos cuadros](/assets/img/posts/artista_dos_cuadros.png){: .mx-auto.d-block :}
 
 Si practicás ejercicios de algoritmos para entrevistas técnicas, seguramente ya pasaste por esto: resolvés un
 problema, ves la solución, entendés perfecto la lógica... y una semana después no podés reproducirla desde cero.
@@ -53,7 +55,7 @@ La propuesta es simple de enunciar y exigente de cumplir:
    "resuelto" antes.
 
 {: .box-success}
-La primera resolución te enseña el patrón. La segunda, en frío, es la que confirma que lo ownaste.
+La primera resolución te enseña el patrón. La segunda, en frío, es la que confirma que lo dominás.
 
 ## Por qué el segundo intento es el que realmente importa
 

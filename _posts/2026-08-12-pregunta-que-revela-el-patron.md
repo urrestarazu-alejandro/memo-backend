@@ -2,11 +2,13 @@
 layout: post
 title: "La pregunta que revela el patrón: 7 estructuras de datos"
 subtitle: "Una sola pregunta diagnóstica que señala la estructura correcta, aplicada a Hash Map, Sliding Window, DP, Binary Search, BFS/DFS, Heaps y Prefix Sums"
-thumbnail-img:  # TODO: agregar imagen en /assets/img/posts/
+thumbnail-img: assets/img/posts/atril_pregunta.png
 tags: [algoritmos, entrevistas-tecnicas, leetcode, java]
 comments: true
 author: Alejandro Urrestarazu
 ---
+
+![Atril con la pregunta diagnóstica](/assets/img/posts/atril_pregunta.png){: .mx-auto.d-block :}
 
 Si estás practicando para una entrevista técnica, seguramente ya te pasó: ves un problema nuevo y no sabés por
 dónde arrancar, aunque hayas resuelto veinte parecidos antes. El problema no es de conocimiento — es que estás
