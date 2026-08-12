@@ -19,6 +19,8 @@ Obtener mi título universitario fue el comienzo de una emocionante carrera en e
 
 En mi tiempo libre, me dedico a mi proyecto personal, [Memorias de un Backend](https://memobackend.com.ar/), un blog donde comparto mis conocimientos y experiencias en el desarrollo de software en español. Es mi manera de devolver a la comunidad todo lo que he aprendido a lo largo de los años.
 
+Lo armé porque hay escasez de contenido actualizado en español sobre backend, así que decidí crear esta biblioteca de conocimientos para compartir con todos. Cada publicación trata un tema específico y los temas están relacionados entre sí a través de etiquetas (tags); en el menú vas a encontrar introducciones generales que sirven como punto de partida para explorar a fondo cada publicación.
+
 ### Hablemos
 
 Si quieres saber más sobre mi trabajo, o si simplemente quieres charlar sobre tecnología, no dudes en contactarme a través de [LinkedIn](https://www.linkedin.com/in/urrestarazualejandro/).

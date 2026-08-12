@@ -101,17 +101,6 @@
   }
 }
 
-@keyframes heroGlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
-}
-
 @keyframes titleSlideIn {
   from {
     opacity: 0;
@@ -137,54 +126,6 @@
 /* ============================================================
    FASE 2: MEJORAS DE HOME PAGE
    ============================================================ */
-
-/* Hero Section */
-.hero {
-  background: linear-gradient(135deg, #6C757D 0%, #343A40 100%);
-  box-shadow: var(--shadow-md);
-  padding: 6rem 1rem;
-  border-bottom: none;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* Patrón de fondo animado */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-  animation: heroGlow 15s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.hero h1,
-.hero .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  animation: fadeInUp 0.8s ease-out;
-  position: relative;
-  z-index: 1;
-}
-
-.hero p,
-.hero .hero-subtitle {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.95);
-  animation: fadeInUp 0.8s ease-out 0.2s both;
-  position: relative;
-  z-index: 1;
-}
 
 /* Section Title */
 .posts-section-title {
@@ -1107,20 +1048,6 @@ main.container-fluid .col-12 p {
 
 /* Tablet */
 @media (max-width: 991px) {
-  .hero {
-    padding: 5rem 1rem;
-  }
-
-  .hero h1,
-  .hero .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero p,
-  .hero .hero-subtitle {
-    font-size: 1.2rem;
-  }
-
   .posts-section-title {
     font-size: 2.25rem;
   }
@@ -1143,20 +1070,6 @@ main.container-fluid .col-12 p {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .hero {
-    padding: 4rem 1rem;
-  }
-
-  .hero h1,
-  .hero .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero p,
-  .hero .hero-subtitle {
-    font-size: 1.1rem;
-  }
-
   .posts-section-title {
     font-size: 2rem;
     margin-top: 3rem;
@@ -1207,20 +1120,6 @@ main.container-fluid .col-12 p {
 
 /* Small Mobile */
 @media (max-width: 575px) {
-  .hero {
-    padding: 3rem 1rem;
-  }
-
-  .hero h1,
-  .hero .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero p,
-  .hero .hero-subtitle {
-    font-size: 1rem;
-  }
-
   .posts-section-title {
     font-size: 1.75rem;
   }
@@ -1283,18 +1182,5 @@ textarea:focus {
   .pagination,
   .blog-tags {
     display: none;
-  }
-
-  .hero {
-    background: none;
-    color: black;
-  }
-
-  .hero h1,
-  .hero .hero-title,
-  .hero p,
-  .hero .hero-subtitle {
-    color: black;
-    text-shadow: none;
   }
 }
